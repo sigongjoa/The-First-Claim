@@ -28,10 +28,10 @@ class ProjectIntroduction:
 
     def display_welcome(self):
         """환영 메시지 표시"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print(f"{self.project_name.center(70)}")
         print(f"{self.tagline.center(70)}")
-        print("="*70)
+        print("=" * 70)
         print()
         print("📚 변리사 시험을 위한 TDD 학습 플랫폼에 오신 것을 환영합니다!")
         print()
@@ -42,7 +42,7 @@ class ProjectIntroduction:
         print()
         print("핵심 철학: '법을 읽는 사용자가 아니라, 법을 설계하는 창조자가 된다'")
         print()
-        print("="*70)
+        print("=" * 70)
         print()
 
     def display_startup_status(self):
@@ -97,7 +97,7 @@ class ProjectIntroduction:
         while True:
             try:
                 choice = input("\n메뉴를 선택하세요 (0-7): ").strip()
-                if choice in ['0', '1', '2', '3', '4', '5', '6', '7']:
+                if choice in ["0", "1", "2", "3", "4", "5", "6", "7"]:
                     return choice
                 else:
                     print("⚠️  잘못된 선택입니다. 0-7 사이의 숫자를 입력해주세요.")
@@ -107,36 +107,36 @@ class ProjectIntroduction:
 
     def handle_choice(self, choice):
         """선택에 따른 처리"""
-        if choice == '0':
+        if choice == "0":
             self.display_goodbye()
             sys.exit(0)
 
-        elif choice == '1':
+        elif choice == "1":
             self.display_project_overview()
 
-        elif choice == '2':
+        elif choice == "2":
             self.start_game()
 
-        elif choice == '3':
+        elif choice == "3":
             self.show_progress()
 
-        elif choice == '4':
+        elif choice == "4":
             self.run_tests()
 
-        elif choice == '5':
+        elif choice == "5":
             self.show_settings()
 
-        elif choice == '6':
+        elif choice == "6":
             self.show_system_status()
 
-        elif choice == '7':
+        elif choice == "7":
             self.show_documentation_index()
 
     def display_project_overview(self):
         """프로젝트 개요 표시"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("PROJECT: OVERRIDE - 프로젝트 개요")
-        print("="*70)
+        print("=" * 70)
         print()
         print("📌 프로젝트 목표:")
         print("   - 변리사 시험 고득점 합격")
@@ -155,13 +155,13 @@ class ProjectIntroduction:
         print("   Phase 4: Final Override (시험장 배포)")
         print()
         print("더 자세한 내용은 docs/01_project_overview.md를 참고하세요.")
-        print("="*70)
+        print("=" * 70)
 
     def start_game(self):
         """게임 시작"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("🎮 게임 시작 준비 중...")
-        print("="*70)
+        print("=" * 70)
         print()
         print("⚠️  현재 게임 엔진은 개발 중입니다.")
         print()
@@ -177,13 +177,13 @@ class ProjectIntroduction:
         print()
         print("지금 바로 개발을 시작하려면:")
         print("  $ python -m pytest tests/")
-        print("="*70)
+        print("=" * 70)
 
     def show_progress(self):
         """학습 진도 확인"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("📊 학습 진도 확인")
-        print("="*70)
+        print("=" * 70)
         print()
         print("시스템: 아직 학습 데이터가 없습니다.")
         print()
@@ -196,13 +196,13 @@ class ProjectIntroduction:
         print("  3. 코드 리팩토링")
         print("  4. 다시 문제 풀기 (검증)")
         print()
-        print("="*70)
+        print("=" * 70)
 
     def run_tests(self):
         """테스트 실행"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("🧪 테스트 실행")
-        print("="*70)
+        print("=" * 70)
         print()
         print("현재 테스트 상황:")
         print("  ☐ 테스트 코드가 아직 작성되지 않았습니다.")
@@ -215,13 +215,13 @@ class ProjectIntroduction:
         print("예시:")
         print("  $ pytest tests/test_civil_law.py::test_acquisition_by_prescription")
         print()
-        print("="*70)
+        print("=" * 70)
 
     def show_settings(self):
         """프로젝트 설정"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("⚙️  프로젝트 설정")
-        print("="*70)
+        print("=" * 70)
         print()
         print("개발 환경:")
         print(f"  - Python 버전: {sys.version.split()[0]}")
@@ -233,13 +233,13 @@ class ProjectIntroduction:
         print("개발 패키지 설치:")
         print("  $ pip install -r requirements-dev.txt")
         print()
-        print("="*70)
+        print("=" * 70)
 
     def show_system_status(self):
         """시스템 상태 확인"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("🚀 시스템 상태")
-        print("="*70)
+        print("=" * 70)
         print()
         print("프로젝트 상태: ✓ 초기화 완료")
         print()
@@ -269,20 +269,20 @@ class ProjectIntroduction:
         print("  3. 테스트 코드를 작성한다")
         print("  4. 게임을 실행한다")
         print()
-        print("="*70)
+        print("=" * 70)
 
     def display_goodbye(self):
         """종료 메시지"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("감사합니다!")
-        print("="*70)
+        print("=" * 70)
         print()
         print("✨ PROJECT: OVERRIDE와 함께 변리사의 길을 걸어가세요!")
         print()
         print("다음에 다시 시작할 때:")
         print("  $ python src/main.py")
         print()
-        print("="*70 + "\n")
+        print("=" * 70 + "\n")
 
     def run(self):
         """메인 루프"""
