@@ -1,0 +1,28 @@
+# PROJECT: OVERRIDE - 필수 패키지
+# 변리사 시험을 위한 TDD 학습 플랫폼
+
+# Core Dependencies
+python-dotenv==1.0.0
+requests==2.31.0
+
+# AI/ML
+openai>=1.0.0
+pinecone-client>=3.0.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Development & Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Web Scraping (Future)
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# JSON & Data
+pydantic>=2.0.0
