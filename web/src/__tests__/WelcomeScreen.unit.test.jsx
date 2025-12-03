@@ -161,12 +161,11 @@ describe('WelcomeScreen Component', () => {
     });
 
     test('EC7: Should start game with Enter key', async () => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       render(<WelcomeScreen onStartGame={mockOnStartGame} />);
 
       const input = screen.getByLabelText('플레이어 이름');
-      await user.type(input, '테스트');
-      await user.keyboard('{Enter}');
+      await user.type(input, '테스트{Enter}');
 
       await waitFor(() => {
         expect(mockOnStartGame).toHaveBeenCalledWith('테스트', 1);
