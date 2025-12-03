@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변리사 기출 시험 - PDF 뷰어</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+            background: #f9f9f9;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab:hover {
+            background: #f0f0f0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .page-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .page-card:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .page-body {
+            padding: 20px;
+        }
+
+        .page-text {
+            color: #333;
+            line-height: 1.6;
+            font-size: 13px;
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .page-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+
+        .page-meta {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .table-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .table-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .table-content {
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .table-data {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .table-data th {
+            background: #f5f5f5;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .table-data td {
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+
+        .table-data tr:hover {
+            background: #fafafa;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .summary-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .summary-item h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .summary-item ul {
+            list-style: none;
+        }
+
+        .summary-item li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .summary-item li:last-child {
+            border-bottom: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .no-results svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 변리사 기출 시험</h1>
+            <p>제56회~61회 변리사 1차 국가자격시험 기출문제 (2019~2024)</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value">349</div>
+                    <div class="stat-label">총 페이지</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">339</div>
+                    <div class="stat-label">텍스트 블록</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">44</div>
+                    <div class="stat-label">데이터 표</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">시험 회차</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="페이지 내용 검색... (예: 특허권, 발명의 신규성)">
+            </div>
+            <button class="btn btn-primary" onclick="performSearch()">🔍 검색</button>
+            <button class="btn btn-primary" onclick="clearSearch()">✕ 초기화</button>
+        </div>
+
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab(0)">📖 페이지 목록</button>
+                <button class="tab" onclick="switchTab(1)">📊 데이터 표</button>
+                <button class="tab" onclick="switchTab(2)">📋 시험 구성</button>
+                <button class="tab" onclick="switchTab(3)">ℹ️ 정보</button>
+            </div>
+
+            <div id="tab-0" class="tab-content active">
+                <div id="pages-container" class="page-grid"></div>
+            </div>
+
+            <div id="tab-1" class="tab-content">
+                <div id="tables-container" class="table-list"></div>
+            </div>
+
+            <div id="tab-2" class="tab-content">
+                <div class="summary">
+                    <div class="summary-item">
+                        <h3>📍 제56회 (2019년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                    <div class="summary-item">
+                        <h3>📍 제57회 (2020년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                    <div class="summary-item">
+                        <h3>📍 제58회 (2021년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                    <div class="summary-item">
+                        <h3>📍 제59회 (2022년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                    <div class="summary-item">
+                        <h3>📍 제60회 (2023년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                    <div class="summary-item">
+                        <h3>📍 제61회 (2024년)</h3>
+                        <ul>
+                            <li>산업재산권법</li>
+                            <li>민법개론</li>
+                            <li>자연과학개론</li>
+                            <li>✓ 정답 포함</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-3" class="tab-content">
+                <div style="padding: 20px;">
+                    <h2 style="color: #333; margin-bottom: 20px;">📄 파일 정보</h2>
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p><strong>파일명:</strong> 00_변리사기출표지.hwp</p>
+                        <p><strong>생성 도구:</strong> NesPDF</p>
+                        <p><strong>작성자:</strong> paten</p>
+                        <p><strong>생성일:</strong> 2024년 11월 10일 10:48:39 (UTC+9)</p>
+                        <p><strong>수정일:</strong> 2024년 11월 21일 13:37:09 (UTC+9)</p>
+                    </div>
+
+                    <h2 style="color: #333; margin-bottom: 20px;">📊 콘텐츠 분석</h2>
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                        <p><strong>총 페이지:</strong> 349개</p>
+                        <p><strong>텍스트 블록:</strong> 339개 (각 페이지의 텍스트 콘텐츠)</p>
+                        <p><strong>데이터 표:</strong> 44개 (과학/생물학 관련 데이터)</p>
+                        <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                            이 문서는 변리사 1차 국가자격시험의 6년분(2019~2024) 기출문제와 정답을 포함하고 있습니다.
+                            산업재산권법, 민법개론, 자연과학개론 세 과목으로 구성되어 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 데이터 (Python 분석 결과에서 추출)
+        const pagesData = [];
+        const tablesData = [];
+
+        // 초기화 함수
+        function initializeData() {
+            // 페이지 데이터 샘플 (실제로는 JSON에서 로드)
+            const pageTexts = [
+                { page: 1, text: "56회~61회 (2019~2024)\n변리사 시험 기출문제\n2024 ver." },
+                { page: 4, text: "변리사시험 전문학원 변리사스쿨\nCONTENTS\n01 제56회 변리사 1차 국가자격시험..." },
+                { page: 5, text: "01\n제56회 변리사 1차 국가자격시험\n[1교시] 산업재산권법\n2019" },
+                { page: 6, text: "1. 특허권 침해소송에서 피고의 의무 및 부담에 관한 설명으로 옳지 않은 것은? (다툼이 있으면 판례에 따름)..." },
+                { page: 7, text: "3. 발명의 신규성 또는 진보성 판단에 사용되는 선행기술에 관한 설명으로 옳은 것은? (다툼이 있으면 판례에 따름)..." }
+            ];
+
+            const tableSamples = [
+                {
+                    page: 51,
+                    title: "유전자형 데이터",
+                    data: [
+                        ['유전자형', '1세대의 개체수', '10세대의 개체수'],
+                        ['A1A1', '100', '400'],
+                        ['A1A2', '600', '100'],
+                        ['A2A2', '300', '500']
+                    ]
+                },
+                {
+                    page: 51,
+                    title: "세포 특성",
+                    data: [
+                        ['세포', '클로람페니콜 감수성', '미토콘드리아'],
+                        ['A', '없음', '있음'],
+                        ['B', '있음', '없음'],
+                        ['C', '없음', '없음']
+                    ]
+                },
+                {
+                    page: 53,
+                    title: "화석 분포 데이터",
+                    data: [
+                        ['화석', '지리적 분포', '화석의 수', '화석종의 생존시간'],
+                        ['A', '넓은 지역', '많다', '짧다'],
+                        ['B', '넓은 지역', '적다', '길다'],
+                        ['C', '좁은 지역', '많다', '길다']
+                    ]
+                }
+            ];
+
+            renderPages(pageTexts);
+            renderTables(tableSamples);
+        }
+
+        function renderPages(pages) {
+            const container = document.getElementById('pages-container');
+            container.innerHTML = pages.map(item => `
+                <div class="page-card">
+                    <div class="page-header">페이지 ${item.page}</div>
+                    <div class="page-body">
+                        <div class="page-text">${escapeHtml(item.text)}</div>
+                        <div class="page-meta">
+                            <span>📄 ${item.page}번</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTables(tables) {
+            const container = document.getElementById('tables-container');
+            container.innerHTML = tables.map((item, idx) => `
+                <div class="table-item">
+                    <div class="table-header">📊 ${item.title} (페이지 ${item.page})</div>
+                    <div class="table-content">
+                        <table class="table-data">
+                            <thead>
+                                <tr>
+                                    ${item.data[0].map(cell => `<th>${escapeHtml(cell)}</th>`).join('')}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${item.data.slice(1).map(row => `
+                                    <tr>
+                                        ${row.map(cell => `<td>${escapeHtml(cell)}</td>`).join('')}
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchTab(index) {
+            // 모든 탭 콘텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+
+            // 선택된 탭 표시
+            document.getElementById(`tab-${index}`).classList.add('active');
+            document.querySelectorAll('.tab')[index].classList.add('active');
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (!query.trim()) return;
+
+            // 간단한 검색 로직
+            const container = document.getElementById('pages-container');
+            const cards = container.querySelectorAll('.page-card');
+            let found = false;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (!found) {
+                container.innerHTML = `
+                    <div class="no-results" style="grid-column: 1/-1;">
+                        🔍 검색 결과가 없습니다: "${query}"
+                    </div>
+                `;
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.querySelectorAll('.page-card').forEach(card => card.style.display = 'block');
+            // 데이터 다시 로드
+            initializeData();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', initializeData);
+
+        // 엔터키로 검색
+        document.getElementById('searchInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    </script>
+</body>
+</html>

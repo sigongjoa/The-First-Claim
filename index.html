@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변리사 기출 시험 - 인터랙티브 뷰어</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f5f5f5;
+            --border: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: var(--text-light);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            transform: transition all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Controls */
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--primary);
+        }
+
+        /* Content */
+        .content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            background: var(--bg-light);
+            overflow-x: auto;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab:hover:not(.active) {
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Page Grid */
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .page-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: white;
+        }
+
+        .page-card:hover {
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-number {
+            font-size: 18px;
+        }
+
+        .page-body {
+            padding: 20px;
+        }
+
+        .page-text {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 13px;
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .page-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, white);
+        }
+
+        .page-meta {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: #999;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Table List */
+        .table-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .table-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .table-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-content {
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .table-data {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .table-data th {
+            background: var(--bg-light);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .table-data td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        .table-data tr:hover {
+            background: #fafafa;
+        }
+
+        /* Summary */
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .summary-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .summary-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .summary-item h3 {
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .summary-item ul {
+            list-style: none;
+        }
+
+        .summary-item li {
+            padding: 8px 0;
+            color: var(--text-light);
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-item li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .no-results-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--bg-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-text {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.8;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                flex-direction: column;
+                min-width: auto;
+            }
+
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1 1 50%;
+                min-width: 100px;
+                font-size: 12px;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 변리사 기출 시험</h1>
+            <p>제56회~61회 변리사 1차 국가자격시험 기출문제 (2019~2024)</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-pages">349</div>
+                    <div class="stat-label">총 페이지</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-text">339</div>
+                    <div class="stat-label">텍스트 블록</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-tables">44</div>
+                    <div class="stat-label">데이터 표</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">시험 회차</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="페이지 검색... (특허권, 발명, 민법 등)">
+                <button class="btn btn-primary" onclick="performSearch()">🔍 검색</button>
+            </div>
+            <button class="btn btn-secondary" onclick="clearSearch()">✕ 초기화</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab(0)">📖 페이지 목록</button>
+                <button class="tab" onclick="switchTab(1)">📊 데이터 표</button>
+                <button class="tab" onclick="switchTab(2)">📋 시험 구성</button>
+                <button class="tab" onclick="switchTab(3)">ℹ️ 정보</button>
+            </div>
+
+            <!-- Tab 0: Pages -->
+            <div id="tab-0" class="tab-content active">
+                <div id="pages-container" class="page-grid"></div>
+            </div>
+
+            <!-- Tab 1: Tables -->
+            <div id="tab-1" class="tab-content">
+                <div id="tables-container" class="table-list"></div>
+            </div>
+
+            <!-- Tab 2: Summary -->
+            <div id="tab-2" class="tab-content">
+                <div class="summary" id="summary-container"></div>
+            </div>
+
+            <!-- Tab 3: Info -->
+            <div id="tab-3" class="tab-content">
+                <div style="max-width: 600px;">
+                    <h2 style="margin-bottom: 20px; color: var(--primary);">📄 파일 정보</h2>
+                    <div style="background: var(--bg-light); padding: 20px; border-radius: 8px; margin-bottom: 30px; line-height: 1.8;">
+                        <p><strong>파일명:</strong> 00_변리사기출표지.hwp</p>
+                        <p><strong>생성 도구:</strong> NesPDF</p>
+                        <p><strong>작성자:</strong> paten</p>
+                        <p><strong>생성일:</strong> 2024년 11월 10일</p>
+                        <p><strong>최종 수정:</strong> 2024년 11월 21일</p>
+                    </div>
+
+                    <h2 style="margin-bottom: 20px; color: var(--primary);">📊 콘텐츠 분석</h2>
+                    <div style="background: var(--bg-light); padding: 20px; border-radius: 8px; line-height: 1.8;">
+                        <p><strong>총 페이지:</strong> 349개</p>
+                        <p><strong>텍스트 블록:</strong> 339개</p>
+                        <p><strong>데이터 표:</strong> 44개</p>
+                        <p style="margin-top: 15px; color: var(--text-light); font-size: 14px;">
+                            이 문서는 변리사 1차 국가자격시험의 6년분(2019~2024) 기출문제와 정답을 포함합니다.
+                            산업재산권법, 민법개론, 자연과학개론 세 과목으로 구성되어 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Full Page Text -->
+    <div id="pageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="margin-bottom: 20px; color: var(--primary);"></h2>
+            <div id="modalBody" class="modal-text"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global data
+        let allPages = [];
+        let allTables = [];
+        let filteredPages = [];
+
+        // Initialize
+        async function initialize() {
+            try {
+                // JSON 파일 로드
+                const response = await fetch('pdf_data.json');
+                const data = await response.json();
+
+                allPages = data.pages || [];
+                allTables = data.tables || [];
+
+                // UI 업데이트
+                document.getElementById('stat-pages').textContent = data.metadata.total_pages || 349;
+                document.getElementById('stat-text').textContent = allPages.length;
+                document.getElementById('stat-tables').textContent = allTables.length;
+
+                // 초기 렌더링
+                renderPages(allPages);
+                renderTables(allTables);
+                renderSummary();
+
+                console.log('✅ 데이터 로드 완료');
+            } catch (error) {
+                console.log('JSON 파일 로드 중 오류, 샘플 데이터 사용:', error);
+                loadSampleData();
+            }
+        }
+
+        function loadSampleData() {
+            // 샘플 데이터 (JSON 로드 실패 시)
+            allPages = [
+                { page: 1, text: "56회~61회 (2019~2024)\n변리사 시험 기출문제\n2024 ver.", full_text: "56회~61회 (2019~2024)\n변리사 시험 기출문제\n2024 ver." },
+                { page: 4, text: "변리사시험 전문학원 변리사스쿨\nCONTENTS\n01 제56회 변리사 1차...", full_text: "변리사시험 전문학원 변리사스쿨\nCONTENTS\n01 제56회 변리사 1차 국가자격시험\n1. 산업재산권법\n2019 2. 민법개론\n3. 자연과학개론\n4. 정답" },
+                { page: 5, text: "01\n제56회 변리사 1차 국가자격시험\n[1교시] 산업재산권법\n2019", full_text: "01\n제56회 변리사 1차 국가자격시험\n[1교시] 산업재산권법\n2019" },
+            ];
+
+            allTables = [
+                {
+                    page: 51,
+                    title: "유전자형 데이터",
+                    data: [
+                        ['유전자형', '1세대 개체수', '10세대 개체수'],
+                        ['A1A1', '100', '400'],
+                        ['A1A2', '600', '100'],
+                        ['A2A2', '300', '500']
+                    ]
+                },
+                {
+                    page: 51,
+                    title: "세포 특성",
+                    data: [
+                        ['세포', '클로람페니콜 감수성', '미토콘드리아'],
+                        ['A', '없음', '있음'],
+                        ['B', '있음', '없음'],
+                        ['C', '없음', '없음']
+                    ]
+                }
+            ];
+
+            renderPages(allPages);
+            renderTables(allTables);
+            renderSummary();
+        }
+
+        function renderPages(pages) {
+            const container = document.getElementById('pages-container');
+
+            if (pages.length === 0) {
+                container.innerHTML = '<div class="no-results" style="grid-column: 1/-1;"><div class="no-results-icon">📭</div>검색 결과가 없습니다</div>';
+                return;
+            }
+
+            container.innerHTML = pages.map(item => `
+                <div class="page-card" onclick="openModal(${item.page})">
+                    <div class="page-header">
+                        <span class="page-number">📄 ${item.page}</span>
+                        <span style="font-size: 12px;">더 보기 →</span>
+                    </div>
+                    <div class="page-body">
+                        <div class="page-text">${escapeHtml(item.text)}</div>
+                        <div class="page-meta">
+                            <span>${(item.full_text || item.text).length}자</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTables(tables) {
+            const container = document.getElementById('tables-container');
+
+            if (tables.length === 0) {
+                container.innerHTML = '<div class="no-results"><div class="no-results-icon">📊</div>표가 없습니다</div>';
+                return;
+            }
+
+            container.innerHTML = tables.map(item => `
+                <div class="table-item">
+                    <div class="table-header">
+                        <span>${item.title || `페이지 ${item.page}`}</span>
+                        <span style="font-size: 12px;">📍 페이지 ${item.page}</span>
+                    </div>
+                    <div class="table-content">
+                        <table class="table-data">
+                            <thead>
+                                <tr>
+                                    ${(item.data[0] || []).map(cell => `<th>${escapeHtml(String(cell))}</th>`).join('')}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${(item.data.slice(1) || []).map(row => `
+                                    <tr>
+                                        ${row.map(cell => `<td>${escapeHtml(String(cell))}</td>`).join('')}
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSummary() {
+            const container = document.getElementById('summary-container');
+            const exams = [
+                { num: 56, year: 2019 },
+                { num: 57, year: 2020 },
+                { num: 58, year: 2021 },
+                { num: 59, year: 2022 },
+                { num: 60, year: 2023 },
+                { num: 61, year: 2024 }
+            ];
+
+            container.innerHTML = exams.map(exam => `
+                <div class="summary-item">
+                    <h3>📍 제${exam.num}회 (${exam.year}년)</h3>
+                    <ul>
+                        <li>산업재산권법</li>
+                        <li>민법개론</li>
+                        <li>자연과학개론</li>
+                        <li>정답</li>
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function switchTab(index) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`tab-${index}`).classList.add('active');
+            document.querySelectorAll('.tab')[index].classList.add('active');
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+
+            if (!query.trim()) {
+                filteredPages = allPages;
+                renderPages(filteredPages);
+                return;
+            }
+
+            filteredPages = allPages.filter(page =>
+                (page.full_text || page.text).toLowerCase().includes(query)
+            );
+
+            renderPages(filteredPages);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filteredPages = allPages;
+            renderPages(filteredPages);
+        }
+
+        function openModal(pageNum) {
+            const page = allPages.find(p => p.page === pageNum);
+            if (!page) return;
+
+            document.getElementById('modalTitle').textContent = `📄 페이지 ${pageNum}`;
+            document.getElementById('modalBody').textContent = page.full_text || page.text;
+            document.getElementById('pageModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('pageModal').classList.remove('active');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 엔터키로 검색
+        document.addEventListener('DOMContentLoaded', () => {
+            initialize();
+            document.getElementById('searchInput')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        });
+
+        // 모달 닫기 (Esc 키)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
