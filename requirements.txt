@@ -15,6 +15,9 @@ pytest-cov>=4.0.0
 black>=23.0.0
 mypy>=1.0.0
 
+# Error Tracking & Monitoring
+sentry-sdk>=1.40.0
+
 # Utilities
 requests>=2.28.0
 
