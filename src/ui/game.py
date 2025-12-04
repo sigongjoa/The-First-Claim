@@ -200,7 +200,12 @@ class GameEngine:
             try:
                 self.llm_evaluator = get_llm_evaluator()
             except (ImportError, ValueError) as e:
-                print(f"⚠️  LLM 모드를 사용할 수 없습니다: {e}")
+                from src.utils.logger import get_logger
+                logger = get_logger("game_engine")
+                logger.warning(
+                    "LLM 모드 초기화 실패 - Fallback to basic mode",
+                    context={"error": str(e)[:200]}
+                )
                 self.use_llm = False
 
         self._create_default_levels()
@@ -498,8 +503,20 @@ class GameEngine:
             return success, feedback, details
 
         except Exception as e:
+            from src.utils.logger import get_logger
+            logger = get_logger("game_engine")
+            logger.error(
+                "LLM claim evaluation failed",
+                error=e,
+                context={
+                    "session_id": session.session_id,
+                    "claims_count": len(session.submitted_claims),
+                    "error_type": type(e).__name__
+                }
+            )
             feedback.append(f"\n❌ LLM 평가 중 오류 발생: {e}")
-            return False, feedback, details
+            # Re-raise the exception to let caller know about the failure
+            raise
 
 
 class GameInterface:

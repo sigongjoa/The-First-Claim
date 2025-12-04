@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/utils/logger.py
+# hypothesis_version: 6.148.5
+
+['%(message)s', '%Y-%m-%d %H:%M:%S', 'CRITICAL', 'DEBUG', 'ERROR', 'INFO', 'WARNING', 'api', 'api.log', 'app', 'app.log', 'context', 'error', 'game', 'game.log', 'level', 'llm', 'llm.log', 'logger', 'logs', 'message', 'timestamp', 'traceback', 'type', 'utf-8']

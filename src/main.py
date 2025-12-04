@@ -270,9 +270,18 @@ class ProjectIntroduction:
             print()
 
         except Exception as e:
+            from src.utils.logger import get_logger
+            logger = get_logger("game_main")
+            logger.error(
+                "Game session failed with exception",
+                error=e,
+                context={
+                    "error_type": type(e).__name__,
+                    "traceback": traceback.format_exc()[:500]
+                }
+            )
             print(f"\n❌ 게임 중 오류 발생: {e}")
-            import traceback
-            traceback.print_exc()
+            print("오류가 기록되었습니다. 관리자에게 문의해주세요.")
 
     def show_progress(self):
         """학습 진도 확인"""
@@ -396,7 +405,21 @@ def main():
     try:
         intro = ProjectIntroduction()
         intro.run()
+    except KeyboardInterrupt:
+        print("\n프로그램이 사용자에 의해 중단되었습니다.")
+        sys.exit(0)
     except Exception as e:
+        from src.utils.logger import get_logger
+        import traceback
+        logger = get_logger("main")
+        logger.error(
+            "Application crashed with unhandled exception",
+            error=e,
+            context={
+                "error_type": type(e).__name__,
+                "traceback": traceback.format_exc()[:1000]
+            }
+        )
         print(f"\n❌ 오류 발생: {e}")
         print("문제가 발생했습니다. 관리자에게 문의해주세요.")
         sys.exit(1)

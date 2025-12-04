@@ -65,6 +65,7 @@ class PerformanceMetrics:
 
         except Exception as e:
             logger.error("성능 메트릭 기록 실패", error=e)
+            raise
 
     @staticmethod
     def record_throughput(operation_name: str, count: int, duration_seconds: float,
@@ -99,6 +100,7 @@ class PerformanceMetrics:
 
         except Exception as e:
             logger.error("처리량 기록 실패", error=e)
+            raise
 
     @staticmethod
     def record_memory_usage(operation_name: str, memory_mb: float,
@@ -136,6 +138,7 @@ class PerformanceMetrics:
 
         except Exception as e:
             logger.error("메모리 사용량 기록 실패", error=e)
+            raise
 
 
 class SecurityMetrics:
@@ -178,7 +181,8 @@ class SecurityMetrics:
                     )
 
         except Exception as e:
-            logger.error("보안 이벤트 기록 실패", error=e)
+            logger.error("보안 이벤트 기록 실패 - CRITICAL", error=e)
+            raise
 
     @staticmethod
     def record_input_validation_failure(input_type: str, value: str, reason: str):

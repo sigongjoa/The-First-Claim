@@ -70,7 +70,7 @@ class DataIntegrityMonitor:
                 })
                 sentry_sdk.capture_exception(e)
 
-            return False
+            raise ValueError(f"Session state verification failed: {e}") from e
 
     @staticmethod
     def verify_player_progress(player: Any) -> bool:
@@ -126,7 +126,7 @@ class DataIntegrityMonitor:
                 })
                 sentry_sdk.capture_exception(e)
 
-            return False
+            raise ValueError(f"Player progress verification failed: {e}") from e
 
     @staticmethod
     def verify_claim_consistency(session: Any) -> bool:
@@ -176,7 +176,7 @@ class DataIntegrityMonitor:
                 })
                 sentry_sdk.capture_exception(e)
 
-            return False
+            raise ValueError(f"Claim consistency verification failed: {e}") from e
 
     @staticmethod
     def verify_session_isolation(sessions: Dict[str, Any]) -> bool:
@@ -219,7 +219,7 @@ class DataIntegrityMonitor:
 
         except AssertionError as e:
             logger.error(
-                "세션 격리 검증 실패",
+                "세션 격리 검증 실패 - CRITICAL DATA ISOLATION BREACH",
                 error=e,
                 context={
                     "total_sessions": len(sessions),
@@ -235,7 +235,7 @@ class DataIntegrityMonitor:
                 })
                 sentry_sdk.capture_exception(e)
 
-            return False
+            raise ValueError(f"CRITICAL: Session isolation verification failed: {e}") from e
 
 
 class DataIntegrityAlert:
