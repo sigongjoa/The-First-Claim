@@ -9,6 +9,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple
 from enum import Enum
+from datetime import datetime
+
+# Import validators and evaluators
+from ..dsl.grammar.claim_validator import ClaimValidator, ClaimType
+from ..dsl.logic.evaluator import PatentabilityEvaluator, Invention
+from ..dsl.vocabulary.patent_law_database import get_patent_law_database
 
 
 class Difficulty(Enum):
@@ -161,6 +167,9 @@ class GameEngine:
         """GameEngine 초기화"""
         self.levels: Dict[int, GameLevel] = {}
         self.sessions: Dict[str, GameSession] = {}
+        self.validator = ClaimValidator()
+        self.evaluator = PatentabilityEvaluator()
+        self.patent_law_db = get_patent_law_database()
         self._create_default_levels()
 
     def _create_default_levels(self) -> None:
@@ -221,7 +230,11 @@ class GameEngine:
     def evaluate_claims(
         self, session_id: str
     ) -> Tuple[bool, List[str], Dict[str, any]]:
-        """청구항 평가
+        """청구항 평가 (검증 + 평가 엔진 통합)
+
+        검증 단계:
+        1. ClaimValidator로 각 청구항의 문법/구조 검증
+        2. PatentabilityEvaluator로 신규성/진보성 평가
 
         Returns:
             (통과 여부, 피드백 리스트, 상세 결과)
@@ -234,33 +247,108 @@ class GameEngine:
         details = {
             "total_submitted": len(session.submitted_claims),
             "required": session.current_level.target_claims,
-            "validations": [],
+            "validation_results": [],
+            "evaluation_results": [],
+            "patent_law_references": [],
         }
 
-        # 제출된 청구항 개수 확인
+        # 1단계: 청구항 개수 확인
         if len(session.submitted_claims) < session.current_level.target_claims:
             feedback.append(
-                f"⚠️  {session.current_level.target_claims}개의 청구항을 "
-                f"작성해야 합니다 "
+                f"⚠️ 청구항 개수 부족: {session.current_level.target_claims}개 필요 "
                 f"(현재: {len(session.submitted_claims)}개)"
             )
+            success = False
+            return success, feedback, details
 
-        # 각 청구항 검증
-        valid_count = 0
-        for i, claim in enumerate(session.submitted_claims, 1):
-            if len(claim.strip()) < 20:
-                feedback.append(f"⚠️  청구항 {i}: 너무 짧습니다 (최소 20자)")
-                details["validations"].append((i, False, "Too short"))
-            else:
-                feedback.append(f"✅ 청구항 {i}: 올바른 형식입니다")
-                details["validations"].append((i, True, "Valid"))
-                valid_count += 1
-
-        # 통과 판정: 필요한 수의 청구항이 제출되고 유효성 검증을 통과해야 함
-        success = (
-            len(session.submitted_claims) >= session.current_level.target_claims
-            and valid_count >= session.current_level.target_claims
+        feedback.append(
+            f"✅ 청구항 {len(session.submitted_claims)}개 제출됨"
         )
+
+        # 2단계: 각 청구항의 문법/구조 검증 (ClaimValidator 사용)
+        all_valid = True
+        valid_count = 0
+
+        for i, claim in enumerate(session.submitted_claims, 1):
+            # 청구항 타입 결정 (첫 번째는 독립항, 나머지는 종속항)
+            claim_type = "independent" if i == 1 else "dependent"
+
+            # 검증 실행
+            validation_result = self.validator.validate_claim_content(
+                claim_number=i,
+                claim_type=claim_type,
+                content=claim
+            )
+
+            details["validation_results"].append({
+                "claim_number": i,
+                "claim_type": claim_type,
+                "is_valid": validation_result.is_valid,
+                "errors": [str(e) for e in validation_result.errors],
+                "warnings": [str(w) for w in validation_result.warnings],
+            })
+
+            if validation_result.is_valid:
+                feedback.append(f"✅ 청구항 {i}: 검증 통과")
+                valid_count += 1
+            else:
+                all_valid = False
+                feedback.append(f"❌ 청구항 {i}: 검증 실패")
+                for error in validation_result.errors:
+                    feedback.append(f"   • {error.message}")
+                for warning in validation_result.warnings:
+                    feedback.append(f"   ⚠️  {warning.message}")
+
+        # 3단계: 신규성/진보성 평가 (PatentabilityEvaluator 사용)
+        if valid_count >= session.current_level.target_claims:
+            feedback.append("\n📊 신규성/진보성 평가 진행 중...")
+
+            # 발명 특징 추출 (간단한 키워드 기반)
+            invention_features = []
+            for claim in session.submitted_claims:
+                # 기술적 특징 추출 (더 정교한 파싱 가능)
+                features = claim.split()
+                invention_features.extend(features)
+
+            # 평가 실행
+            innovation_eval = self.evaluator.evaluate(
+                invention_features=list(set(invention_features)),  # 중복 제거
+                technical_field="전자기술",  # 기본값
+                prior_art_count=0  # 선행기술 데이터가 없으므로 0
+            )
+
+            details["evaluation_results"] = {
+                "has_inventive_step": innovation_eval.has_inventive_step,
+                "level": innovation_eval.level,
+                "reasoning": innovation_eval.reasoning,
+            }
+
+            feedback.append(f"   진보성 평가: {innovation_eval.reasoning}")
+
+            # 관련 특허법 조항 참조
+            patent_law_refs = self.patent_law_db.search_by_requirement("명확성")
+            if patent_law_refs:
+                feedback.append(f"\n📚 관련 특허법:")
+                for ref in patent_law_refs[:3]:  # 최대 3개
+                    feedback.append(f"   • {ref.article_number}: {ref.title}")
+                    details["patent_law_references"].append({
+                        "article_number": ref.article_number,
+                        "title": ref.title,
+                    })
+
+        # 최종 판정
+        success = all_valid and valid_count >= session.current_level.target_claims
+
+        if success:
+            feedback.append("\n🎉 모든 검증을 통과했습니다!")
+            # 점수 계산 (기본값: 100점 + 보너스)
+            bonus = min(50, valid_count * 10)  # 최대 50점
+            score = 100 + bonus
+            details["score"] = score
+            session.player.add_score(score)
+        else:
+            feedback.append("\n❌ 검증 실패. 다시 시도해주세요.")
+            details["score"] = 0
 
         return success, feedback, details
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple
 from enum import Enum
+import re
 
 
 class ValidationLevel(Enum):
@@ -220,7 +221,10 @@ class ClaimValidator:
     def _validate_technical_features(
         self, result: ClaimValidationResult, content: str
     ) -> None:
-        """기술적 특징 검증"""
+        """기술적 특징 검증
+
+        Rule: 청구항은 명백한 기술적 특징을 포함해야 함
+        """
         # 기술 용어의 존재 확인
         technical_keywords = [
             "포함",
@@ -231,6 +235,10 @@ class ClaimValidator:
             "요소",
             "부분",
             "기술",
+            "장치",
+            "시스템",
+            "수단",
+            "구조",
         ]
 
         has_technical_keyword = any(
@@ -238,42 +246,113 @@ class ClaimValidator:
         )
 
         if not has_technical_keyword:
-            result.add_warning(
-                "STRUCTURE_001", "청구항이 기술적 특징을 명확하게 포함하지 않을 수 있음"
+            result.add_error(
+                "STRUCTURE_001",
+                "청구항이 명확한 기술적 특징을 포함하지 않습니다. "
+                "포함, 구성, 방법, 단계 등의 기술용어가 필요합니다."
+            )
+        else:
+            result.add_info(
+                "STRUCTURE_001",
+                "✅ 기술적 특징이 명확하게 포함되어 있습니다"
             )
 
     def _validate_clarity(self, result: ClaimValidationResult, content: str) -> None:
-        """명확성 검증"""
+        """명확성 검증
+
+        Rule: 청구항은 명확해야 함 - 모호한 표현 제거
+        """
         # 모호한 표현 확인
         ambiguous_terms = [
-            "등",
-            "같은",
-            "대략",
-            "약",
-            "대체로",
-            "가능한",
-            "되는",
+            "등",           # "예를 들어 등" 형식의 모호한 표현
+            "같은",         # "~같은" 비한정적 표현
+            "대략",         # 부정확한 표현
+            "약",           # 근사치 표현
+            "대체로",       # 비확정적 표현
+            "가능한",       # 조건부 표현
+            "기타",         # 범위 불명확
+            "그 외",        # 범위 불명확
         ]
 
+        found_ambiguous = []
         for term in ambiguous_terms:
             if term in content:
-                result.add_warning(
-                    "CLARITY_001",
-                    f"모호한 표현 '{term}'이 포함되어 있습니다",
-                )
+                found_ambiguous.append(term)
+
+        if found_ambiguous:
+            result.add_error(
+                "CLARITY_001",
+                f"모호한 표현이 포함되어 있습니다: {', '.join(found_ambiguous)}. "
+                f"특허법 제42조에서는 청구항이 명확해야 한다고 규정합니다."
+            )
+        else:
+            result.add_info(
+                "CLARITY_001",
+                "✅ 모호한 표현이 없습니다"
+            )
 
     def _validate_structure(
         self, result: ClaimValidationResult, claim_type: str, content: str
     ) -> None:
-        """구조적 검증"""
-        # 독립항의 경우 기본 요소 확인
+        """구조적 검증
+
+        Rule 1: 독립항은 최소 20자 이상
+        Rule 2: 독립항은 전문과 본체 구조 필요
+        Rule 3: 종속항은 제X항 형식 필수
+        """
         if claim_type == "independent":
-            # 최소한 하나의 핵심 요소 필요
+            # 최소 길이 검증 (특허법 시행규칙 요구사항)
             if len(content.strip()) < 20:
                 result.add_error(
                     "STRUCTURE_002",
-                    "청구항 내용이 너무 짧습니다 (최소 20자)",
+                    "청구항 내용이 너무 짧습니다 (최소 20자). "
+                    "더 상세한 기술적 특징을 포함해야 합니다."
                 )
+            else:
+                result.add_info(
+                    "STRUCTURE_002",
+                    "✅ 최소 길이 요건을 충족합니다"
+                )
+
+            # 독립항의 전문과 본체 구조 확인
+            # 전문: "~를 포함하는", "~로 이루어진" 등
+            # 본체: 기술적 특징들
+            preamble_keywords = ["포함하는", "구성된", "이루어진", "갖는", "포함한"]
+            has_preamble = any(kw in content for kw in preamble_keywords)
+
+            if not has_preamble:
+                result.add_warning(
+                    "STRUCTURE_002",
+                    "독립항의 전문 구조가 명확하지 않을 수 있습니다. "
+                    "'포함하는', '구성된' 등의 표현이 권장됩니다."
+                )
+            else:
+                result.add_info(
+                    "STRUCTURE_002",
+                    "✅ 독립항의 전문 구조가 명확합니다"
+                )
+
+        elif claim_type == "dependent":
+            # 종속항의 필수 요소: 선행항 참조
+            if "제" not in content or "항" not in content:
+                result.add_error(
+                    "STRUCTURE_003",
+                    "종속항이 선행항을 명시적으로 참조하지 않습니다. "
+                    "'제X항' 형식의 참조가 필요합니다."
+                )
+            else:
+                # 종속항 참조 형식 검증 (제X항)
+                dependent_pattern = r"제\d+항"
+                if re.search(dependent_pattern, content):
+                    result.add_info(
+                        "STRUCTURE_003",
+                        "✅ 종속항이 올바른 형식으로 선행항을 참조합니다"
+                    )
+                else:
+                    result.add_warning(
+                        "STRUCTURE_003",
+                        "종속항의 참조 형식이 표준 형식('제X항')과 다릅니다"
+                    )
 
     def _validate_dependent_reference(
         self,
@@ -281,16 +360,44 @@ class ClaimValidator:
         content: str,
         available_claims: set,
     ) -> None:
-        """종속항의 참조 검증"""
-        # 종속항이 이전 청구항을 참조하는지 확인
-        if "제" in content and "항" in content:
-            result.add_info(
-                "STRUCTURE_003", "종속항이 선행항을 올바르게 참조하고 있습니다"
-            )
-        else:
+        """종속항의 참조 검증
+
+        Rule: 종속항은 존재하는 선행항만 참조 가능
+        특허법 제45조 - 종속항은 선행항의 전체 구성요소를 포함하고 제한을 가할 수 있음
+        """
+        # 종속항 참조 추출 (제X항 형식)
+        dependent_pattern = r"제(\d+)항"
+        matches = re.findall(dependent_pattern, content)
+
+        if not matches:
             result.add_error(
                 "STRUCTURE_003",
-                "종속항이 유효한 선행항을 참조하지 않습니다",
+                "종속항이 선행항을 참조하지 않습니다. "
+                "'제X항'의 항 참조가 필요합니다."
+            )
+            return
+
+        # 참조된 청구항이 실제로 존재하는지 확인
+        referenced_claims = [int(m) for m in matches]
+        invalid_references = []
+
+        for ref_num in referenced_claims:
+            if ref_num not in available_claims:
+                invalid_references.append(ref_num)
+            elif ref_num >= result.claim_number:
+                # 종속항은 선행항만 참조 가능
+                invalid_references.append(ref_num)
+
+        if invalid_references:
+            result.add_error(
+                "STRUCTURE_003",
+                f"존재하지 않는 청구항을 참조합니다: 제{invalid_references}항. "
+                f"종속항은 선행하는 청구항만 참조할 수 있습니다."
+            )
+        else:
+            result.add_info(
+                "STRUCTURE_003",
+                f"✅ 종속항이 유효한 선행항을 올바르게 참조합니다 (제{referenced_claims}항)"
             )
 
     def generate_report(self, results: List[ClaimValidationResult]) -> str:
