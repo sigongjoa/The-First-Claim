@@ -28,7 +28,9 @@ Complete CI/CD pipeline setup for quality assurance across frontend and backend:
   - pylint: Code quality analysis
   - mypy: Type checking
 
-- **Error Tracking (Sentry)**: Production monitoring
+- **Error Tracking (Sentry)**: Self-hosted or cloud monitoring
+  - **Self-Hosted**: Free, local deployment with Docker
+  - **Cloud**: sentry.io with free tier available
   - Real-time error tracking
   - Performance monitoring
   - Session replay
@@ -380,15 +382,38 @@ DATABASE_URL=postgresql://user:password@localhost/db
 
 ## 📋 Checklist for Production
 
+### Testing & Quality
 - [ ] All 202 unit tests passing
 - [ ] All 55+ E2E tests passing
 - [ ] Code coverage > 75%
 - [ ] flake8 no errors
 - [ ] mypy no errors
 - [ ] GitHub Actions workflows passing
-- [ ] Sentry project created and DSN configured
-- [ ] Environment variables set in deployment
-- [ ] Error tracking tested in staging
+
+### Sentry Setup (Choose One)
+- [ ] **Option A: Self-Hosted Sentry**
+  - [ ] Clone github.com/getsentry/self-hosted
+  - [ ] Run `./install.sh` and `docker-compose up`
+  - [ ] Create Backend project (Python/Flask)
+  - [ ] Create Frontend project (JavaScript/React)
+  - [ ] Get DSN from Project Settings > Client Keys
+  - [ ] Format: `http://PUBLICKEY@127.0.0.1:9000/PROJECTID`
+
+- [ ] **Option B: Cloud Sentry (sentry.io)**
+  - [ ] Sign up at sentry.io
+  - [ ] Create organization
+  - [ ] Create Backend project (Python/Flask)
+  - [ ] Create Frontend project (JavaScript/React)
+  - [ ] Get DSN from Project Settings > Client Keys
+  - [ ] Format: `https://PUBLICKEY@o0.ingest.sentry.io/PROJECTID`
+
+### Deployment
+- [ ] Environment variables set in `.env` (Backend)
+- [ ] Environment variables set in `web/.env` (Frontend)
+- [ ] Sentry initialization added to Flask app factory
+- [ ] Sentry initialization added to React App.js
+- [ ] Error tracking tested locally with test_sentry.py
+- [ ] Errors appear in Sentry dashboard
 - [ ] Performance baselines met
 - [ ] Accessibility tests passing
 - [ ] Team training completed

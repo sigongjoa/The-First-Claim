@@ -31,6 +31,7 @@ Sentry is a comprehensive error tracking and performance monitoring platform for
 - SQLAlchemy integration for database error tracking
 - Sensitive data filtering (removes auth headers, cookies)
 - File path redaction in error messages
+- Self-hosted or cloud Sentry support
 - Environment-based configuration (development, staging, production)
 
 **Key Functions:**
@@ -65,6 +66,7 @@ set_tag('evaluation_engine', 'ollama')
 - Session replay (10% success rate, 100% on error)
 - Custom profiler HOC for component performance tracking
 - URL and console log filtering
+- Self-hosted or cloud Sentry support
 
 **Key Functions:**
 ```javascript
@@ -97,7 +99,55 @@ const GameScreen = withSentryProfiler(GameScreenComponent);
 
 ## 🚀 Setup Instructions
 
-### Step 1: Create Sentry Account and Project
+### Option A: Self-Hosted Sentry (Recommended for Development/Testing)
+
+Self-hosted Sentry is completely free and can run locally using Docker.
+
+#### Step 1: Clone and Setup Self-Hosted Sentry
+
+```bash
+# Clone the self-hosted repository
+git clone https://github.com/getsentry/self-hosted.git
+cd self-hosted
+
+# Run the installation script
+./install.sh
+
+# Start Sentry with docker-compose
+docker-compose up --wait
+```
+
+Sentry will be available at `http://127.0.0.1:9000`
+
+#### Step 2: Create Organization and Projects
+
+1. Open `http://127.0.0.1:9000` in your browser
+2. Create a new organization
+3. Create two projects:
+   - **Project 1:** "Patent Claim Game - Backend"
+     - Select "Python" as platform
+     - Select "Flask" as framework
+   - **Project 2:** "Patent Claim Game - Frontend"
+     - Select "JavaScript" as platform
+     - Select "React" as framework
+
+#### Step 3: Get DSN from Self-Hosted Sentry
+
+After creating projects:
+
+1. **For Backend (Python):**
+   - Go to Project Settings > Client Keys (DSN)
+   - Copy the DSN (format: `http://PUBLICKEY@127.0.0.1:9000/PROJECTID`)
+   - Example: `http://12345abcdef10111213141516171819@127.0.0.1:9000/2`
+
+2. **For Frontend (React):**
+   - Go to Project Settings > Client Keys (DSN)
+   - Copy the DSN (same format)
+   - Example: `http://98765fedcba98765432109876543210@127.0.0.1:9000/3`
+
+### Option B: Cloud Sentry (sentry.io)
+
+For production use, you can use Sentry's cloud service:
 
 1. Go to [sentry.io](https://sentry.io)
 2. Sign up for a free account
@@ -106,43 +156,56 @@ const GameScreen = withSentryProfiler(GameScreenComponent);
    - Project 1: "Patent Claim Game - Backend" (Python/Flask)
    - Project 2: "Patent Claim Game - Frontend" (JavaScript/React)
 
-### Step 2: Get DSN (Data Source Name)
-
-After creating projects:
-
-1. **For Backend (Python):**
+5. **Get DSN:**
    - Go to Project Settings > Client Keys (DSN)
    - Copy the DSN (looks like: `https://examplePublicKey@o0.ingest.sentry.io/0`)
 
-2. **For Frontend (React):**
-   - Go to Project Settings > Client Keys (DSN)
-   - Copy the DSN
-
-### Step 3: Configure Environment Variables
+### Step 4: Configure Environment Variables
 
 **Backend (.env file in project root):**
+
+For Self-Hosted Sentry:
 ```bash
-# Sentry Configuration
+# Sentry Configuration (Self-Hosted)
+SENTRY_DSN=http://12345abcdef10111213141516171819@127.0.0.1:9000/2
+ENVIRONMENT=development  # development, staging, production
+APP_VERSION=0.1.0
+```
+
+For Cloud Sentry (sentry.io):
+```bash
+# Sentry Configuration (Cloud)
 SENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0
 ENVIRONMENT=production  # development, staging, production
 APP_VERSION=0.1.0
 ```
 
 **Frontend (.env file in web/ directory):**
+
+For Self-Hosted Sentry:
 ```bash
-# Sentry Configuration
+# Sentry Configuration (Self-Hosted)
+REACT_APP_SENTRY_DSN=http://98765fedcba98765432109876543210@127.0.0.1:9000/3
+REACT_APP_ENVIRONMENT=development
+REACT_APP_VERSION=0.1.0
+```
+
+For Cloud Sentry (sentry.io):
+```bash
+# Sentry Configuration (Cloud)
 REACT_APP_SENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0
 REACT_APP_ENVIRONMENT=production
 REACT_APP_VERSION=0.1.0
 ```
 
-### Step 4: Integrate with Flask Application
+### Step 5: Integrate with Flask Application
 
 **In `src/main.py` or your app factory:**
 
 ```python
 from flask import Flask
 from src.monitoring import init_sentry
+import os
 
 def create_app():
     app = Flask(__name__)
@@ -187,7 +250,7 @@ def evaluate_claim():
         raise
 ```
 
-### Step 5: Integrate with React Application
+### Step 6: Integrate with React Application
 
 **In `web/src/App.js` or top-level component:**
 
@@ -262,13 +325,24 @@ function GameScreen() {
 
 ## 🧪 Testing Sentry Locally
 
+### Prerequisite: Start Self-Hosted Sentry
+
+```bash
+# In a separate terminal
+cd sentry-self-hosted  # or wherever you cloned it
+docker-compose up
+# Sentry will be at http://127.0.0.1:9000
+```
+
 ### Test 1: Verify Backend Sentry Connection
 
 **Create `test_sentry.py`:**
 
 ```python
 import os
-os.environ['SENTRY_DSN'] = 'https://examplePublicKey@o0.ingest.sentry.io/0'
+
+# Use your self-hosted Sentry DSN
+os.environ['SENTRY_DSN'] = 'http://12345abcdef10111213141516171819@127.0.0.1:9000/2'
 
 from src.monitoring import init_sentry, capture_exception
 
@@ -280,7 +354,7 @@ try:
     result = 1 / 0
 except Exception as e:
     capture_exception(e)
-    print("✅ Error captured! Check Sentry dashboard.")
+    print("✅ Error captured! Check Sentry dashboard at http://127.0.0.1:9000")
 ```
 
 **Run:**
