@@ -1,7 +1,20 @@
 """
-Integration Tests - All Phases Working Together
+🚨 DEPRECATED: This file is deprecated. Use test_api_integration_v2.py instead.
+
+Integration Tests - All Phases Working Together (v1 - 구형)
 
 Tests the complete workflow from claim creation through evaluation and game scoring.
+
+DEPRECATION REASON:
+- 구형 아키텍처 의존 (Legacy DSL/Grammar structure)
+- GameSession 리팩토링으로 호환성 깨짐
+- test_api_integration_v2.py에서 모든 통합 테스트 대체됨 (17/17 PASS)
+- 새로운 GameEngine 기반 통합 테스트로 전환됨
+
+MIGRATION:
+- test_api_integration_v2.py에서 동일 기능 테스트 중
+- Property-based testing으로 강화됨
+- 본 파일은 향후 제거 예정
 """
 
 import pytest

@@ -1,6 +1,17 @@
 /**
- * GameScreen 단위 테스트
+ * 🚨 DEPRECATED: Use GameScreen.test.jsx instead.
+ *
+ * GameScreen 단위 테스트 (v1 - 구형)
  * 게임 화면의 개별 기능 검증
+ *
+ * DEPRECATION REASON:
+ * - GameScreen.test.jsx에서 더 포괄적인 테스트 포함 (30+ tests)
+ * - 접근성, 엣지 케이스 추가 테스트
+ * - 본 파일은 향후 제거 예정
+ *
+ * MIGRATION:
+ * - GameScreen.test.jsx 사용
+ * - 모든 기능이 더 나은 형태로 테스트됨
  */
 
 import React from 'react';

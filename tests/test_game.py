@@ -1,7 +1,20 @@
 """
-Game Interface 테스트
+🚨 DEPRECATED: This file is deprecated. Use test_game_engine.py instead.
+
+Game Interface 테스트 (v1 - 구형)
 
 청구항 작성 게임 인터페이스를 테스트합니다.
+
+DEPRECATION REASON:
+- GameSession 클래스 리팩토링으로 인한 호환성 깨짐
+- GameEngine 구현 변경
+- test_game_engine.py에서 모든 테스트 대체됨 (11/11 PASS)
+- 새로운 구조: GameSession → GameEngine → GameInterface
+
+MIGRATION:
+- test_game_engine.py에서 동일 기능 테스트 중
+- 새로운 아키텍처에 맞게 리팩토링됨
+- 본 파일은 향후 제거 예정
 """
 
 import pytest

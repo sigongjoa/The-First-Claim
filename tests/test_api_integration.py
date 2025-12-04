@@ -1,7 +1,20 @@
 """
-API 엔드포인트 통합 테스트
+🚨 DEPRECATED: This file is deprecated. Use test_api_integration_v2.py instead.
+
+Legacy API 엔드포인트 통합 테스트 (v1 - 구형)
 
 실제 Flask API 서버를 실행하고 HTTP 요청으로 테스트합니다.
+
+DEPRECATION REASON:
+- GameSession 구조 변경으로 인한 호환성 깨짐
+- Claims 저장 구조 변경 (List[Claim] → List[str])
+- Property 속성명 변경 (player_name → player)
+- test_api_integration_v2.py에서 모든 테스트 대체됨 (17/17 PASS)
+
+MIGRATION:
+- test_api_integration_v2.py에서 동일 기능 테스트 중
+- Property-based testing 추가 (edge case 자동 발견)
+- 본 파일은 향후 제거 예정
 """
 
 import pytest

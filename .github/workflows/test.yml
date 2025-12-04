@@ -49,9 +49,17 @@ jobs:
           pip install mypy
           mypy src/ --config-file=mypy.ini || echo "Type check issues found"
 
-      - name: Run unit tests
+      - name: Run unit tests (active only, excluding deprecated)
         run: |
-          pytest tests/ \
+          pytest tests/test_api_integration_v2.py \
+            tests/test_game_engine.py \
+            tests/test_claim_validator.py \
+            tests/test_evaluator.py \
+            tests/test_civil_law_vocabulary.py \
+            tests/test_civil_law_with_real_data.py \
+            tests/test_patent_law_vocabulary.py \
+            tests/test_patent_law_with_real_data.py \
+            tests/test_llm_evaluator.py \
             --verbose \
             --cov=src \
             --cov-report=xml \

@@ -1,6 +1,18 @@
 /**
- * App 통합 테스트
+ * 🚨 DEPRECATED: Consider using individual component tests instead.
+ *
+ * App 통합 테스트 (v1 - 구형)
  * 전체 게임 흐름 및 화면 전환 검증
+ *
+ * DEPRECATION REASON:
+ * - 개별 컴포넌트 테스트로 충분한 커버리지 확보
+ * - GameScreen.test.jsx, WelcomeScreen.test.jsx, ResultScreen.test.jsx로 분산
+ * - E2E 테스트는 향후 Cypress로 진행 예정
+ * - 본 파일은 참고용으로 유지, 필요시 Cypress E2E로 마이그레이션
+ *
+ * MIGRATION:
+ * - 유닛 테스트는 개별 컴포넌트 파일 사용
+ * - E2E 테스트는 Cypress 사용 (향후 작성)
  */
 
 import React from 'react';

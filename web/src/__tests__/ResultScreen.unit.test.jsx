@@ -1,6 +1,18 @@
 /**
- * ResultScreen 단위 테스트
+ * 🚨 DEPRECATED: Use ResultScreen.test.jsx instead.
+ *
+ * ResultScreen 단위 테스트 (v1 - 구형)
  * 결과 화면의 개별 기능 검증
+ *
+ * DEPRECATION REASON:
+ * - ResultScreen.test.jsx에서 더 포괄적인 테스트 포함 (30+ tests)
+ * - 점수 표시, 피드백, 통계 정보 추가 테스트
+ * - 엣지 케이스 (0점, 많은 피드백) 추가 테스트
+ * - 본 파일은 향후 제거 예정
+ *
+ * MIGRATION:
+ * - ResultScreen.test.jsx 사용
+ * - 모든 기능이 더 나은 형태로 테스트됨
  */
 
 import React from 'react';
