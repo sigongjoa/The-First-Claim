@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/dsl/logic/llm_evaluator.py
+# hypothesis_version: 6.148.5
+
+[0.0, 0.15, 0.2, 1.0, 2000, '\n심사 기준:\n', 'ANTHROPIC_API_KEY', 'antecedent_basis', 'case_law_references', 'clarity', 'content', 'definiteness', 'dependent', 'improvements', 'independent', 'inventive_step', 'is_approvable', 'novelty', 'overall_opinion', 'relevant_articles', 'role', 'scores', 'strengths', 'unity', 'user', 'weaknesses', '{', '}', '✅ 등록 가능', '❌ 등록 불가', '각 청구항은 기술적 관계를 가져야 함', '단일성', '명확성', '발명의 정의', '산업상 이용가능성', '선행기술', '신규성', '제2조', '제32조', '제33조', '제34조', '제42조', '제45조', '제46조', '제47조', '제64조', '주요 조항:\n', '진보성', '청구항 작성 형식', '한국 특허법 컨텍스트:\n\n', '확정성']

@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/dsl/logic/ollama_evaluator.py
+# hypothesis_version: 6.148.5
+
+[0.0, 0.15, 0.2, 0.5, 1.0, 200, '"', "'", 'clarity_score', 'definiteness_score', 'dependent', 'improvements', 'independent', 'inventive_step_score', 'is_approvable', 'model', 'novelty_score', 'overall_opinion', 'prompt', 'qwen2:7b', 'response', 'stream', 'strengths', 'unity_score', 'weaknesses', '{', '}', '✅ 등록 가능', '❌ 등록 불가', '응답에서 JSON을 찾을 수 없습니다']

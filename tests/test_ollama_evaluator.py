@@ -1,7 +1,9 @@
 """
-Ollama-Based Evaluator Tests - 실제 LLM 평가 테스트
+Ollama-Based Evaluator Tests - 실제 LLM 평가 테스트 (에러 숨김 없음)
 
 Ollama 로컬 서버를 사용한 실제 청구항 평가 테스트
+- pytest.skip() 없음: 실제 실패 메시지 표시
+- try-except 없음: 에러 명시적 전파
 """
 
 import pytest
@@ -26,13 +28,13 @@ class TestOllamaEvaluatorSetup:
         assert evaluator.model == "llama2:latest"
 
     def test_ollama_availability(self):
-        """Ollama 서버 사용 가능 여부"""
+        """Ollama 서버 사용 가능 여부 - 실패하면 명시적으로 실패"""
         evaluator = OllamaClaimEvaluator()
+        # is_available()이 False를 반환하면 명시적으로 실패
+        # pytest.skip() 없음 - 실제 상태를 보여줌
         is_available = evaluator.is_available()
-        print(f"\n🔍 Ollama 서버 상태: {'✅ 사용 가능' if is_available else '❌ 사용 불가'}")
-        
-        if not is_available:
-            pytest.skip("Ollama 서버가 실행 중이 아닙니다")
+        assert is_available, "❌ Ollama 서버가 실행 중이 아닙니다. http://localhost:11434 확인하세요."
+        print(f"✅ Ollama 서버 사용 가능")
 
 
 class TestOllamaEvaluationResult:
@@ -74,21 +76,24 @@ class TestOllamaEvaluationResult:
 
 
 class TestOllamaClaimEvaluation:
-    """Ollama를 사용한 실제 청구항 평가 테스트"""
+    """Ollama를 사용한 실제 청구항 평가 테스트 - 에러 숨김 없음"""
 
     @pytest.fixture
     def evaluator(self):
-        """평가기 초기화"""
+        """평가기 초기화 - Ollama 서버 필수 (skip 없음)"""
         evaluator = OllamaClaimEvaluator()
-        
-        # Ollama 서버 확인
-        if not evaluator.is_available():
-            pytest.skip("Ollama 서버가 실행 중이 아닙니다")
-        
+        # is_available()이 False면 명시적 AssertionError (skip 아님)
+        assert evaluator.is_available(), (
+            "❌ Ollama 서버 연결 실패\n"
+            "다음을 확인하세요:\n"
+            "1. Ollama 서버 실행 중: ollama serve\n"
+            "2. 주소 확인: http://localhost:11434\n"
+            "3. 모델 설치 확인: ollama pull qwen2:7b"
+        )
         return evaluator
 
     def test_single_claim_evaluation(self, evaluator):
-        """단일 청구항 평가"""
+        """단일 청구항 평가 - 실제 LLM 호출"""
         result = evaluator.evaluate_claim(
             claim_number=1,
             claim_content="배터리 장치는 양극, 음극, 전해질을 포함하는 에너지 저장 장치이다",
@@ -174,22 +179,25 @@ class TestOllamaClaimEvaluation:
 
 
 class TestOllamaEdgeCases:
-    """Ollama 평가의 엣지 케이스 테스트"""
+    """Ollama 평가의 엣지 케이스 테스트 - skip 없음"""
 
     @pytest.fixture
     def evaluator(self):
-        """평가기 초기화"""
+        """평가기 초기화 - 실패하면 명시적으로 AssertionError"""
         evaluator = OllamaClaimEvaluator()
-        
-        if not evaluator.is_available():
-            pytest.skip("Ollama 서버가 실행 중이 아닙니다")
-        
+        assert evaluator.is_available(), (
+            "❌ Ollama 서버 연결 실패\n"
+            "다음을 확인하세요:\n"
+            "1. Ollama 서버 실행 중: ollama serve\n"
+            "2. 주소 확인: http://localhost:11434\n"
+            "3. 모델 설치 확인: ollama pull qwen2:7b"
+        )
         return evaluator
 
     def test_very_long_claim(self, evaluator):
         """엣지 케이스: 매우 긴 청구항"""
         long_claim = "배터리 장치는 " + "양극, " * 50 + "음극과 전해질을 포함한다"
-        
+
         result = evaluator.evaluate_claim(
             claim_number=1,
             claim_content=long_claim,
@@ -203,7 +211,7 @@ class TestOllamaEdgeCases:
     def test_claim_with_special_characters(self, evaluator):
         """엣지 케이스: 특수 문자 포함"""
         claim = "배터리 장치는 양극, 음극, 전해질을 포함한다. (예: Li-ion)"
-        
+
         result = evaluator.evaluate_claim(
             claim_number=1,
             claim_content=claim,
@@ -215,7 +223,6 @@ class TestOllamaEdgeCases:
 
     def test_circular_dependent_claim(self, evaluator):
         """엣지 케이스: 순환 참조"""
-        # 이것은 실제로 순환 참조는 아니지만, 복잡한 의존성을 테스트
         result = evaluator.evaluate_claim(
             claim_number=3,
             claim_content="제2항의 배터리에서 제1항의 양극은",
@@ -231,27 +238,30 @@ class TestOllamaEdgeCases:
 
 
 class TestOllamaUseCase:
-    """Ollama 평가의 실제 사용 사례 테스트"""
+    """Ollama 평가의 실제 사용 사례 테스트 - skip 없음"""
 
     @pytest.fixture
     def evaluator(self):
         """평가기 초기화"""
         evaluator = OllamaClaimEvaluator()
-        
-        if not evaluator.is_available():
-            pytest.skip("Ollama 서버가 실행 중이 아닙니다")
-        
+        assert evaluator.is_available(), (
+            "❌ Ollama 서버 연결 실패\n"
+            "다음을 확인하세요:\n"
+            "1. Ollama 서버 실행 중: ollama serve\n"
+            "2. 주소 확인: http://localhost:11434\n"
+            "3. 모델 설치 확인: ollama pull qwen2:7b"
+        )
         return evaluator
 
     def test_use_case_battery_patent(self, evaluator):
         """사용 사례: 배터리 특허 청구항"""
         battery_claims = {
-            1: ("independent", 
+            1: ("independent",
                 "고성능 리튬 배터리 장치는 양극 단자, 음극 단자, 전해질, "
                 "분리막을 포함하고, 상기 양극은 리튬코발트산화물로 이루어진다"),
-            2: ("dependent", 
+            2: ("dependent",
                 "제1항의 배터리 장치에서 음극은 흑연 재료로 이루어진다"),
-            3: ("dependent", 
+            3: ("dependent",
                 "제1항의 배터리 장치에서 전해질은 유기용매에 용해된 리튬염이다"),
         }
 

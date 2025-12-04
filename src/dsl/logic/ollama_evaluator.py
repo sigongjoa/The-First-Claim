@@ -82,11 +82,8 @@ class OllamaClaimEvaluator:
 
     def is_available(self) -> bool:
         """Ollama 서버 사용 가능 여부 확인"""
-        try:
-            response = requests.get(self.health_check_url, timeout=2)
-            return response.status_code == 200
-        except:
-            return False
+        response = requests.get(self.health_check_url, timeout=2)
+        return response.status_code == 200
 
     def evaluate_claim(
         self,
@@ -96,41 +93,37 @@ class OllamaClaimEvaluator:
         prior_claims: Optional[List[str]] = None,
     ) -> OllamaEvaluationResult:
         """청구항 평가
-        
+
         Args:
             claim_number: 청구항 번호
             claim_content: 청구항 내용
             claim_type: 청구항 타입 (independent/dependent)
             prior_claims: 선행 청구항 리스트
-            
+
         Returns:
             OllamaEvaluationResult
         """
         prompt = self._build_evaluation_prompt(
             claim_number, claim_content, claim_type, prior_claims
         )
-        
-        try:
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                json={
-                    "model": self.model,
-                    "prompt": prompt,
-                    "stream": False,
-                },
-                timeout=30,
-            )
-            
-            if response.status_code != 200:
-                raise RuntimeError(f"Ollama API 오류: {response.text}")
-            
-            result_text = response.json().get("response", "")
-            return self._parse_evaluation_result(
-                claim_number, claim_content, result_text
-            )
-        
-        except Exception as e:
-            raise RuntimeError(f"Ollama 평가 중 오류 발생: {e}")
+
+        response = requests.post(
+            f"{self.base_url}/api/generate",
+            json={
+                "model": self.model,
+                "prompt": prompt,
+                "stream": False,
+            },
+            timeout=30,
+        )
+
+        if response.status_code != 200:
+            raise RuntimeError(f"Ollama API 오류: {response.text}")
+
+        result_text = response.json().get("response", "")
+        return self._parse_evaluation_result(
+            claim_number, claim_content, result_text
+        )
 
     def evaluate_claims(
         self,
@@ -203,35 +196,33 @@ class OllamaClaimEvaluator:
         result_text: str,
     ) -> OllamaEvaluationResult:
         """평가 결과 파싱"""
-        try:
-            # JSON 추출
-            json_start = result_text.find("{")
-            json_end = result_text.rfind("}") + 1
-            
-            if json_start == -1 or json_end == 0:
-                raise ValueError("응답에서 JSON을 찾을 수 없습니다")
-            
-            json_str = result_text[json_start:json_end]
-            data = json.loads(json_str)
-            
-            return OllamaEvaluationResult(
-                claim_number=claim_number,
-                claim_content=claim_content,
-                is_approvable=data.get("is_approvable", False),
-                clarity_score=float(data.get("clarity_score", 0.5)),
-                antecedent_basis_score=float(data.get("antecedent_basis_score", 0.5)),
-                unity_score=float(data.get("unity_score", 0.5)),
-                definiteness_score=float(data.get("definiteness_score", 0.5)),
-                novelty_score=float(data.get("novelty_score", 0.5)),
-                inventive_step_score=float(data.get("inventive_step_score", 0.5)),
-                strengths=data.get("strengths", []),
-                weaknesses=data.get("weaknesses", []),
-                improvements=data.get("improvements", []),
-                overall_opinion=data.get("overall_opinion", ""),
-                estimated_approval_probability=float(
-                    data.get("estimated_approval_probability", 0.5)
-                ),
-            )
-        
-        except (json.JSONDecodeError, KeyError, ValueError) as e:
-            raise ValueError(f"평가 결과 파싱 실패: {e}\n응답: {result_text[:200]}")
+        # JSON 추출
+        json_start = result_text.find("{")
+        json_end = result_text.rfind("}") + 1
+
+        if json_start == -1 or json_end == 0:
+            raise ValueError("응답에서 JSON을 찾을 수 없습니다")
+
+        json_str = result_text[json_start:json_end]
+        # LLM이 때로 single quote를 사용하는 경우 처리
+        json_str = json_str.replace("'", '"')
+        data = json.loads(json_str)
+
+        return OllamaEvaluationResult(
+            claim_number=claim_number,
+            claim_content=claim_content,
+            is_approvable=data.get("is_approvable", False),
+            clarity_score=float(data.get("clarity_score") or 0.5),
+            antecedent_basis_score=float(data.get("antecedent_basis_score") or 0.5),
+            unity_score=float(data.get("unity_score") or 0.5),
+            definiteness_score=float(data.get("definiteness_score") or 0.5),
+            novelty_score=float(data.get("novelty_score") or 0.5),
+            inventive_step_score=float(data.get("inventive_step_score") or 0.5),
+            strengths=data.get("strengths", []),
+            weaknesses=data.get("weaknesses", []),
+            improvements=data.get("improvements", []),
+            overall_opinion=data.get("overall_opinion", ""),
+            estimated_approval_probability=float(
+                data.get("estimated_approval_probability") or 0.5
+            ),
+        )

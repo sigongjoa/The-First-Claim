@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/dsl/vocabulary/__init__.py
+# hypothesis_version: 6.148.5
+
+['CivilLawStatute', 'Invention', 'LegalRight', 'PatentArticle', 'PatentClaim', 'PatentExamination', 'Person', 'Transaction']

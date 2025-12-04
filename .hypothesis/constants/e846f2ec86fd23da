@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/dsl/vocabulary/patent_law.py
+# hypothesis_version: 6.148.5
+
+['%Y-%m-%d', 'claims는 리스트여야 합니다', 'content는 문자열이어야 합니다', 'effects', 'exceptions', 'novelty는 불린이어야 합니다', 'requirements', 'scope는 문자열이어야 합니다', 'title은 문자열이어야 합니다', '거절', '독립항', '등록', '심사중', '종속항', '출원', '포기']

@@ -13,11 +13,7 @@ from typing import List, Dict, Optional, Tuple
 from enum import Enum
 from datetime import datetime
 
-try:
-    from anthropic import Anthropic
-    ANTHROPIC_AVAILABLE = True
-except ImportError:
-    ANTHROPIC_AVAILABLE = False
+from anthropic import Anthropic
 
 
 class EvaluationCritera(Enum):
@@ -136,22 +132,16 @@ class LLMClaimEvaluator:
 
     def __init__(self, api_key: Optional[str] = None):
         """LLMClaimEvaluator 초기화
-        
+
         Args:
             api_key: Anthropic API 키 (없으면 환경변수에서 로드)
         """
-        if not ANTHROPIC_AVAILABLE:
-            raise ImportError(
-                "anthropic 패키지가 설치되지 않았습니다. "
-                "pip install anthropic을 실행하세요."
-            )
-        
         self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         if not self.api_key:
             raise ValueError(
                 "ANTHROPIC_API_KEY 환경변수가 설정되지 않았습니다."
             )
-        
+
         self.client = Anthropic(api_key=self.api_key)
         self.model = "claude-3-5-sonnet-20241022"
         self.law_context = KoreanPatentLawContext.get_law_context()
@@ -164,39 +154,35 @@ class LLMClaimEvaluator:
         prior_claims: Optional[List[str]] = None,
     ) -> LLMEvaluationResult:
         """청구항 평가
-        
+
         Args:
             claim_number: 청구항 번호
             claim_content: 청구항 내용
             claim_type: 청구항 타입 (independent/dependent)
             prior_claims: 선행 청구항 리스트
-            
+
         Returns:
             LLMEvaluationResult
         """
         prompt = self._build_evaluation_prompt(
             claim_number, claim_content, claim_type, prior_claims
         )
-        
-        try:
-            response = self.client.messages.create(
-                model=self.model,
-                max_tokens=2000,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                ],
-            )
-            
-            result_text = response.content[0].text
-            return self._parse_evaluation_result(
-                claim_number, claim_content, result_text
-            )
-        
-        except Exception as e:
-            raise RuntimeError(f"LLM 평가 중 오류 발생: {e}")
+
+        response = self.client.messages.create(
+            model=self.model,
+            max_tokens=2000,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+        )
+
+        result_text = response.content[0].text
+        return self._parse_evaluation_result(
+            claim_number, claim_content, result_text
+        )
 
     def evaluate_claims(
         self,
@@ -284,37 +270,33 @@ class LLMClaimEvaluator:
         result_text: str,
     ) -> LLMEvaluationResult:
         """평가 결과 파싱"""
-        try:
-            # JSON 추출
-            json_start = result_text.find("{")
-            json_end = result_text.rfind("}") + 1
-            json_str = result_text[json_start:json_end]
-            
-            data = json.loads(json_str)
-            
-            return LLMEvaluationResult(
-                claim_number=claim_number,
-                claim_content=claim_content,
-                is_approvable=data.get("is_approvable", False),
-                clarity_score=float(data["scores"].get("clarity", 0.0)),
-                antecedent_basis_score=float(data["scores"].get("antecedent_basis", 0.0)),
-                unity_score=float(data["scores"].get("unity", 0.0)),
-                definiteness_score=float(data["scores"].get("definiteness", 0.0)),
-                novelty_score=float(data["scores"].get("novelty", 0.0)),
-                inventive_step_score=float(data["scores"].get("inventive_step", 0.0)),
-                strengths=data.get("strengths", []),
-                weaknesses=data.get("weaknesses", []),
-                improvements=data.get("improvements", []),
-                relevant_articles=data.get("relevant_articles", []),
-                case_law_references=data.get("case_law_references", []),
-                overall_opinion=data.get("overall_opinion", ""),
-                estimated_approval_probability=float(
-                    data.get("estimated_approval_probability", 0.0)
-                ),
-            )
-        
-        except (json.JSONDecodeError, KeyError, ValueError) as e:
-            raise ValueError(f"평가 결과 파싱 실패: {e}\n응답: {result_text}")
+        # JSON 추출
+        json_start = result_text.find("{")
+        json_end = result_text.rfind("}") + 1
+        json_str = result_text[json_start:json_end]
+
+        data = json.loads(json_str)
+
+        return LLMEvaluationResult(
+            claim_number=claim_number,
+            claim_content=claim_content,
+            is_approvable=data.get("is_approvable", False),
+            clarity_score=float(data["scores"].get("clarity", 0.0)),
+            antecedent_basis_score=float(data["scores"].get("antecedent_basis", 0.0)),
+            unity_score=float(data["scores"].get("unity", 0.0)),
+            definiteness_score=float(data["scores"].get("definiteness", 0.0)),
+            novelty_score=float(data["scores"].get("novelty", 0.0)),
+            inventive_step_score=float(data["scores"].get("inventive_step", 0.0)),
+            strengths=data.get("strengths", []),
+            weaknesses=data.get("weaknesses", []),
+            improvements=data.get("improvements", []),
+            relevant_articles=data.get("relevant_articles", []),
+            case_law_references=data.get("case_law_references", []),
+            overall_opinion=data.get("overall_opinion", ""),
+            estimated_approval_probability=float(
+                data.get("estimated_approval_probability", 0.0)
+            ),
+        )
 
 
 # 글로벌 인스턴스 (싱글톤)

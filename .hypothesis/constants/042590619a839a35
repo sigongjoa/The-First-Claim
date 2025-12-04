@@ -1,0 +1,4 @@
+# file: /mnt/d/progress/The-First-Claim/src/dsl/vocabulary/civil_law.py
+# hypothesis_version: 6.148.5
+
+['%Y-%m-%d', ', ', 'date는 문자열이어야 합니다', 'duration은 문자열이어야 합니다', 'effects', 'exceptions', 'name은 문자열이어야 합니다', 'parties는 리스트여야 합니다', 'related_precedents', 'remedies는 리스트여야 합니다', 'requirements', 'role은 문자열이어야 합니다', 'scope는 문자열이어야 합니다', 'subject는 문자열이어야 합니다', 'title은 문자열이어야 합니다', '구매자', '심사관', '저작권자', '제3자', '출원인', '침해자', '판매자']

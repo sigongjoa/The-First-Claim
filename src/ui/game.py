@@ -128,11 +128,29 @@ class GameSession:
         self.status = GameStatus.IN_PROGRESS
         self.start_time = start_time
 
-    def submit_claim(self, claim: str) -> None:
-        """청구항 제출"""
+    def submit_claim(self, claim: str) -> bool:
+        """청구항 제출
+
+        Args:
+            claim: 청구항 내용
+
+        Returns:
+            bool: 제출 성공 여부
+        """
         if not claim or not claim.strip():
-            raise ValueError("claim은 비어있지 않아야 합니다")
+            return False
+
+        # 길이 검증: 30~1000자
+        if len(claim) < 30 or len(claim) > 1000:
+            return False
+
         self.submitted_claims.append(claim)
+        return True
+
+    @property
+    def claims(self) -> List[str]:
+        """청구항 리스트 (호환성)"""
+        return self.submitted_claims
 
     def add_feedback(self, feedback: str) -> None:
         """피드백 추가"""
