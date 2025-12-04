@@ -1,0 +1,2 @@
+{"timestamp": "2025-12-04T05:30:01.141203", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 시작"}
+{"timestamp": "2025-12-04T05:30:01.144091", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}

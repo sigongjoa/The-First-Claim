@@ -1,0 +1,42 @@
+{"timestamp": "2025-12-04T05:29:54.446698", "level": "INFO", "logger": "test_performance", "message": "세션 생성 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.447298", "level": "INFO", "logger": "test_performance", "message": "세션 생성 완료", "context": {"elapsed_ms": 0.017532998754177243, "target_ms": 100, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:29:54.454114", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.454114", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.454667", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.0026480011001694947, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:29:54.454667", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.0026480011001694947, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:29:54.457899", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.457899", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.457899", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.458649", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.027985999622615054, "avg_time_per_session_ms": 0.0027985999622615054, "throughput_sessions_per_sec": 357321.5227202088}}
+{"timestamp": "2025-12-04T05:29:54.458649", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.027985999622615054, "avg_time_per_session_ms": 0.0027985999622615054, "throughput_sessions_per_sec": 357321.5227202088}}
+{"timestamp": "2025-12-04T05:29:54.458649", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.027985999622615054, "avg_time_per_session_ms": 0.0027985999622615054, "throughput_sessions_per_sec": 357321.5227202088}}
+{"timestamp": "2025-12-04T05:29:54.481423", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.481423", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.481423", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.481423", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.482703", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.73}}
+{"timestamp": "2025-12-04T05:29:54.482703", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.73}}
+{"timestamp": "2025-12-04T05:29:54.482703", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.73}}
+{"timestamp": "2025-12-04T05:29:54.482703", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.73}}
+{"timestamp": "2025-12-04T05:29:54.485988", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.485988", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.485988", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.485988", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.485988", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.487283", "level": "ERROR", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 실패", "error": {"type": "AssertionError", "message": "assert False is True", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_performance_benchmarks.py\", line 197, in test_concurrent_session_handling_performance\n    assert result is True\nAssertionError: assert False is True\n"}}
+{"timestamp": "2025-12-04T05:29:54.487283", "level": "ERROR", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 실패", "error": {"type": "AssertionError", "message": "assert False is True", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_performance_benchmarks.py\", line 197, in test_concurrent_session_handling_performance\n    assert result is True\nAssertionError: assert False is True\n"}}
+{"timestamp": "2025-12-04T05:29:54.487283", "level": "ERROR", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 실패", "error": {"type": "AssertionError", "message": "assert False is True", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_performance_benchmarks.py\", line 197, in test_concurrent_session_handling_performance\n    assert result is True\nAssertionError: assert False is True\n"}}
+{"timestamp": "2025-12-04T05:29:54.487283", "level": "ERROR", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 실패", "error": {"type": "AssertionError", "message": "assert False is True", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_performance_benchmarks.py\", line 197, in test_concurrent_session_handling_performance\n    assert result is True\nAssertionError: assert False is True\n"}}
+{"timestamp": "2025-12-04T05:29:54.487283", "level": "ERROR", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 실패", "error": {"type": "AssertionError", "message": "assert False is True", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_performance_benchmarks.py\", line 197, in test_concurrent_session_handling_performance\n    assert result is True\nAssertionError: assert False is True\n"}}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.603278", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:29:54.604392", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}

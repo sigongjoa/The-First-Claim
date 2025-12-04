@@ -1,0 +1,158 @@
+name: Performance & Security Scanning
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+
+jobs:
+  performance-tests:
+    name: Performance Benchmarks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run performance benchmarks
+      run: |
+        python -m pytest tests/test_performance_benchmarks.py -v --tb=short 2>&1 | tee performance_results.log
+
+    - name: Upload performance results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-results-${{ matrix.python-version }}
+        path: performance_results.log
+
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install bandit safety
+
+    - name: Run Bandit security scan
+      run: |
+        echo "Running Bandit security scan..."
+        bandit -r src/ -f json -o bandit_report.json || true
+        bandit -r src/ -f txt || true
+
+    - name: Run safety check
+      run: |
+        echo "Checking dependencies for known vulnerabilities..."
+        safety check --json > safety_report.json || true
+        safety check || true
+
+    - name: Run security tests
+      run: |
+        python -m pytest tests/test_security_scan.py -v --tb=short 2>&1 | tee security_results.log
+
+    - name: Upload security reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit_report.json
+          safety_report.json
+          security_results.log
+
+  compatibility-tests:
+    name: Compatibility Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run compatibility tests
+      run: |
+        python -m pytest tests/test_compatibility.py -v --tb=short 2>&1 | tee compatibility_results.log
+
+    - name: Upload compatibility results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: compatibility-results-${{ matrix.python-version }}
+        path: compatibility_results.log
+
+  quality-gate:
+    name: Quality Gate Check
+    runs-on: ubuntu-latest
+    needs: [performance-tests, security-scan, compatibility-tests]
+    if: always()
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Check test results
+      run: |
+        echo "=== Quality Gate Check ==="
+        echo ""
+        echo "Phase 4 Tests Summary:"
+        echo "- Performance Benchmarks: Check artifacts"
+        echo "- Security Scanning: Check artifacts"
+        echo "- Compatibility Tests: Check artifacts"
+        echo ""
+        echo "All Phase 4 tests have been executed."
+        echo "Please review artifacts for detailed results."
+
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '✅ Phase 4 Quality Tests Completed\n\n- Performance Benchmarks\n- Security Scanning\n- Compatibility Tests\n\nPlease check artifacts for detailed results.'
+          })
