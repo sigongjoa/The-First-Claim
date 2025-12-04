@@ -1,9 +1,18 @@
 """
-Ollama-Based Evaluator Tests - 실제 LLM 평가 테스트 (에러 숨김 없음)
+⚠️ SLOW: Ollama-Based Evaluator Tests - 실제 LLM 평가 테스트
 
 Ollama 로컬 서버를 사용한 실제 청구항 평가 테스트
 - pytest.skip() 없음: 실제 실패 메시지 표시
 - try-except 없음: 에러 명시적 전파
+
+성능 주의사항:
+- 병렬 실행 시 Ollama 서버 로드로 인한 타임아웃 발생 가능
+- 개별 실행 시: 항상 통과 (32-40초 소요)
+- 전체 테스트 스위트에서 제외 권장
+- 로컬 검증 시에만 사용
+
+GitHub Actions에서 제외됨.
+로컬에서만 수동으로 실행: pytest tests/test_ollama_evaluator.py
 """
 
 import pytest

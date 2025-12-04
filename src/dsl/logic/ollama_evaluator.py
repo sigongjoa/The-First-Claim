@@ -204,9 +204,22 @@ class OllamaClaimEvaluator:
             raise ValueError("응답에서 JSON을 찾을 수 없습니다")
 
         json_str = result_text[json_start:json_end]
+
         # LLM이 때로 single quote를 사용하는 경우 처리
+        # 주의: 작은따옴표가 문자열 내용에 포함될 수 있으므로 주의
         json_str = json_str.replace("'", '"')
-        data = json.loads(json_str)
+
+        # 추가: 불완전한 JSON 처리 (예: 마지막 쉼표 제거)
+        json_str = json_str.rstrip(',')
+
+        try:
+            data = json.loads(json_str)
+        except json.JSONDecodeError as e:
+            # 파싱 실패 시 에러 메시지 포함해서 재발생
+            raise ValueError(
+                f"JSON 파싱 실패: {str(e)}\n"
+                f"원본 응답 (처음 500글자):\n{result_text[:500]}"
+            ) from e
 
         return OllamaEvaluationResult(
             claim_number=claim_number,
