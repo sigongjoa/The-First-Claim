@@ -10,3 +10,15 @@
 {"timestamp": "2025-12-04T05:30:01.261379", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}
 {"timestamp": "2025-12-04T05:30:01.261379", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}
 {"timestamp": "2025-12-04T05:30:01.261379", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}
+{"timestamp": "2025-12-04T05:36:22.165813", "level": "INFO", "logger": "test_compatibility_os", "message": "플랫폼 감지 시작"}
+{"timestamp": "2025-12-04T05:36:22.166138", "level": "INFO", "logger": "test_compatibility_os", "message": "플랫폼 정보", "context": {"system": "Linux", "release": "6.6.87.2-microsoft-standard-WSL2", "machine": "x86_64", "supported": true}}
+{"timestamp": "2025-12-04T05:36:22.169238", "level": "INFO", "logger": "test_compatibility_os", "message": "크로스 플랫폼 경로 연산 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:22.169238", "level": "INFO", "logger": "test_compatibility_os", "message": "크로스 플랫폼 경로 연산 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:22.172279", "level": "INFO", "logger": "test_compatibility_os", "message": "크로스 플랫폼 경로 연산 완료", "context": {"test_dir": "tests", "test_files_found": 18}}
+{"timestamp": "2025-12-04T05:36:22.172279", "level": "INFO", "logger": "test_compatibility_os", "message": "크로스 플랫폼 경로 연산 완료", "context": {"test_dir": "tests", "test_files_found": 18}}
+{"timestamp": "2025-12-04T05:36:22.175751", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:22.175751", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:22.175751", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:22.292466", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}
+{"timestamp": "2025-12-04T05:36:22.292466", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}
+{"timestamp": "2025-12-04T05:36:22.292466", "level": "INFO", "logger": "test_compatibility_os", "message": "파일 인코딩 호환성 테스트 완료"}

@@ -27,7 +27,7 @@ class TestPythonVersionCompatibility:
         logger.info("Python 버전 호환성 테스트 시작")
 
         current_version = sys.version_info
-        supported_versions = [(3, 9), (3, 10), (3, 11), (3, 12)]
+        supported_versions = [(3, 9), (3, 10), (3, 11), (3, 12), (3, 13)]
 
         is_supported = (current_version.major, current_version.minor) in supported_versions
 

@@ -4,3 +4,9 @@
 {"timestamp": "2025-12-04T05:29:59.839072", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
 {"timestamp": "2025-12-04T05:29:59.839606", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.036959998396923766, "spike_sessions": 20, "spike_time_ms": 0.025678000383777544, "degradation_ratio": 0.6947511227683051}}
 {"timestamp": "2025-12-04T05:29:59.839606", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.036959998396923766, "spike_sessions": 20, "spike_time_ms": 0.025678000383777544, "degradation_ratio": 0.6947511227683051}}
+{"timestamp": "2025-12-04T05:36:15.711785", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:20.836625", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 완료", "context": {"duration_seconds": 5.124521237998124, "total_operations": 995317, "total_errors": 0, "error_rate": 0.0, "throughput_ops_per_sec": 194226.33915921033}}
+{"timestamp": "2025-12-04T05:36:20.971481", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:20.971481", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-04T05:36:20.972087", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.01912500010803342, "spike_sessions": 20, "spike_time_ms": 0.02490299812052399, "degradation_ratio": 1.3021175414301585}}
+{"timestamp": "2025-12-04T05:36:20.972087", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.01912500010803342, "spike_sessions": 20, "spike_time_ms": 0.02490299812052399, "degradation_ratio": 1.3021175414301585}}
