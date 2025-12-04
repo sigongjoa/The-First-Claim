@@ -10,11 +10,16 @@ Test-Driven Legal Engine (테스트 주도형 법률 엔진 구축 프로젝트)
 
 import os
 import sys
+import uuid
 from datetime import datetime
+import time
 
 # 프로젝트 경로 설정
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
+
+# Import game engine and UI
+from src.ui.game import GameEngine, GameInterface, GameStatus
 
 
 class ProjectIntroduction:
@@ -158,26 +163,116 @@ class ProjectIntroduction:
         print("=" * 70)
 
     def start_game(self):
-        """게임 시작"""
-        print("\n" + "=" * 70)
-        print("🎮 게임 시작 준비 중...")
-        print("=" * 70)
-        print()
-        print("⚠️  현재 게임 엔진은 개발 중입니다.")
-        print()
-        print("준비 상황:")
-        print("  ☐ Phase 1 게임 엔진 (민법) - 개발 예정")
-        print("  ☐ AI 심사관 (기본 버전) - 개발 예정")
-        print("  ☐ UI 시스템 - 개발 예정")
-        print()
-        print("다음 단계:")
-        print("  1. src/game_engine.py 작성")
-        print("  2. src/knowledge_base.py 작성")
-        print("  3. 테스트 코드 작성")
-        print()
-        print("지금 바로 개발을 시작하려면:")
-        print("  $ python -m pytest tests/")
-        print("=" * 70)
+        """게임 시작 - 실제 게임 루프"""
+        try:
+            print("\n" + "=" * 70)
+            print("🎮 청구항 작성 게임 시작")
+            print("=" * 70)
+            print()
+
+            # 게임 엔진 초기화
+            engine = GameEngine()
+            ui = GameInterface()
+
+            # 1. 플레이어 이름 입력
+            print(ui.display_welcome())
+
+            player_name = input("플레이어 이름을 입력하세요: ").strip()
+            if not player_name:
+                player_name = "Anonymous Player"
+
+            # 2. 레벨 선택
+            print("\n[📋 레벨 선택]")
+            print()
+            for level_id, level in engine.levels.items():
+                print(f"{level_id}. {level}")
+                print(f"   설명: {level.description}")
+                print(f"   필요 청구항: {level.target_claims}개")
+                print(f"   시간 제한: {level.time_limit}초")
+                print()
+
+            while True:
+                try:
+                    level_choice = input("레벨을 선택하세요 (1-3): ").strip()
+                    level_id = int(level_choice)
+                    if 1 <= level_id <= 3:
+                        break
+                    else:
+                        print("⚠️  1-3 사이의 숫자를 입력해주세요.")
+                except ValueError:
+                    print("⚠️  숫자를 입력해주세요.")
+
+            # 3. 게임 세션 생성
+            session_id = f"session_{uuid.uuid4().hex[:8]}"
+            session = engine.create_session(
+                session_id=session_id,
+                player_name=player_name,
+                level_id=level_id
+            )
+
+            session.start_game(time.time())
+
+            level = engine.get_level(level_id)
+            print(ui.display_level_info(level))
+            print(ui.display_progress(session.player))
+
+            # 4. 청구항 입력
+            print(f"\n[📝 청구항 작성]")
+            print(f"총 {level.target_claims}개의 청구항을 작성해야 합니다.")
+            print()
+
+            for i in range(1, level.target_claims + 1):
+                claim_type = "독립항" if i == 1 else "종속항"
+                print(f"\n청구항 {i} ({claim_type}):")
+                if i == 1:
+                    print("  💡 팁: 기본적인 기술적 특징을 명확하게 포함해야 합니다.")
+                else:
+                    print("  💡 팁: 선행항을 명시적으로 참조해야 합니다 (예: 제1항)")
+
+                print()
+
+                claim_content = input(f"청구항 {i}를 입력하세요 (최소 20자): ").strip()
+
+                if not claim_content:
+                    print("⚠️  청구항이 비어있습니다. 다시 입력해주세요.")
+                    i -= 1
+                    continue
+
+                session.submit_claim(claim_content)
+
+            # 5. 청구항 평가
+            print("\n" + "=" * 70)
+            print("📊 청구항 평가 중...")
+            print("=" * 70)
+            print()
+
+            success, feedback, details = engine.evaluate_claims(session_id)
+
+            # 6. 결과 표시
+            for msg in feedback:
+                print(msg)
+
+            session.complete_game(time.time(), success)
+
+            # 7. 최종 결과
+            print("\n" + "=" * 70)
+            if success:
+                print(f"🎉 {player_name}님, 축하합니다!")
+                print(f"레벨 {level_id}을(를) 통과했습니다!")
+                print(f"획득 점수: {details.get('score', 0)}점")
+                session.player.complete_level(level_id)
+            else:
+                print(f"❌ {player_name}님, 아쉽습니다.")
+                print(f"아직 요구사항을 충족하지 못했습니다.")
+                print("\n다시 시도해주세요!")
+
+            print("=" * 70)
+            print()
+
+        except Exception as e:
+            print(f"\n❌ 게임 중 오류 발생: {e}")
+            import traceback
+            traceback.print_exc()
 
     def show_progress(self):
         """학습 진도 확인"""
