@@ -1,0 +1,104 @@
+[MASTER]
+# Minimum Python version to target
+py-version=3.10
+
+# Use multiple processes
+jobs=1
+
+# Add files or directories to the blocklist
+ignore-patterns=^test_.*?\.py
+
+# List of module names for which member attributes should not be checked
+ignored-modules=
+
+# Pickle collected data for later comparisons
+persistent=yes
+
+[MESSAGES CONTROL]
+# Only check for errors and fatal issues
+disable=
+    all,
+    locally-disabled,
+    fixme,
+    suppressed-message,
+    file-ignored,
+    deprecated-pragma,
+    use-symbolic-message
+
+enable=
+    E,
+    F,
+    W0101,
+    W0102,
+    W0104,
+    W0105,
+    W0107,
+    W0109,
+    W0122,
+    W0123,
+    W0150,
+    W0199,
+    W0232,
+    W0236,
+    W0401,
+    W0402,
+    W0611,
+    W0612,
+    W0613,
+    W0614,
+    W0621,
+    W0622,
+    W0631,
+    W0702,
+    W0703,
+
+[REPORTS]
+# Set the output format
+output-format=text
+
+# Tells whether to display a full report or only the messages
+reports=no
+
+[REFACTORING]
+# Maximum number of nested blocks for function / method body
+max-nested-blocks=5
+
+[VARIABLES]
+# A regular expression matching the name of dummy variables (i.e. expected to be unused)
+dummy-variables-rgx=_+$|^dummy
+
+[CLASSES]
+# List of method names used to declare an abstract method
+abstract-methods=abstractmethod
+
+[DESIGN]
+# Maximum number of arguments for function / method
+max-args=5
+
+# Maximum number of attributes for a class
+max-attributes=7
+
+# Maximum number of boolean expressions in an if statement
+max-bool-expr=5
+
+# Maximum number of branch for function / method body
+max-branches=12
+
+# Maximum number of locals for function / method body
+max-locals=15
+
+# Maximum number of parents for a class
+max-parents=7
+
+# Maximum number of public methods for a class
+max-public-methods=20
+
+# Maximum number of return / yield for function / method body
+max-returns=6
+
+# Maximum number of statements in function / method body
+max-statements=50
+
+[SIMILARITIES]
+# Minimum lines number d a similarity to trigger notice
+min-similarity-lines=4

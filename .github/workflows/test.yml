@@ -31,17 +31,23 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov pytest-timeout
 
+      - name: Lint with flake8
+        continue-on-error: true
+        run: |
+          pip install flake8
+          flake8 src/ --count --statistics || echo "Flake8 issues found"
+
       - name: Lint with pylint
         continue-on-error: true
         run: |
           pip install pylint
-          pylint src/ --disable=all --enable=E,F || echo "Linting issues found"
+          pylint src/ --rcfile=pylintrc --disable=all --enable=E,F || echo "Pylint issues found"
 
       - name: Type check with mypy
         continue-on-error: true
         run: |
           pip install mypy
-          mypy src/ --ignore-missing-imports || echo "Type check issues found"
+          mypy src/ --config-file=mypy.ini || echo "Type check issues found"
 
       - name: Run unit tests
         run: |
