@@ -1,0 +1,6 @@
+{"timestamp": "2025-12-04T05:19:40.753748", "level": "DEBUG", "logger": "test_all_levels", "message": "DEBUG 메시지"}
+{"timestamp": "2025-12-04T05:19:40.754078", "level": "INFO", "logger": "test_all_levels", "message": "INFO 메시지"}
+{"timestamp": "2025-12-04T05:19:40.754378", "level": "WARNING", "logger": "test_all_levels", "message": "WARNING 메시지"}
+{"timestamp": "2025-12-04T05:19:40.754606", "level": "ERROR", "logger": "test_all_levels", "message": "ERROR 메시지", "context": {"test": "error"}}
+{"timestamp": "2025-12-04T05:19:40.754791", "level": "CRITICAL", "logger": "test_all_levels", "message": "CRITICAL 메시지", "context": {"test": "critical"}}
+{"timestamp": "2025-12-04T05:19:40.754956", "level": "ERROR", "logger": "test_all_levels", "message": "예외 발생", "error": {"type": "ValueError", "message": "테스트 에러", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 399, in test_logger_all_levels\n    raise ValueError(\"테스트 에러\")\nValueError: 테스트 에러\n"}}

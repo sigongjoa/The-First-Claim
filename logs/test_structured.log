@@ -1,0 +1,2 @@
+{"timestamp": "2025-12-04T05:19:40.760688", "level": "INFO", "logger": "test_structured", "message": "게임 시작", "context": {"player_id": "user_123", "level": 1, "difficulty": "normal"}, "player_name": "김특허", "start_time": "2025-12-04T10:30:00Z"}
+{"timestamp": "2025-12-04T05:19:40.761057", "level": "INFO", "logger": "test_structured", "message": "청구항 제출", "context": {"claim_length": 150, "validation": true}, "submission_time": "2025-12-04T10:31:00Z"}
