@@ -13,7 +13,7 @@ from datetime import datetime
 
 # Import validators and evaluators
 from ..dsl.grammar.claim_validator import ClaimValidator, ClaimType
-from ..dsl.logic.evaluator import PatentabilityEvaluator, Invention
+from ..dsl.logic.evaluator import PatentabilityEvaluator
 from ..dsl.vocabulary.patent_law_database import get_patent_law_database
 
 
@@ -310,20 +310,22 @@ class GameEngine:
                 features = claim.split()
                 invention_features.extend(features)
 
-            # 평가 실행
-            innovation_eval = self.evaluator.evaluate(
+            # 평가 실행 (tuple 반환: novelty_result, inventive_step_result, overall_opinion)
+            novelty_result, inventive_step_result, overall_opinion = self.evaluator.evaluate(
                 invention_features=list(set(invention_features)),  # 중복 제거
                 technical_field="전자기술",  # 기본값
                 prior_art_count=0  # 선행기술 데이터가 없으므로 0
             )
 
             details["evaluation_results"] = {
-                "has_inventive_step": innovation_eval.has_inventive_step,
-                "level": innovation_eval.level,
-                "reasoning": innovation_eval.reasoning,
+                "has_inventive_step": inventive_step_result.has_inventive_step,
+                "is_novel": novelty_result.is_novel,
+                "level": inventive_step_result.level,
+                "reasoning": overall_opinion,
             }
 
-            feedback.append(f"   진보성 평가: {innovation_eval.reasoning}")
+            feedback.append(f"   신규성 평가: {novelty_result}")
+            feedback.append(f"   진보성 평가: {inventive_step_result}")
 
             # 관련 특허법 조항 참조
             patent_law_refs = self.patent_law_db.search_by_requirement("명확성")
