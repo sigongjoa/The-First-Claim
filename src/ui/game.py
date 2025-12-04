@@ -14,6 +14,7 @@ from datetime import datetime
 # Import validators and evaluators
 from ..dsl.grammar.claim_validator import ClaimValidator, ClaimType
 from ..dsl.logic.evaluator import PatentabilityEvaluator
+from ..dsl.logic.llm_evaluator import LLMClaimEvaluator, get_llm_evaluator
 from ..dsl.vocabulary.patent_law_database import get_patent_law_database
 
 
@@ -163,13 +164,27 @@ class GameSession:
 class GameEngine:
     """게임 엔진"""
 
-    def __init__(self) -> None:
-        """GameEngine 초기화"""
+    def __init__(self, use_llm: bool = False) -> None:
+        """GameEngine 초기화
+
+        Args:
+            use_llm: LLM 기반 평가 사용 여부
+        """
         self.levels: Dict[int, GameLevel] = {}
         self.sessions: Dict[str, GameSession] = {}
         self.validator = ClaimValidator()
         self.evaluator = PatentabilityEvaluator()
         self.patent_law_db = get_patent_law_database()
+        self.use_llm = use_llm
+        self.llm_evaluator: Optional[LLMClaimEvaluator] = None
+
+        if use_llm:
+            try:
+                self.llm_evaluator = get_llm_evaluator()
+            except (ImportError, ValueError) as e:
+                print(f"⚠️  LLM 모드를 사용할 수 없습니다: {e}")
+                self.use_llm = False
+
         self._create_default_levels()
 
     def _create_default_levels(self) -> None:
@@ -353,6 +368,120 @@ class GameEngine:
             details["score"] = 0
 
         return success, feedback, details
+
+    def evaluate_claims_with_llm(
+        self, session_id: str
+    ) -> Tuple[bool, List[str], Dict[str, any]]:
+        """LLM 기반 청구항 평가
+
+        한국 특허법을 기반으로 Claude AI가 청구항을 평가합니다.
+
+        Returns:
+            (통과 여부, 피드백 리스트, 상세 결과)
+        """
+        if not self.use_llm or not self.llm_evaluator:
+            raise RuntimeError("LLM 평가기가 초기화되지 않았습니다")
+
+        session = self.get_session(session_id)
+        if session is None:
+            raise ValueError(f"세션을 찾을 수 없습니다: {session_id}")
+
+        feedback = []
+        details = {
+            "total_submitted": len(session.submitted_claims),
+            "required": session.current_level.target_claims,
+            "llm_evaluations": [],
+            "overall_success": False,
+        }
+
+        # 청구항 개수 확인
+        if len(session.submitted_claims) < session.current_level.target_claims:
+            feedback.append(
+                f"⚠️ 청구항 개수 부족: {session.current_level.target_claims}개 필요 "
+                f"(현재: {len(session.submitted_claims)}개)"
+            )
+            return False, feedback, details
+
+        feedback.append(
+            f"✅ 청구항 {len(session.submitted_claims)}개 제출됨\n"
+        )
+        feedback.append("🤖 LLM 기반 평가 진행 중...\n")
+
+        # LLM으로 청구항 평가
+        try:
+            claims_dict = {
+                i + 1: ("independent" if i == 0 else "dependent", claim)
+                for i, claim in enumerate(session.submitted_claims)
+            }
+
+            llm_results = self.llm_evaluator.evaluate_claims(claims_dict)
+
+            all_approvable = True
+            total_score = 0.0
+
+            for result in llm_results:
+                feedback.append(f"\n📝 청구항 {result.claim_number} 평가:")
+                feedback.append(f"   상태: {'✅ 등록 가능' if result.is_approvable else '❌ 등록 불가'}")
+                feedback.append(f"   종합 점수: {result.get_overall_score():.2f}/1.0")
+                feedback.append(f"   승인 확률: {result.estimated_approval_probability:.1%}")
+
+                # 강점/약점/개선방안
+                if result.strengths:
+                    feedback.append(f"   강점:")
+                    for strength in result.strengths:
+                        feedback.append(f"      ✓ {strength}")
+
+                if result.weaknesses:
+                    feedback.append(f"   약점:")
+                    for weakness in result.weaknesses:
+                        feedback.append(f"      ✗ {weakness}")
+
+                if result.improvements:
+                    feedback.append(f"   개선방안:")
+                    for improvement in result.improvements:
+                        feedback.append(f"      → {improvement}")
+
+                # 관련 법률
+                if result.relevant_articles:
+                    feedback.append(f"   관련 특허법: {', '.join(result.relevant_articles)}")
+
+                feedback.append(f"   의견: {result.overall_opinion}")
+
+                details["llm_evaluations"].append({
+                    "claim_number": result.claim_number,
+                    "is_approvable": result.is_approvable,
+                    "overall_score": result.get_overall_score(),
+                    "approval_probability": result.estimated_approval_probability,
+                    "opinion": result.overall_opinion,
+                })
+
+                if not result.is_approvable:
+                    all_approvable = False
+
+                total_score += result.get_overall_score()
+
+            # 최종 판정
+            success = all_approvable and len(llm_results) >= session.current_level.target_claims
+            details["overall_success"] = success
+
+            if success:
+                feedback.append("\n🎉 모든 청구항이 등록 가능으로 평가되었습니다!")
+                # 점수 계산: 기본 100점 + (평균 점수 * 100) + 보너스
+                avg_score = total_score / len(llm_results) if llm_results else 0.0
+                bonus = min(50, len(llm_results) * 10)
+                score = 100 + int(avg_score * 50) + bonus
+                details["score"] = score
+                session.player.add_score(score)
+                feedback.append(f"획득 점수: {score}점")
+            else:
+                feedback.append("\n⚠️ 일부 청구항이 등록 불가로 평가되었습니다.")
+                details["score"] = 0
+
+            return success, feedback, details
+
+        except Exception as e:
+            feedback.append(f"\n❌ LLM 평가 중 오류 발생: {e}")
+            return False, feedback, details
 
 
 class GameInterface:
