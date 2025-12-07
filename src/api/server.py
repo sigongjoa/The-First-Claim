@@ -17,7 +17,7 @@ from typing import List, Optional, Dict
 import logging
 
 from ..dsl.grammar.claim_validator import ClaimValidator
-from ..dsl.logic.llm_evaluator import LLMClaimEvaluator
+from ..dsl.logic.ollama_evaluator import OllamaClaimEvaluator
 from ..knowledge_base.rag_system import get_rag_system
 from ..knowledge_base.vector_database import get_vector_database, VectorSearchResult
 from ..ui.game import GameEngine, PlayerProgress
@@ -263,8 +263,8 @@ async def evaluate_claim(request: ClaimEvaluationRequest):
             }
             sources = rag_response.sources
         else:
-            # LLM 기반 평가
-            evaluator = LLMClaimEvaluator()
+            # LLM 기반 평가 (Ollama)
+            evaluator = OllamaClaimEvaluator()
             result = evaluator.evaluate_claim(
                 claim_number=1,
                 claim_content=request.claim,

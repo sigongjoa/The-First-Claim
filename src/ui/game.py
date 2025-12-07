@@ -14,7 +14,7 @@ from datetime import datetime
 # Import validators and evaluators
 from ..dsl.grammar.claim_validator import ClaimValidator, ClaimType
 from ..dsl.logic.evaluator import PatentabilityEvaluator
-from ..dsl.logic.llm_evaluator import LLMClaimEvaluator, get_llm_evaluator
+from ..dsl.logic.ollama_evaluator import OllamaClaimEvaluator
 from ..dsl.vocabulary.patent_law_database import get_patent_law_database
 
 
@@ -194,11 +194,11 @@ class GameEngine:
         self.evaluator = PatentabilityEvaluator()
         self.patent_law_db = get_patent_law_database()
         self.use_llm = use_llm
-        self.llm_evaluator: Optional[LLMClaimEvaluator] = None
+        self.llm_evaluator: Optional[OllamaClaimEvaluator] = None
 
         if use_llm:
             try:
-                self.llm_evaluator = get_llm_evaluator()
+                self.llm_evaluator = OllamaClaimEvaluator()
             except (ImportError, ValueError) as e:
                 from src.utils.logger import get_logger
 

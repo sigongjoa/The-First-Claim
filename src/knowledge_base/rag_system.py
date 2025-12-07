@@ -16,7 +16,7 @@ from .vector_database import (
     VectorSearchResult,
     get_vector_database,
 )
-from ..dsl.logic.llm_evaluator import LLMClaimEvaluator
+from ..dsl.logic.ollama_evaluator import OllamaClaimEvaluator
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +76,7 @@ class RAGSystem:
             search_k: 검색 결과 상위 k개
         """
         self.vector_db = vector_db or get_vector_database()
-        self.llm_evaluator = llm_evaluator or LLMClaimEvaluator()
+        self.llm_evaluator = llm_evaluator or OllamaClaimEvaluator()
         self.search_k = search_k
 
         logger.info(f"RAG 시스템 초기화 완료 (search_k={search_k})")
