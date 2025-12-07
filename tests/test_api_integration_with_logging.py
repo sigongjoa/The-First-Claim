@@ -36,30 +36,23 @@ class TestGameSessionWithLogging:
                 "session_id": session_id,
                 "player_name": player_name,
                 "level_id": level_id,
-            }
+            },
         )
 
         try:
             session = engine.create_session(
-                session_id=session_id,
-                player_name=player_name,
-                level_id=level_id
+                session_id=session_id, player_name=player_name, level_id=level_id
             )
 
             assert session is not None
             assert session.session_id == session_id
             assert session.current_level is not None
 
-            logger.info(
-                "게임 세션 생성 완료",
-                context={"session_id": session_id}
-            )
+            logger.info("게임 세션 생성 완료", context={"session_id": session_id})
 
         except Exception as e:
             logger.error(
-                "게임 세션 생성 실패",
-                error=e,
-                context={"session_id": session_id}
+                "게임 세션 생성 실패", error=e, context={"session_id": session_id}
             )
             raise
 
@@ -72,9 +65,7 @@ class TestGameSessionWithLogging:
         try:
             # 세션 생성
             session1 = engine.create_session(
-                session_id=session_id,
-                player_name="테스터",
-                level_id=1
+                session_id=session_id, player_name="테스터", level_id=1
             )
 
             # 청구항 제출
@@ -88,15 +79,13 @@ class TestGameSessionWithLogging:
                 "세션 데이터 검증 완료",
                 context={
                     "session_id": session_id,
-                    "claims_count": len(session1.claims)
-                }
+                    "claims_count": len(session1.claims),
+                },
             )
 
         except Exception as e:
             logger.error(
-                "세션 영속성 테스트 실패",
-                error=e,
-                context={"session_id": session_id}
+                "세션 영속성 테스트 실패", error=e, context={"session_id": session_id}
             )
             raise
 
@@ -114,9 +103,7 @@ class TestClaimSubmissionWithLogging:
         """테스트 설정"""
         engine = GameEngine()
         session = engine.create_session(
-            session_id="test_claim_001",
-            player_name="김특허",
-            level_id=1
+            session_id="test_claim_001", player_name="김특허", level_id=1
         )
         return engine, session
 
@@ -128,10 +115,7 @@ class TestClaimSubmissionWithLogging:
 
         logger.info(
             "청구항 제출 시작",
-            context={
-                "session_id": session.session_id,
-                "claim_length": len(claim)
-            }
+            context={"session_id": session.session_id, "claim_length": len(claim)},
         )
 
         try:
@@ -146,15 +130,13 @@ class TestClaimSubmissionWithLogging:
                 context={
                     "session_id": session.session_id,
                     "result": result,
-                    "total_claims": len(session.claims)
-                }
+                    "total_claims": len(session.claims),
+                },
             )
 
         except Exception as e:
             logger.error(
-                "청구항 제출 실패",
-                error=e,
-                context={"session_id": session.session_id}
+                "청구항 제출 실패", error=e, context={"session_id": session.session_id}
             )
             raise
 
@@ -162,10 +144,7 @@ class TestClaimSubmissionWithLogging:
         """빈 청구항 거부 (로깅 포함)"""
         engine, session = setup
 
-        logger.info(
-            "빈 청구항 거부 테스트",
-            context={"session_id": session.session_id}
-        )
+        logger.info("빈 청구항 거부 테스트", context={"session_id": session.session_id})
 
         try:
             result = session.submit_claim("")
@@ -175,17 +154,14 @@ class TestClaimSubmissionWithLogging:
 
             logger.info(
                 "빈 청구항 올바르게 거부됨",
-                context={
-                    "session_id": session.session_id,
-                    "result": result
-                }
+                context={"session_id": session.session_id, "result": result},
             )
 
         except Exception as e:
             logger.error(
                 "빈 청구항 테스트 실패",
                 error=e,
-                context={"session_id": session.session_id}
+                context={"session_id": session.session_id},
             )
             raise
 
@@ -206,8 +182,8 @@ class TestClaimSubmissionWithLogging:
                 context={
                     "session_id": session.session_id,
                     "claim_length": len(claim),
-                    "expected": expected
-                }
+                    "expected": expected,
+                },
             )
 
             try:
@@ -216,17 +192,14 @@ class TestClaimSubmissionWithLogging:
 
                 logger.info(
                     f"경계값 테스트 완료: {description}",
-                    context={
-                        "result": result,
-                        "expected": expected
-                    }
+                    context={"result": result, "expected": expected},
                 )
 
             except Exception as e:
                 logger.error(
                     f"경계값 테스트 실패: {description}",
                     error=e,
-                    context={"claim_length": len(claim)}
+                    context={"claim_length": len(claim)},
                 )
                 raise
 
@@ -250,14 +223,11 @@ class TestAPIErrorHandling:
             session = engine.create_session(
                 session_id="test_invalid_level",
                 player_name="테스터",
-                level_id=999  # 존재하지 않는 레벨
+                level_id=999,  # 존재하지 않는 레벨
             )
 
             # 이 시점에 도달하면 에러를 캡처해야 함
-            logger.warning(
-                "유효하지 않은 레벨이 생성됨",
-                context={"level_id": 999}
-            )
+            logger.warning("유효하지 않은 레벨이 생성됨", context={"level_id": 999})
 
             # 또는 예외가 발생해야 함
             assert session is not None or session is None
@@ -265,9 +235,7 @@ class TestAPIErrorHandling:
         except Exception as e:
             # 명시적 에러 처리
             logger.error(
-                "유효하지 않은 레벨 거부됨",
-                error=e,
-                context={"level_id": 999}
+                "유효하지 않은 레벨 거부됨", error=e, context={"level_id": 999}
             )
 
     def test_concurrent_session_handling(self, logger):
@@ -285,9 +253,7 @@ class TestAPIErrorHandling:
 
                 try:
                     session = engine.create_session(
-                        session_id=session_id,
-                        player_name=f"플레이어_{i}",
-                        level_id=1
+                        session_id=session_id, player_name=f"플레이어_{i}", level_id=1
                     )
 
                     sessions.append(session)
@@ -296,15 +262,13 @@ class TestAPIErrorHandling:
                         "세션 생성 완료",
                         context={
                             "session_id": session_id,
-                            "total_sessions": len(sessions)
-                        }
+                            "total_sessions": len(sessions),
+                        },
                     )
 
                 except Exception as e:
                     logger.error(
-                        "세션 생성 실패",
-                        error=e,
-                        context={"session_id": session_id}
+                        "세션 생성 실패", error=e, context={"session_id": session_id}
                     )
                     raise
 
@@ -312,15 +276,11 @@ class TestAPIErrorHandling:
             assert len(sessions) == 5
 
             logger.info(
-                "동시 세션 처리 완료",
-                context={"total_sessions": len(sessions)}
+                "동시 세션 처리 완료", context={"total_sessions": len(sessions)}
             )
 
         except Exception as e:
-            logger.error(
-                "동시 세션 처리 테스트 실패",
-                error=e
-            )
+            logger.error("동시 세션 처리 테스트 실패", error=e)
             raise
 
 
@@ -340,23 +300,23 @@ class TestAPIWithSentry:
 
         try:
             session = engine.create_session(
-                session_id="test_sentry_001",
-                player_name="김특허",
-                level_id=1
+                session_id="test_sentry_001", player_name="김특허", level_id=1
             )
 
             # 컨텍스트 설정
-            set_context("game_session", {
-                "session_id": session.session_id,
-                "player_name": "김특허",
-                "level_id": 1
-            })
+            set_context(
+                "game_session",
+                {
+                    "session_id": session.session_id,
+                    "player_name": "김특허",
+                    "level_id": 1,
+                },
+            )
 
             set_tag("test_type", "sentry_integration")
 
             logger.info(
-                "Sentry 컨텍스트 설정 완료",
-                context={"session_id": session.session_id}
+                "Sentry 컨텍스트 설정 완료", context={"session_id": session.session_id}
             )
 
             assert session is not None
@@ -365,10 +325,7 @@ class TestAPIWithSentry:
             # 에러를 Sentry로 전송
             capture_exception(e)
 
-            logger.error(
-                "Sentry 에러 추적 테스트 실패",
-                error=e
-            )
+            logger.error("Sentry 에러 추적 테스트 실패", error=e)
 
             raise
 
@@ -406,20 +363,13 @@ class TestAPILogging:
 
         logger.info(
             "게임 시작",
-            context={
-                "player_id": "user_123",
-                "level": 1,
-                "difficulty": "normal"
-            },
+            context={"player_id": "user_123", "level": 1, "difficulty": "normal"},
             player_name="김특허",
-            start_time="2025-12-04T10:30:00Z"
+            start_time="2025-12-04T10:30:00Z",
         )
 
         logger.info(
             "청구항 제출",
-            context={
-                "claim_length": 150,
-                "validation": True
-            },
-            submission_time="2025-12-04T10:31:00Z"
+            context={"claim_length": 150, "validation": True},
+            submission_time="2025-12-04T10:31:00Z",
         )

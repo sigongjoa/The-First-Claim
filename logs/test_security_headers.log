@@ -2,3 +2,9 @@
 {"timestamp": "2025-12-04T05:30:01.144091", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}
 {"timestamp": "2025-12-04T05:36:22.133519", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 시작"}
 {"timestamp": "2025-12-04T05:36:22.136464", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:52:36.691317", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 시작"}
+{"timestamp": "2025-12-04T05:52:36.693685", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:56:58.079828", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 시작"}
+{"timestamp": "2025-12-04T05:56:58.082051", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:59:21.242082", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 시작"}
+{"timestamp": "2025-12-04T05:59:21.244888", "level": "INFO", "logger": "test_security_headers", "message": "필수 보안 헤더 확인 완료", "context": {"total_required": 5, "found": 5, "coverage_percent": 100.0}}

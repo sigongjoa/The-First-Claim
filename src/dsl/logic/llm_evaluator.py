@@ -18,7 +18,7 @@ from anthropic import Anthropic
 
 class EvaluationCritera(Enum):
     """평가 기준"""
-    
+
     CLARITY = "명확성"  # 제42조 - 청구항은 명확해야 함
     ANTECEDENT_BASIS = "선행기술"  # 제45조 - 선행항 기반
     UNITY = "단일성"  # 제46조 - 청구항 단일성
@@ -30,11 +30,11 @@ class EvaluationCritera(Enum):
 @dataclass
 class LLMEvaluationResult:
     """LLM 평가 결과"""
-    
+
     claim_number: int
     claim_content: str
     is_approvable: bool  # 등록 가능 여부
-    
+
     # 평가 점수
     clarity_score: float  # 0.0 ~ 1.0
     antecedent_basis_score: float
@@ -42,20 +42,20 @@ class LLMEvaluationResult:
     definiteness_score: float
     novelty_score: float
     inventive_step_score: float
-    
+
     # 평가 의견
     strengths: List[str] = field(default_factory=list)  # 강점
     weaknesses: List[str] = field(default_factory=list)  # 약점
     improvements: List[str] = field(default_factory=list)  # 개선 방안
-    
+
     # 법적 참조
     relevant_articles: List[str] = field(default_factory=list)  # 관련 특허법 조항
     case_law_references: List[str] = field(default_factory=list)  # 판례 참조
-    
+
     # 최종 의견
     overall_opinion: str = ""  # 종합 의견
     estimated_approval_probability: float = 0.0  # 승인 확률 추정치
-    
+
     evaluated_at: str = field(default_factory=lambda: datetime.now().isoformat())
 
     def __post_init__(self):
@@ -63,7 +63,9 @@ class LLMEvaluationResult:
         if not (0.0 <= self.clarity_score <= 1.0):
             raise ValueError("clarity_score는 0.0 ~ 1.0 범위여야 합니다")
         if not (0.0 <= self.estimated_approval_probability <= 1.0):
-            raise ValueError("estimated_approval_probability는 0.0 ~ 1.0 범위여야 합니다")
+            raise ValueError(
+                "estimated_approval_probability는 0.0 ~ 1.0 범위여야 합니다"
+            )
 
     def get_overall_score(self) -> float:
         """종합 점수 계산"""
@@ -119,11 +121,14 @@ class KoreanPatentLawContext:
         context += "주요 조항:\n"
         for article, description in KoreanPatentLawContext.ARTICLES.items():
             context += f"  {article}: {description}\n"
-        
+
         context += "\n심사 기준:\n"
-        for criterion, guideline in KoreanPatentLawContext.EXAMINATION_GUIDELINES.items():
+        for (
+            criterion,
+            guideline,
+        ) in KoreanPatentLawContext.EXAMINATION_GUIDELINES.items():
             context += f"  {criterion}: {guideline}\n"
-        
+
         return context
 
 
@@ -138,9 +143,7 @@ class LLMClaimEvaluator:
         """
         self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         if not self.api_key:
-            raise ValueError(
-                "ANTHROPIC_API_KEY 환경변수가 설정되지 않았습니다."
-            )
+            raise ValueError("ANTHROPIC_API_KEY 환경변수가 설정되지 않았습니다.")
 
         self.client = Anthropic(api_key=self.api_key)
         self.model = "claude-3-5-sonnet-20241022"
@@ -180,25 +183,23 @@ class LLMClaimEvaluator:
         )
 
         result_text = response.content[0].text
-        return self._parse_evaluation_result(
-            claim_number, claim_content, result_text
-        )
+        return self._parse_evaluation_result(claim_number, claim_content, result_text)
 
     def evaluate_claims(
         self,
         claims: Dict[int, Tuple[str, str]],  # {number: (type, content)}
     ) -> List[LLMEvaluationResult]:
         """청구항 세트 평가
-        
+
         Args:
             claims: 청구항 딕셔너리
-            
+
         Returns:
             평가 결과 리스트
         """
         results = []
-        prior_claims = []
-        
+        prior_claims: List[str] = []
+
         for claim_number, (claim_type, claim_content) in sorted(claims.items()):
             result = self.evaluate_claim(
                 claim_number=claim_number,
@@ -206,10 +207,10 @@ class LLMClaimEvaluator:
                 claim_type=claim_type,
                 prior_claims=prior_claims if claim_type == "dependent" else None,
             )
-            
+
             results.append(result)
             prior_claims.append(claim_content)
-        
+
         return results
 
     def _build_evaluation_prompt(
@@ -230,13 +231,13 @@ class LLMClaimEvaluator:
 청구항 내용: {claim_content}
 
 """
-        
+
         if prior_claims and claim_type == "dependent":
             prompt += f"선행 청구항:\n"
             for i, prior in enumerate(prior_claims, 1):
                 prompt += f"  {i}. {prior}\n"
             prompt += "\n"
-        
+
         prompt += """
 다음 항목들을 JSON 형식으로 평가하세요:
 

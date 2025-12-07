@@ -16,6 +16,7 @@ from pathlib import Path
 
 class LogLevel(Enum):
     """로그 레벨 정의"""
+
     DEBUG = logging.DEBUG
     INFO = logging.INFO
     WARNING = logging.WARNING
@@ -48,23 +49,21 @@ class StructuredLogger:
 
         # 로그 파일 경로
         if log_file is None:
-            log_file = log_dir / f"{name}.log"
+            log_file_path: Path = log_dir / f"{name}.log"
         else:
-            log_file = log_dir / log_file
+            log_file_path = log_dir / log_file
 
         # 파일 핸들러 (JSON 형식)
-        file_handler = logging.FileHandler(log_file, encoding="utf-8")
-        file_handler.setFormatter(
-            logging.Formatter('%(message)s')
-        )
+        file_handler = logging.FileHandler(str(log_file_path), encoding="utf-8")
+        file_handler.setFormatter(logging.Formatter("%(message)s"))
         self.logger.addHandler(file_handler)
 
         # 콘솔 핸들러 (간단한 형식)
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(
             logging.Formatter(
-                '[%(levelname)s] %(asctime)s - %(name)s: %(message)s',
-                datefmt='%Y-%m-%d %H:%M:%S'
+                "[%(levelname)s] %(asctime)s - %(name)s: %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
             )
         )
         self.logger.addHandler(console_handler)
@@ -75,7 +74,7 @@ class StructuredLogger:
         message: str,
         context: Optional[Dict[str, Any]] = None,
         error: Optional[Exception] = None,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         로그 항목 생성
@@ -90,7 +89,7 @@ class StructuredLogger:
         Returns:
             JSON 로그 문자열
         """
-        entry = {
+        entry: Dict[str, Any] = {
             "timestamp": datetime.utcnow().isoformat(),
             "level": level,
             "logger": self.name,
@@ -114,12 +113,7 @@ class StructuredLogger:
 
         return json.dumps(entry, ensure_ascii=False)
 
-    def debug(
-        self,
-        message: str,
-        context: Optional[Dict[str, Any]] = None,
-        **kwargs
-    ):
+    def debug(self, message: str, context: Optional[Dict[str, Any]] = None, **kwargs):
         """
         DEBUG 레벨 로그
 
@@ -131,12 +125,7 @@ class StructuredLogger:
         log_entry = self._create_log_entry("DEBUG", message, context, **kwargs)
         self.logger.debug(log_entry)
 
-    def info(
-        self,
-        message: str,
-        context: Optional[Dict[str, Any]] = None,
-        **kwargs
-    ):
+    def info(self, message: str, context: Optional[Dict[str, Any]] = None, **kwargs):
         """
         INFO 레벨 로그
 
@@ -148,12 +137,7 @@ class StructuredLogger:
         log_entry = self._create_log_entry("INFO", message, context, **kwargs)
         self.logger.info(log_entry)
 
-    def warning(
-        self,
-        message: str,
-        context: Optional[Dict[str, Any]] = None,
-        **kwargs
-    ):
+    def warning(self, message: str, context: Optional[Dict[str, Any]] = None, **kwargs):
         """
         WARNING 레벨 로그
 
@@ -170,7 +154,7 @@ class StructuredLogger:
         message: str,
         error: Optional[Exception] = None,
         context: Optional[Dict[str, Any]] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         ERROR 레벨 로그
@@ -181,9 +165,7 @@ class StructuredLogger:
             context: 추가 컨텍스트
             **kwargs: 추가 필드
         """
-        log_entry = self._create_log_entry(
-            "ERROR", message, context, error, **kwargs
-        )
+        log_entry = self._create_log_entry("ERROR", message, context, error, **kwargs)
         self.logger.error(log_entry)
 
     def critical(
@@ -191,7 +173,7 @@ class StructuredLogger:
         message: str,
         error: Optional[Exception] = None,
         context: Optional[Dict[str, Any]] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         CRITICAL 레벨 로그

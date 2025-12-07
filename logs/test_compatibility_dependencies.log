@@ -18,3 +18,43 @@
 {"timestamp": "2025-12-04T05:36:22.350247", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
 {"timestamp": "2025-12-04T05:36:22.350738", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
 {"timestamp": "2025-12-04T05:36:22.350738", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:50:27.058364", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 가용성 확인 시작"}
+{"timestamp": "2025-12-04T05:50:27.060342", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 확인 완료", "context": {"total_required": 3, "available": 3, "missing": [], "packages": {"pytest": {"description": "test framework", "version": "8.4.2"}, "flask": {"description": "web framework", "version": "3.1.2"}, "anthropic": {"description": "LLM API", "version": "0.75.0"}}}}
+{"timestamp": "2025-12-04T05:50:27.065576", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:50:27.065576", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:50:27.069276", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:50:27.069276", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:50:27.071705", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:50:27.071705", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:50:27.072214", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:50:27.072214", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:54:46.273136", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 가용성 확인 시작"}
+{"timestamp": "2025-12-04T05:54:46.275349", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 확인 완료", "context": {"total_required": 3, "available": 3, "missing": [], "packages": {"pytest": {"description": "test framework", "version": "8.4.2"}, "flask": {"description": "web framework", "version": "3.1.2"}, "anthropic": {"description": "LLM API", "version": "0.75.0"}}}}
+{"timestamp": "2025-12-04T05:54:46.282008", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:54:46.282008", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:54:46.284821", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:54:46.284821", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:54:46.286754", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:54:46.286754", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:54:46.287221", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:54:46.287221", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:54:56.296667", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 가용성 확인 시작"}
+{"timestamp": "2025-12-04T05:54:56.298776", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 확인 완료", "context": {"total_required": 3, "available": 3, "missing": [], "packages": {"pytest": {"description": "test framework", "version": "8.4.2"}, "flask": {"description": "web framework", "version": "3.1.2"}, "anthropic": {"description": "LLM API", "version": "0.75.0"}}}}
+{"timestamp": "2025-12-04T05:54:56.303570", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:54:56.303570", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:54:56.307017", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:54:56.307017", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:54:56.308988", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:54:56.308988", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:54:56.309612", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:54:56.309612", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:57:02.819744", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 가용성 확인 시작"}
+{"timestamp": "2025-12-04T05:57:02.821580", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "핵심 의존성 확인 완료", "context": {"total_required": 3, "available": 3, "missing": [], "packages": {"pytest": {"description": "test framework", "version": "8.4.2"}, "flask": {"description": "web framework", "version": "3.1.2"}, "anthropic": {"description": "LLM API", "version": "0.75.0"}}}}
+{"timestamp": "2025-12-04T05:57:02.827356", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:57:02.827356", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 지원 확인 시작"}
+{"timestamp": "2025-12-04T05:57:02.831022", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:57:02.831022", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: ujson (fast JSON)"}
+{"timestamp": "2025-12-04T05:57:02.833644", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:57:02.833644", "level": "WARNING", "logger": "test_compatibility_dependencies", "message": "선택적 기능 미지원: python-dotenv (environment variables)"}
+{"timestamp": "2025-12-04T05:57:02.834094", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}
+{"timestamp": "2025-12-04T05:57:02.834094", "level": "INFO", "logger": "test_compatibility_dependencies", "message": "선택적 의존성 확인 완료", "context": {"supported_features": 0, "features": {}}}

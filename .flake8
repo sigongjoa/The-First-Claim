@@ -26,7 +26,7 @@ ignore =
 # Per-file ignores
 per-file-ignores =
     __init__.py:F401,  # imported but unused
-    tests/*:F401,F811  # test files can have unused imports and redefinitions
+    tests/*:F401,F811,  # test files can have unused imports and redefinitions
     conftest.py:F401
 
 # Output formatting

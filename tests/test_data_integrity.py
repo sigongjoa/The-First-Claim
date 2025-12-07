@@ -36,9 +36,7 @@ class TestDataIntegrity:
 
             # 세션 생성
             session = engine.create_session(
-                session_id=session_id,
-                player_name=player_name,
-                level_id=level_id
+                session_id=session_id, player_name=player_name, level_id=level_id
             )
 
             # 데이터 검증
@@ -54,8 +52,8 @@ class TestDataIntegrity:
                 context={
                     "session_id": session_id,
                     "player_name": player_name,
-                    "status_valid": session.status == GameStatus.IDLE
-                }
+                    "status_valid": session.status == GameStatus.IDLE,
+                },
             )
 
         except Exception as e:
@@ -68,9 +66,7 @@ class TestDataIntegrity:
 
         try:
             session = engine.create_session(
-                session_id="integrity_claim_001",
-                player_name="상태테스터",
-                level_id=1
+                session_id="integrity_claim_001", player_name="상태테스터", level_id=1
             )
 
             # 초기 상태
@@ -96,8 +92,8 @@ class TestDataIntegrity:
                 context={
                     "initial_count": initial_claims_count,
                     "final_count": len(session.submitted_claims),
-                    "transition_valid": len(session.submitted_claims) == 2
-                }
+                    "transition_valid": len(session.submitted_claims) == 2,
+                },
             )
 
         except Exception as e:
@@ -110,9 +106,7 @@ class TestDataIntegrity:
 
         try:
             session = engine.create_session(
-                session_id="integrity_invalid_001",
-                player_name="검증테스터",
-                level_id=1
+                session_id="integrity_invalid_001", player_name="검증테스터", level_id=1
             )
 
             initial_count = len(session.submitted_claims)
@@ -133,8 +127,8 @@ class TestDataIntegrity:
                 "유효하지 않은 청구항 상태 검증 완료",
                 context={
                     "invalid_claims_tested": len(invalid_claims),
-                    "state_unchanged": len(session.submitted_claims) == initial_count
-                }
+                    "state_unchanged": len(session.submitted_claims) == initial_count,
+                },
             )
 
         except Exception as e:
@@ -149,7 +143,7 @@ class TestDataIntegrity:
             session = engine.create_session(
                 session_id="integrity_progress_001",
                 player_name="진행률테스터",
-                level_id=1
+                level_id=1,
             )
 
             player = session.player
@@ -176,8 +170,8 @@ class TestDataIntegrity:
                 context={
                     "final_score": player.total_score,
                     "completed_levels": len(player.completed_levels),
-                    "tracking_valid": player.total_score == 100
-                }
+                    "tracking_valid": player.total_score == 100,
+                },
             )
 
         except Exception as e:
@@ -208,8 +202,8 @@ class TestDataIntegrity:
                 "게임 레벨 불변성 확인 완료",
                 context={
                     "level_id": level.level_id,
-                    "consistency_verified": level.level_id == level2.level_id
-                }
+                    "consistency_verified": level.level_id == level2.level_id,
+                },
             )
 
         except Exception as e:
@@ -227,7 +221,7 @@ class TestDataIntegrity:
                 session = engine.create_session(
                     session_id=f"isolation_test_{i}",
                     player_name=f"플레이어_{i}",
-                    level_id=1
+                    level_id=1,
                 )
                 sessions.append(session)
 
@@ -249,10 +243,7 @@ class TestDataIntegrity:
 
             logger.info(
                 "다중 세션 독립성 확인 완료",
-                context={
-                    "sessions_tested": len(sessions),
-                    "isolation_verified": True
-                }
+                context={"sessions_tested": len(sessions), "isolation_verified": True},
             )
 
         except Exception as e:
@@ -281,9 +272,7 @@ class TestDataPersistence:
             # 세션 생성
             session_id = "persistence_001"
             session = engine.create_session(
-                session_id=session_id,
-                player_name="영속테스터",
-                level_id=1
+                session_id=session_id, player_name="영속테스터", level_id=1
             )
 
             # 데이터 추가
@@ -303,10 +292,7 @@ class TestDataPersistence:
 
             logger.info(
                 "세션 저장 및 조회 완료",
-                context={
-                    "session_id": session_id,
-                    "data_persisted": True
-                }
+                context={"session_id": session_id, "data_persisted": True},
             )
 
         except Exception as e:
@@ -325,7 +311,7 @@ class TestDataPersistence:
                 session = engine.create_session(
                     session_id=f"concurrent_persist_{i}",
                     player_name=f"플레이어_{i}",
-                    level_id=1
+                    level_id=1,
                 )
 
                 claim = f"청구항_{i}: 배터리 장치는 양극과 음극을 포함하여 안전성을 제공한다"
@@ -348,8 +334,10 @@ class TestDataPersistence:
                 "동시 세션 저장 완료",
                 context={
                     "sessions_created": num_sessions,
-                    "sessions_stored": len([s for s in engine.sessions.keys() if "concurrent_persist" in s])
-                }
+                    "sessions_stored": len(
+                        [s for s in engine.sessions.keys() if "concurrent_persist" in s]
+                    ),
+                },
             )
 
         except Exception as e:
@@ -376,9 +364,7 @@ class TestDataValidation:
 
         try:
             session = engine.create_session(
-                session_id="validation_length_001",
-                player_name="검증테스터",
-                level_id=1
+                session_id="validation_length_001", player_name="검증테스터", level_id=1
             )
 
             test_cases = [
@@ -391,7 +377,9 @@ class TestDataValidation:
 
             for claim, expected, description in test_cases:
                 result = session.submit_claim(claim)
-                assert result == expected, f"{description}: 예상 {expected}, 실제 {result}"
+                assert (
+                    result == expected
+                ), f"{description}: 예상 {expected}, 실제 {result}"
 
                 logger.info(
                     f"청구항 길이 검증: {description}",
@@ -399,8 +387,8 @@ class TestDataValidation:
                         "claim_length": len(claim),
                         "expected": expected,
                         "actual": result,
-                        "valid": result == expected
-                    }
+                        "valid": result == expected,
+                    },
                 )
 
             logger.info("청구항 길이 검증 완료")
@@ -429,9 +417,7 @@ class TestDataValidation:
             for valid_id in valid_ids:
                 try:
                     session = engine.create_session(
-                        session_id=valid_id,
-                        player_name="테스터",
-                        level_id=1
+                        session_id=valid_id, player_name="테스터", level_id=1
                     )
                     assert session.session_id == valid_id
                     logger.info(f"유효한 세션 ID 인정: {valid_id}")
@@ -442,9 +428,7 @@ class TestDataValidation:
             for invalid_id in invalid_ids:
                 try:
                     session = engine.create_session(
-                        session_id=invalid_id,
-                        player_name="테스터",
-                        level_id=1
+                        session_id=invalid_id, player_name="테스터", level_id=1
                     )
                     logger.warning(f"유효하지 않은 ID가 허용됨: {invalid_id}")
                 except (ValueError, TypeError, AttributeError):
@@ -479,7 +463,7 @@ class TestDataValidation:
                     session = engine.create_session(
                         session_id=f"player_valid_{valid_names.index(valid_name)}",
                         player_name=valid_name,
-                        level_id=1
+                        level_id=1,
                     )
                     assert session.player.player_name == valid_name
                     logger.info(f"유효한 플레이어명 인정: {valid_name}")
@@ -492,7 +476,7 @@ class TestDataValidation:
                     session = engine.create_session(
                         session_id=f"player_invalid_{invalid_names.index(invalid_name)}",
                         player_name=invalid_name,
-                        level_id=1
+                        level_id=1,
                     )
                     logger.warning(f"유효하지 않은 이름이 허용됨: {invalid_name}")
                 except ValueError:

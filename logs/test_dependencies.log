@@ -12,3 +12,21 @@
 {"timestamp": "2025-12-04T05:36:22.145052", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
 {"timestamp": "2025-12-04T05:36:22.147656", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
 {"timestamp": "2025-12-04T05:36:22.147656", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:52:36.697078", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 시작"}
+{"timestamp": "2025-12-04T05:52:36.700022", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 완료", "context": {"total_packages": 12, "packages_sample": ["python-dotenv>=1.0.0", "pydantic>=2.0.0", "typing-extensions>=4.0.0", "numpy>=1.21.0", "pandas>=1.3.0"]}}
+{"timestamp": "2025-12-04T05:52:36.703988", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:52:36.703988", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:52:36.706261", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:52:36.706261", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:56:58.084842", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 시작"}
+{"timestamp": "2025-12-04T05:56:58.086981", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 완료", "context": {"total_packages": 12, "packages_sample": ["python-dotenv>=1.0.0", "pydantic>=2.0.0", "typing-extensions>=4.0.0", "numpy>=1.21.0", "pandas>=1.3.0"]}}
+{"timestamp": "2025-12-04T05:56:58.090234", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:56:58.090234", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:56:58.092594", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:56:58.092594", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:59:21.250014", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 시작"}
+{"timestamp": "2025-12-04T05:59:21.252217", "level": "INFO", "logger": "test_dependencies", "message": "의존성 파일 확인 완료", "context": {"total_packages": 12, "packages_sample": ["python-dotenv>=1.0.0", "pydantic>=2.0.0", "typing-extensions>=4.0.0", "numpy>=1.21.0", "pandas>=1.3.0"]}}
+{"timestamp": "2025-12-04T05:59:21.255689", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:59:21.255689", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 시작"}
+{"timestamp": "2025-12-04T05:59:21.258191", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}
+{"timestamp": "2025-12-04T05:59:21.258191", "level": "INFO", "logger": "test_dependencies", "message": "버전 명시 확인 완료", "context": {"total_packages": 12, "versioned_packages": 12, "coverage_percent": 100.0}}

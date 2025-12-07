@@ -10,3 +10,27 @@
 {"timestamp": "2025-12-04T05:36:22.372554", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
 {"timestamp": "2025-12-04T05:36:22.373126", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:36:22.373114"}}
 {"timestamp": "2025-12-04T05:36:22.373126", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:36:22.373114"}}
+{"timestamp": "2025-12-04T05:50:27.089622", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.090031", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 완료", "context": {"serialized_length": 125, "preserved": true}}
+{"timestamp": "2025-12-04T05:50:27.093621", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.093621", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.094145", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:50:27.094134"}}
+{"timestamp": "2025-12-04T05:50:27.094145", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:50:27.094134"}}
+{"timestamp": "2025-12-04T05:54:46.302430", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.302821", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 완료", "context": {"serialized_length": 125, "preserved": true}}
+{"timestamp": "2025-12-04T05:54:46.305058", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.305058", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.305447", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:54:46.305441"}}
+{"timestamp": "2025-12-04T05:54:46.305447", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:54:46.305441"}}
+{"timestamp": "2025-12-04T05:54:56.327091", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.328177", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 완료", "context": {"serialized_length": 125, "preserved": true}}
+{"timestamp": "2025-12-04T05:54:56.331443", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.331443", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.331915", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:54:56.331906"}}
+{"timestamp": "2025-12-04T05:54:56.331915", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:54:56.331906"}}
+{"timestamp": "2025-12-04T05:57:02.850436", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.850869", "level": "INFO", "logger": "test_compatibility_formats", "message": "JSON 직렬화 호환성 테스트 완료", "context": {"serialized_length": 125, "preserved": true}}
+{"timestamp": "2025-12-04T05:57:02.853129", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.853129", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탬프 형식 일관성 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.853507", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:57:02.853499"}}
+{"timestamp": "2025-12-04T05:57:02.853507", "level": "INFO", "logger": "test_compatibility_formats", "message": "타임스탐프 형식 일관성 테스트 완료", "context": {"timestamp": "2025-12-04T05:57:02.853499"}}

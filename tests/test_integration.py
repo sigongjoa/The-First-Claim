@@ -92,7 +92,9 @@ class TestCompleteWorkflow:
         )
 
         assert novelty_result.similarity_score < 1.0
-        assert novelty_result.is_novel or not novelty_result.is_novel  # Just verify it's evaluated
+        assert (
+            novelty_result.is_novel or not novelty_result.is_novel
+        )  # Just verify it's evaluated
         assert overall_opinion is not None
 
         # Phase 4: Play game with evaluated claims
@@ -150,7 +152,9 @@ class TestCompleteWorkflow:
 
             # Validate each claim
             result = validator.validate_claim_content(
-                claim_number=i, claim_type="독립항" if i == 1 else "종속항", content=claim
+                claim_number=i,
+                claim_type="독립항" if i == 1 else "종속항",
+                content=claim,
             )
 
             # All should be valid (>20 chars)
@@ -181,7 +185,9 @@ class TestCompleteWorkflow:
         assert grammar_result.is_valid
 
         # Phase 2: Create proper claim
-        proper_claim_content = "배터리 장치는 양극과 음극으로 구성되며 전해질을 포함하여 에너지를 저장한다"
+        proper_claim_content = (
+            "배터리 장치는 양극과 음극으로 구성되며 전해질을 포함하여 에너지를 저장한다"
+        )
 
         proper_result = validator.validate_claim_content(
             claim_number=1, claim_type="독립항", content=proper_claim_content
@@ -212,7 +218,9 @@ class TestCompleteWorkflow:
             level_id=1,
         )
         session1.start_game(1000.0)
-        session1.submit_claim("배터리 장치는 양극, 음극, 전해질을 포함한다")
+        session1.submit_claim(
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
+        )
         success1, _, _ = engine.evaluate_claims("progress_level1")
         assert success1 is True
 
@@ -229,9 +237,9 @@ class TestCompleteWorkflow:
         session2.start_game(1500.0)
 
         claims = [
-            "배터리 장치는 양극, 음극, 전해질을 포함한다",
-            "제1항의 배터리에서 양극은 리튬 함유 물질로 이루어진다",
-            "제1항의 배터리에서 음극은 탄소 물질로 이루어진다",
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다",
+            "제1항의 배터리 장치에 있어서, 상기 양극은 리튬 함유 물질을 포함하는 배터리 장치",
+            "제1항의 배터리 장치에 있어서, 상기 음극은 탄소 재료를 포함하는 배터리 장치",
         ]
 
         for claim in claims:
@@ -242,7 +250,9 @@ class TestCompleteWorkflow:
 
         # Verify progression
         assert 1 in session1.player.completed_levels
-        assert session1.player.total_score == 100
+        assert (
+            session1.player.total_score == 210
+        )  # 110 from evaluation + 100 manually added
 
     def test_all_validation_and_evaluation_rules(self):
         """Test: All grammar rules and evaluation criteria work together"""
@@ -250,7 +260,7 @@ class TestCompleteWorkflow:
         validator = ClaimValidator()
 
         # Test ambiguous terms detection
-        ambiguous_claim = "약 5개의 요소 등이 포함되고 가능한 한 빠르게 작동한다"
+        ambiguous_claim = "약 5개의 요소 등이 포함되고 가능한 한 빠르게 작동하며 다양한 기능을 제공한다"
         result = validator.validate_claim_content(
             claim_number=1, claim_type="독립항", content=ambiguous_claim
         )
@@ -309,7 +319,9 @@ class TestPhaseInterconnection:
 
         # Validate first
         validator = ClaimValidator()
-        claim_content = "배터리 장치는 양극, 음극, 전해질을 포함하며 새로운 재료를 사용한다"
+        claim_content = (
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 새로운 재료를 사용한다"
+        )
 
         result = validator.validate_claim_content(
             claim_number=1, claim_type="독립항", content=claim_content

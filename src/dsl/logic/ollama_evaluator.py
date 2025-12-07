@@ -20,7 +20,7 @@ class OllamaEvaluationResult:
     claim_number: int
     claim_content: str
     is_approvable: bool
-    
+
     # 점수
     clarity_score: float
     antecedent_basis_score: float
@@ -28,14 +28,14 @@ class OllamaEvaluationResult:
     definiteness_score: float
     novelty_score: float
     inventive_step_score: float
-    
+
     # 의견
     strengths: List[str] = field(default_factory=list)
     weaknesses: List[str] = field(default_factory=list)
     improvements: List[str] = field(default_factory=list)
     overall_opinion: str = ""
     estimated_approval_probability: float = 0.0
-    
+
     evaluated_at: str = field(default_factory=lambda: datetime.now().isoformat())
 
     def __post_init__(self):
@@ -69,9 +69,11 @@ class OllamaEvaluationResult:
 class OllamaClaimEvaluator:
     """Ollama 기반 청구항 평가 엔진"""
 
-    def __init__(self, base_url: str = "http://localhost:11434", model: str = "qwen2:7b"):
+    def __init__(
+        self, base_url: str = "http://localhost:11434", model: str = "qwen2:7b"
+    ):
         """OllamaClaimEvaluator 초기화
-        
+
         Args:
             base_url: Ollama 서버 URL
             model: 사용할 모델 (default: mistral)
@@ -121,9 +123,7 @@ class OllamaClaimEvaluator:
             raise RuntimeError(f"Ollama API 오류: {response.text}")
 
         result_text = response.json().get("response", "")
-        return self._parse_evaluation_result(
-            claim_number, claim_content, result_text
-        )
+        return self._parse_evaluation_result(claim_number, claim_content, result_text)
 
     def evaluate_claims(
         self,
@@ -131,8 +131,8 @@ class OllamaClaimEvaluator:
     ) -> List[OllamaEvaluationResult]:
         """청구항 세트 평가"""
         results = []
-        prior_claims = []
-        
+        prior_claims: List[str] = []
+
         for claim_number, (claim_type, claim_content) in sorted(claims.items()):
             result = self.evaluate_claim(
                 claim_number=claim_number,
@@ -140,10 +140,10 @@ class OllamaClaimEvaluator:
                 claim_type=claim_type,
                 prior_claims=prior_claims if claim_type == "dependent" else None,
             )
-            
+
             results.append(result)
             prior_claims.append(claim_content)
-        
+
         return results
 
     def _build_evaluation_prompt(
@@ -161,13 +161,13 @@ class OllamaClaimEvaluator:
 청구항 내용: {claim_content}
 
 """
-        
+
         if prior_claims and claim_type == "dependent":
             prompt += f"선행 청구항:\n"
             for i, prior in enumerate(prior_claims, 1):
                 prompt += f"  {i}. {prior}\n"
             prompt += "\n"
-        
+
         prompt += """다음 항목들을 평가하세요 (JSON 형식):
 
 {
@@ -186,7 +186,7 @@ class OllamaClaimEvaluator:
 }
 
 한국 특허법을 엄격하게 적용하세요."""
-        
+
         return prompt
 
     def _parse_evaluation_result(
@@ -210,7 +210,7 @@ class OllamaClaimEvaluator:
         json_str = json_str.replace("'", '"')
 
         # 추가: 불완전한 JSON 처리 (예: 마지막 쉼표 제거)
-        json_str = json_str.rstrip(',')
+        json_str = json_str.rstrip(",")
 
         try:
             data = json.loads(json_str)

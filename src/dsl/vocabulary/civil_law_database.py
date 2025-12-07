@@ -26,7 +26,7 @@ class CivilLawDatabase:
             requirements=["대한민국 영역 내에서의 법률 관계"],
             effects=["민법 적용"],
             exceptions=["특별법 있는 경우"],
-            related_precedents=["대법원 1984-02-14"]
+            related_precedents=["대법원 1984-02-14"],
         )
 
         # 제2조: 사람
@@ -36,7 +36,7 @@ class CivilLawDatabase:
             requirements=["출생"],
             effects=["권리능력 발생"],
             exceptions=["사망시 소멸"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제3조: 성년
@@ -46,7 +46,7 @@ class CivilLawDatabase:
             requirements=["19세 도달"],
             effects=["행위능력 취득"],
             exceptions=["법원의 제한"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제10조: 의사능력
@@ -56,7 +56,7 @@ class CivilLawDatabase:
             requirements=["자신의 행위의 의미와 결과를 이해할 능력"],
             effects=["법률행위 유효"],
             exceptions=["의사능력 없는 경우 무효"],
-            related_precedents=["대법원 2006-10-26"]
+            related_precedents=["대법원 2006-10-26"],
         )
 
         # 제109조: 권리와 의무
@@ -66,7 +66,7 @@ class CivilLawDatabase:
             requirements=["법적 주체의 지위"],
             effects=["민사상 권리 의무 귀속"],
             exceptions=["공익상 금지 행위"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제145조: 저작권의 성립
@@ -76,7 +76,7 @@ class CivilLawDatabase:
             requirements=["창작", "독창성", "표현의 고정"],
             effects=["저작권 발생"],
             exceptions=["사전에 등록 불필요"],
-            related_precedents=["대법원 2005-04-28"]
+            related_precedents=["대법원 2005-04-28"],
         )
 
         # 제188조: 점유의 개념
@@ -86,7 +86,7 @@ class CivilLawDatabase:
             requirements=["물건에 대한 사실상의 지배"],
             effects=["점유권 발생"],
             exceptions=["타인 물건에 대한 경우"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제213조: 소유권의 일반적 효력
@@ -96,7 +96,7 @@ class CivilLawDatabase:
             requirements=["소유권 보유"],
             effects=["사용, 수익, 처분권"],
             exceptions=["법령 또는 계약의 제한"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제366조: 계약의 개념
@@ -106,7 +106,7 @@ class CivilLawDatabase:
             requirements=["당사자의 의사일치"],
             effects=["법적 구속력 발생"],
             exceptions=["법정 형식 미충족시 무효"],
-            related_precedents=["대법원 1994-03-22"]
+            related_precedents=["대법원 1994-03-22"],
         )
 
         # 제383조: 매매계약의 성립
@@ -116,7 +116,7 @@ class CivilLawDatabase:
             requirements=["당사자간 가격의 합의"],
             effects=["계약 성립"],
             exceptions=["서면 요건"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제570조: 권리의 보증
@@ -126,7 +126,7 @@ class CivilLawDatabase:
             requirements=["판매인이 물건에 대한 권리 보유"],
             effects=["구매인에게 권리 이전"],
             exceptions=["권리 하자 있는 경우 손해배상"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제665조: 위임의 성립
@@ -136,17 +136,22 @@ class CivilLawDatabase:
             requirements=["당사자의 합의"],
             effects=["위임 관계 성립"],
             exceptions=["서면 요건 없음"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제750조: 불법행위
         self.statutes["제750조"] = CivilLawStatute(
             statute_number="제750조",
             title="불법행위",
-            requirements=["고의 또는 과실", "타인의 권리 침해", "손해 발생", "인과관계"],
+            requirements=[
+                "고의 또는 과실",
+                "타인의 권리 침해",
+                "손해 발생",
+                "인과관계",
+            ],
             effects=["손해배상 책임"],
             exceptions=["정당행위", "자위행위"],
-            related_precedents=["대법원 2000-06-23"]
+            related_precedents=["대법원 2000-06-23"],
         )
 
         # 제761조: 과실의 입증책임
@@ -156,7 +161,7 @@ class CivilLawDatabase:
             requirements=["피해자가 손해 및 인과관계 입증"],
             effects=["가해자의 과실 추정"],
             exceptions=["특수 경우의 입증 책임 전환"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제766조: 손해배상의 범위
@@ -166,7 +171,7 @@ class CivilLawDatabase:
             requirements=["인과관계"],
             effects=["적극적 손해와 소극적 손해 배상"],
             exceptions=["예측 불가능한 손해"],
-            related_precedents=["대법원 2005-07-22"]
+            related_precedents=["대법원 2005-07-22"],
         )
 
         # 제771조: 채무불이행시 손해배상
@@ -176,7 +181,7 @@ class CivilLawDatabase:
             requirements=["채무 불이행"],
             effects=["손해배상 청구권 발생"],
             exceptions=["불가항력"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 제955조: 보증채무의 성립
@@ -186,7 +191,7 @@ class CivilLawDatabase:
             requirements=["주채무의 존재", "보증인의 동의"],
             effects=["보증채무 성립"],
             exceptions=["서면 요건"],
-            related_precedents=[]
+            related_precedents=[],
         )
 
         # 저작권법 제37조
@@ -196,7 +201,7 @@ class CivilLawDatabase:
             requirements=["저작권 보유"],
             effects=["복제 허가권", "복제권 침해시 배상청구"],
             exceptions=["공정이용"],
-            related_precedents=["대법원 2008-09-18"]
+            related_precedents=["대법원 2008-09-18"],
         )
 
         # 저작권법 제50조
@@ -206,7 +211,7 @@ class CivilLawDatabase:
             requirements=["비영리 목적", "보도", "비평", "교육", "연구"],
             effects=["저작권 침해 성립 안 함"],
             exceptions=["상당히 큰 부분 복제"],
-            related_precedents=["대법원 2014-10-23"]
+            related_precedents=["대법원 2014-10-23"],
         )
 
     def get_statute(self, statute_number):

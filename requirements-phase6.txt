@@ -1,0 +1,17 @@
+# Phase 6: Vector DB & RAG 시스템 추가 의존성
+
+# Vector Database & Embeddings
+openai>=1.0.0
+pinecone-client>=3.0.0
+
+# Alternative: Local Vector DB (faster for development)
+chromadb>=0.4.0
+
+# RAG & LLM Enhancement
+langchain>=0.1.0
+langchain-openai>=0.0.2
+langchain-community>=0.0.10
+
+# Additional utilities
+tenacity>=8.2.0  # Retry logic for API calls
+tiktoken>=0.5.0  # Token counting for LLM

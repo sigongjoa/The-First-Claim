@@ -30,42 +30,36 @@ class TestGameSessionAPI:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_session_1",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_session_1", player_name="Test Player", level_id=1
         )
 
         assert session is not None
         assert session.session_id == "test_session_1"
-        assert session.player_name == "Test Player"
-        assert session.current_level == 1
+        assert session.player.player_name == "Test Player"
+        assert session.current_level.level_id == 1
 
     def test_submit_claim_to_session(self):
         """게임 세션에 청구항 제출"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_submit",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_submit", player_name="Test Player", level_id=1
         )
 
         # 정상적인 청구항 제출
-        claim = "배터리 장치는 양극, 음극, 전해질을 포함한다"
+        claim = "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
         result = session.submit_claim(claim)
 
         assert result is True
         assert len(session.claims) == 1
-        assert session.claims[0].content == claim
+        assert session.claims[0] == claim
 
     def test_submit_empty_claim_rejected(self):
         """빈 청구항은 거부되어야 함"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_empty",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_empty", player_name="Test Player", level_id=1
         )
 
         # 빈 청구항 제출 시도
@@ -79,30 +73,28 @@ class TestGameSessionAPI:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_special",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_special", player_name="Test Player", level_id=1
         )
 
         # 특수문자 포함 청구항
-        claim = "배터리 장치는 Li-ion(리튬이온) 방식의 양극(+), 음극(-), 전해질을 포함한다."
+        claim = (
+            "배터리 장치는 Li-ion(리튬이온) 방식의 양극(+), 음극(-), 전해질을 포함한다."
+        )
         result = session.submit_claim(claim)
 
         assert result is True
-        assert session.claims[0].content == claim
+        assert session.claims[0] == claim
 
     def test_claim_validation_rules(self):
         """청구항 검증 규칙 테스트 - 기본 규칙"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_validate",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_validate", player_name="Test Player", level_id=1
         )
 
         # 유효한 청구항
-        valid_claim = "배터리는 양극과 음극을 포함한다"
+        valid_claim = "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
         result = session.submit_claim(valid_claim)
         assert result is True
 
@@ -125,16 +117,14 @@ class TestGameEvaluationAPI:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_eval",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_eval", player_name="Test Player", level_id=1
         )
 
         # 여러 청구항 제출
         claims = [
-            "배터리 장치는 양극, 음극, 전해질을 포함한다",
-            "제1항의 배터리에서 양극은 리튬산화물이다",
-            "제1항의 배터리에서 음극은 흑연이다",
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다",
+            "제1항의 배터리 장치에 있어서, 상기 양극은 리튬산화물을 포함하는 배터리 장치",
+            "제1항의 배터리 장치에 있어서, 상기 음극은 흑연을 포함하는 배터리 장치",
         ]
 
         for claim in claims:
@@ -145,21 +135,19 @@ class TestGameEvaluationAPI:
 
         assert success is True
         assert details is not None
-        assert len(details.get("evaluations", [])) == len(claims)
+        assert len(details.get("validation_results", [])) == len(claims)
 
     def test_game_scoring_system(self):
         """게임 점수 계산 시스템 테스트"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_score",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_score", player_name="Test Player", level_id=1
         )
 
         # 3개의 청구항으로 평가 실행
         claims = [
-            "배터리는 양극과 음극을 포함한다",
+            "배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다",
             "제1항의 배터리에서 양극은 리튬이다",
             "제1항의 배터리에서 음극은 흑연이다",
         ]
@@ -181,16 +169,14 @@ class TestGameEvaluationAPI:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_level",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_level", player_name="Test Player", level_id=1
         )
 
-        assert session.current_level == 1
+        assert session.current_level.level_id == 1
 
         # 5개 청구항 완료하면 레벨 업
         for i in range(5):
-            claim = f"청구항 {i+1}: 배터리는 양극과 음극을 포함한다"
+            claim = f"청구항 {i+1}: 배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다"
             session.submit_claim(claim)
 
         success, feedback, details = engine.evaluate_claims(session.session_id)
@@ -208,9 +194,7 @@ class TestGameErrorHandling:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_long",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_long", player_name="Test Player", level_id=1
         )
 
         # 5000자 이상의 청구항
@@ -226,9 +210,7 @@ class TestGameErrorHandling:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_invalid_chars",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_invalid_chars", player_name="Test Player", level_id=1
         )
 
         # 제어 문자 포함
@@ -238,19 +220,17 @@ class TestGameErrorHandling:
 
         # 결과는 거부되거나 정제되어야 함
         if result is True:
-            assert "\x00" not in session.claims[0].content
+            assert "\x00" not in session.claims[0]
 
     def test_duplicate_claim_handling(self):
         """중복 청구항 처리"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_duplicate",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_duplicate", player_name="Test Player", level_id=1
         )
 
-        claim = "배터리는 양극과 음극을 포함한다"
+        claim = "배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다"
 
         # 같은 청구항 두 번 제출
         result1 = session.submit_claim(claim)
@@ -271,12 +251,10 @@ class TestGameDataPersistence:
 
         # 세션 생성 및 청구항 추가
         session1 = engine.create_session(
-            session_id="test_persist",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_persist", player_name="Test Player", level_id=1
         )
 
-        claim = "배터리는 양극과 음극을 포함한다"
+        claim = "배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다"
         session1.submit_claim(claim)
 
         # 세션 조회
@@ -285,22 +263,20 @@ class TestGameDataPersistence:
         if session2:
             assert session2.session_id == "test_persist"
             assert len(session2.claims) == 1
-            assert session2.claims[0].content == claim
+            assert session2.claims[0] == claim
 
     def test_claim_history_tracking(self):
         """청구항 히스토리 추적"""
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_history",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_history", player_name="Test Player", level_id=1
         )
 
         claims = [
-            "청구항 1: 배터리는 양극을 포함한다",
-            "청구항 2: 배터리는 음극을 포함한다",
-            "청구항 3: 배터리는 전해질을 포함한다",
+            "청구항 1: 배터리 장치는 양극을 포함하며 효율적인 에너지 저장이 가능하다",
+            "청구항 2: 배터리 장치는 음극을 포함하며 안정적인 충전이 가능하다",
+            "청구항 3: 배터리 장치는 전해질을 포함하며 이온 전도가 가능하다",
         ]
 
         for claim in claims:
@@ -309,7 +285,7 @@ class TestGameDataPersistence:
         # 히스토리 확인
         assert len(session.claims) == 3
         for i, submitted_claim in enumerate(session.claims):
-            assert submitted_claim.content == claims[i]
+            assert submitted_claim == claims[i]
 
 
 class TestGamePerformance:
@@ -322,12 +298,10 @@ class TestGamePerformance:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_perf",
-            player_name="Test Player",
-            level_id=1
+            session_id="test_perf", player_name="Test Player", level_id=1
         )
 
-        claim = "배터리는 양극과 음극을 포함한다"
+        claim = "배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다"
 
         start_time = time.time()
         result = session.submit_claim(claim)
@@ -344,15 +318,15 @@ class TestGamePerformance:
         sessions = []
         for i in range(10):
             session = engine.create_session(
-                session_id=f"test_perf_{i}",
-                player_name=f"Player {i}",
-                level_id=1
+                session_id=f"test_perf_{i}", player_name=f"Player {i}", level_id=1
             )
             sessions.append(session)
 
         # 각 세션에 청구항 제출
         for session in sessions:
-            result = session.submit_claim("배터리는 양극과 음극을 포함한다")
+            result = session.submit_claim(
+                "배터리 장치는 양극과 음극을 포함하며 안정적인 에너지 저장이 가능하다"
+            )
             assert result is True
 
         # 모든 세션이 정상 동작

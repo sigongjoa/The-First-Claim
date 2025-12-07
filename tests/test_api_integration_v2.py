@@ -18,9 +18,7 @@ class TestGameSessionCreation:
         engine = GameEngine()
 
         session = engine.create_session(
-            session_id="test_001",
-            player_name="김특허",
-            level_id=1
+            session_id="test_001", player_name="김특허", level_id=1
         )
 
         assert session is not None
@@ -32,7 +30,7 @@ class TestGameSessionCreation:
     @given(
         session_id=st.text(min_size=1, max_size=50),
         player_name=st.text(min_size=1, max_size=100),
-        level_id=st.integers(min_value=1, max_value=10)
+        level_id=st.integers(min_value=1, max_value=10),
     )
     @settings(max_examples=50)
     def test_session_creation_property(self, session_id, player_name, level_id):
@@ -41,9 +39,7 @@ class TestGameSessionCreation:
 
         try:
             session = engine.create_session(
-                session_id=session_id,
-                player_name=player_name,
-                level_id=level_id
+                session_id=session_id, player_name=player_name, level_id=level_id
             )
 
             # 속성 1: 세션은 None이 아니어야 함
@@ -85,9 +81,7 @@ class TestClaimSubmission:
         assert result is False
         assert len(session.claims) == 0
 
-    @given(
-        claim=st.text(min_size=10, max_size=500)
-    )
+    @given(claim=st.text(min_size=10, max_size=500))
     @settings(max_examples=30)
     def test_claim_submission_property(self, claim):
         """청구항 제출 속성 검증 (속성 기반)"""
@@ -105,9 +99,7 @@ class TestClaimSubmission:
         if len(session.claims) > 0:
             assert session.claims[0] == claim
 
-    @given(
-        claim=st.text(max_size=0)  # 빈 문자열만
-    )
+    @given(claim=st.text(max_size=0))  # 빈 문자열만
     @settings(max_examples=10)
     def test_empty_claim_always_rejected(self, claim):
         """빈 청구항은 항상 거부되어야 함 (속성)"""
@@ -124,9 +116,7 @@ class TestClaimSubmission:
 class TestClaimLength:
     """청구항 길이 범위 테스트"""
 
-    @given(
-        length=st.integers(min_value=1, max_value=30)
-    )
+    @given(length=st.integers(min_value=1, max_value=30))
     @settings(max_examples=20)
     def test_very_short_claim(self, length):
         """너무 짧은 청구항 (1~30자)"""
@@ -141,9 +131,7 @@ class TestClaimLength:
         # 매우 짧은 청구항은 거부될 가능성 높음
         # 하지만 실제 구현에 따라 다름
 
-    @given(
-        repetition=st.integers(min_value=100, max_value=500)
-    )
+    @given(repetition=st.integers(min_value=100, max_value=500))
     @settings(max_examples=10)
     def test_very_long_claim(self, repetition):
         """매우 긴 청구항"""
@@ -165,10 +153,10 @@ class TestSpecialCharacters:
         claim=st.text(
             alphabet=st.characters(
                 blacklist_categories=("Cc", "Cs"),  # 제어 문자 제외
-                min_codepoint=0x1100  # 한글만
+                min_codepoint=0x1100,  # 한글만
             ),
             min_size=10,
-            max_size=500
+            max_size=500,
         )
     )
     @settings(max_examples=20)
@@ -207,9 +195,7 @@ class TestSpecialCharacters:
 class TestDataConsistency:
     """데이터 일관성 테스트"""
 
-    @given(
-        num_claims=st.integers(min_value=1, max_value=10)
-    )
+    @given(num_claims=st.integers(min_value=1, max_value=10))
     @settings(max_examples=20)
     def test_claim_order_preserved(self, num_claims):
         """청구항 순서가 보존되어야 함 (속성)"""
@@ -265,9 +251,7 @@ class TestErrorHandling:
         assert result is False
         assert len(session.claims) == 0
 
-    @given(
-        claim=st.just(None)  # None만 생성
-    )
+    @given(claim=st.just(None))  # None만 생성
     @settings(max_examples=5)
     def test_none_always_returns_false(self, claim):
         """None은 항상 False를 반환해야 함 (속성)"""
@@ -284,9 +268,7 @@ class TestErrorHandling:
 class TestScoreCalculation:
     """점수 계산 속성 검증"""
 
-    @given(
-        num_claims=st.integers(min_value=1, max_value=5)
-    )
+    @given(num_claims=st.integers(min_value=1, max_value=5))
     @settings(max_examples=10)
     def test_score_always_in_range(self, num_claims):
         """점수는 항상 유효한 범위여야 함 (속성)"""
@@ -301,8 +283,8 @@ class TestScoreCalculation:
         if len(session.claims) > 0:
             success, feedback, details = engine.evaluate_claims(session.session_id)
 
-            if success and 'score' in details:
-                score = details['score']
+            if success and "score" in details:
+                score = details["score"]
 
                 # 속성: 점수는 항상 >= 0
                 assert score >= 0
@@ -314,9 +296,7 @@ class TestScoreCalculation:
 class TestPerformance:
     """성능 속성 검증"""
 
-    @given(
-        text_length=st.integers(min_value=50, max_value=500)
-    )
+    @given(text_length=st.integers(min_value=50, max_value=500))
     @settings(max_examples=10)
     def test_claim_submission_speed(self, text_length):
         """청구항 제출은 빠르게 처리되어야 함 (속성)"""

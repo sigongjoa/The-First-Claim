@@ -17,16 +17,18 @@ class DataIntegrityMonitor:
     """데이터 무결성 모니터"""
 
     @staticmethod
-    def verify_session_state(session: Any, expected_claims_count: Optional[int] = None) -> bool:
+    def verify_session_state(
+        session: Any, expected_claims_count: Optional[int] = None
+    ) -> bool:
         """세션 상태 검증"""
         try:
             # 기본 검증
             assert session is not None
-            assert hasattr(session, 'session_id')
-            assert hasattr(session, 'player')
-            assert hasattr(session, 'status')
-            assert hasattr(session, 'submitted_claims')
-            assert hasattr(session, 'feedback')
+            assert hasattr(session, "session_id")
+            assert hasattr(session, "player")
+            assert hasattr(session, "status")
+            assert hasattr(session, "submitted_claims")
+            assert hasattr(session, "feedback")
 
             # 타입 검증
             assert isinstance(session.session_id, str)
@@ -45,8 +47,8 @@ class DataIntegrityMonitor:
                 "세션 상태 검증 통과",
                 context={
                     "session_id": session.session_id,
-                    "claims_count": len(session.submitted_claims)
-                }
+                    "claims_count": len(session.submitted_claims),
+                },
             )
 
             return True
@@ -56,18 +58,21 @@ class DataIntegrityMonitor:
                 "세션 상태 검증 실패",
                 error=e,
                 context={
-                    "session_id": getattr(session, 'session_id', 'unknown'),
-                    "error_message": str(e)[:100]
-                }
+                    "session_id": getattr(session, "session_id", "unknown"),
+                    "error_message": str(e)[:100],
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("data_integrity", "session_state")
                 scope.set_tag("severity", "high")
-                scope.set_context("session", {
-                    "session_id": getattr(session, 'session_id', 'unknown'),
-                    "claims_count": len(getattr(session, 'submitted_claims', []))
-                })
+                scope.set_context(
+                    "session",
+                    {
+                        "session_id": getattr(session, "session_id", "unknown"),
+                        "claims_count": len(getattr(session, "submitted_claims", [])),
+                    },
+                )
                 sentry_sdk.capture_exception(e)
 
             raise ValueError(f"Session state verification failed: {e}") from e
@@ -78,9 +83,9 @@ class DataIntegrityMonitor:
         try:
             # 기본 검증
             assert player is not None
-            assert hasattr(player, 'player_name')
-            assert hasattr(player, 'total_score')
-            assert hasattr(player, 'completed_levels')
+            assert hasattr(player, "player_name")
+            assert hasattr(player, "total_score")
+            assert hasattr(player, "completed_levels")
 
             # 타입 검증
             assert isinstance(player.player_name, str)
@@ -89,8 +94,9 @@ class DataIntegrityMonitor:
 
             # 값 검증
             assert player.total_score >= 0, "점수는 음수가 될 수 없음"
-            assert all(isinstance(l, int) for l in player.completed_levels), \
-                "완료된 레벨은 정수여야 함"
+            assert all(
+                isinstance(l, int) for l in player.completed_levels
+            ), "완료된 레벨은 정수여야 함"
 
             # 중복 검증
             if len(player.completed_levels) != len(set(player.completed_levels)):
@@ -101,8 +107,8 @@ class DataIntegrityMonitor:
                 context={
                     "player_name": player.player_name,
                     "total_score": player.total_score,
-                    "completed_levels": len(player.completed_levels)
-                }
+                    "completed_levels": len(player.completed_levels),
+                },
             )
 
             return True
@@ -112,18 +118,21 @@ class DataIntegrityMonitor:
                 "플레이어 진행상황 검증 실패",
                 error=e,
                 context={
-                    "player_name": getattr(player, 'player_name', 'unknown'),
-                    "error_message": str(e)[:100]
-                }
+                    "player_name": getattr(player, "player_name", "unknown"),
+                    "error_message": str(e)[:100],
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("data_integrity", "player_progress")
                 scope.set_tag("severity", "high")
-                scope.set_context("player", {
-                    "player_name": getattr(player, 'player_name', 'unknown'),
-                    "total_score": getattr(player, 'total_score', 0)
-                })
+                scope.set_context(
+                    "player",
+                    {
+                        "player_name": getattr(player, "player_name", "unknown"),
+                        "total_score": getattr(player, "total_score", 0),
+                    },
+                )
                 sentry_sdk.capture_exception(e)
 
             raise ValueError(f"Player progress verification failed: {e}") from e
@@ -139,19 +148,19 @@ class DataIntegrityMonitor:
                 return True
 
             # 타입 검증
-            assert all(isinstance(c, str) for c in claims), "모든 청구항은 문자열이어야 함"
+            assert all(
+                isinstance(c, str) for c in claims
+            ), "모든 청구항은 문자열이어야 함"
 
             # 길이 검증 (30-1000자)
             for i, claim in enumerate(claims):
-                assert 30 <= len(claim) <= 1000, \
-                    f"청구항 {i}: 길이 {len(claim)} (30-1000자여야 함)"
+                assert (
+                    30 <= len(claim) <= 1000
+                ), f"청구항 {i}: 길이 {len(claim)} (30-1000자여야 함)"
 
             logger.info(
                 "청구항 일관성 검증 통과",
-                context={
-                    "session_id": session.session_id,
-                    "claims_count": len(claims)
-                }
+                context={"session_id": session.session_id, "claims_count": len(claims)},
             )
 
             return True
@@ -163,17 +172,20 @@ class DataIntegrityMonitor:
                 context={
                     "session_id": session.session_id,
                     "claims_count": len(session.submitted_claims),
-                    "error_message": str(e)[:100]
-                }
+                    "error_message": str(e)[:100],
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("data_integrity", "claim_consistency")
                 scope.set_tag("severity", "high")
-                scope.set_context("claims", {
-                    "session_id": session.session_id,
-                    "count": len(session.submitted_claims)
-                })
+                scope.set_context(
+                    "claims",
+                    {
+                        "session_id": session.session_id,
+                        "count": len(session.submitted_claims),
+                    },
+                )
                 sentry_sdk.capture_exception(e)
 
             raise ValueError(f"Claim consistency verification failed: {e}") from e
@@ -191,8 +203,9 @@ class DataIntegrityMonitor:
                 session_ids.add(session_id)
 
                 # 세션 ID 일치 검증
-                assert session.session_id == session_id, \
-                    f"세션 ID 불일치: 실제 {session.session_id}, 키 {session_id}"
+                assert (
+                    session.session_id == session_id
+                ), f"세션 ID 불일치: 실제 {session.session_id}, 키 {session_id}"
 
                 # 청구항 목록 저장
                 claims_per_session[session_id] = set(
@@ -200,19 +213,17 @@ class DataIntegrityMonitor:
                 )
 
             # 세션 간 데이터 누수 검증
-            all_claim_ids = set()
+            all_claim_ids: set[int] = set()
             for session_id, claim_ids in claims_per_session.items():
                 overlapping = all_claim_ids.intersection(claim_ids)
-                assert len(overlapping) == 0, \
-                    f"세션 {session_id}의 청구항이 다른 세션과 겹침"
+                assert (
+                    len(overlapping) == 0
+                ), f"세션 {session_id}의 청구항이 다른 세션과 겹침"
                 all_claim_ids.update(claim_ids)
 
             logger.info(
                 "세션 격리 검증 통과",
-                context={
-                    "total_sessions": len(sessions),
-                    "isolation_verified": True
-                }
+                context={"total_sessions": len(sessions), "isolation_verified": True},
             )
 
             return True
@@ -223,19 +234,19 @@ class DataIntegrityMonitor:
                 error=e,
                 context={
                     "total_sessions": len(sessions),
-                    "error_message": str(e)[:100]
-                }
+                    "error_message": str(e)[:100],
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("data_integrity", "session_isolation")
                 scope.set_tag("severity", "critical")
-                scope.set_context("sessions", {
-                    "total_count": len(sessions)
-                })
+                scope.set_context("sessions", {"total_count": len(sessions)})
                 sentry_sdk.capture_exception(e)
 
-            raise ValueError(f"CRITICAL: Session isolation verification failed: {e}") from e
+            raise ValueError(
+                f"CRITICAL: Session isolation verification failed: {e}"
+            ) from e
 
 
 class DataIntegrityAlert:
@@ -254,16 +265,15 @@ class DataIntegrityAlert:
                 "중대한 데이터 무결성 문제: 음수 점수",
                 context={
                     "player_name": player.player_name,
-                    "total_score": player.total_score
-                }
+                    "total_score": player.total_score,
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("alert_type", "critical_score")
                 scope.set_tag("severity", "critical")
                 sentry_sdk.capture_message(
-                    f"Negative score detected: {player.total_score}",
-                    level="critical"
+                    f"Negative score detected: {player.total_score}", level="critical"
                 )
 
             return False
@@ -278,18 +288,14 @@ class DataIntegrityAlert:
         if claim_length > DataIntegrityAlert.CRITICAL_CLAIM_LENGTH:
             logger.critical(
                 "중대한 데이터 무결성 문제: 청구항 길이 초과",
-                context={
-                    "claim_length": claim_length,
-                    "max_length": 1000
-                }
+                context={"claim_length": claim_length, "max_length": 1000},
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("alert_type", "claim_length")
                 scope.set_tag("severity", "critical")
                 sentry_sdk.capture_message(
-                    f"Claim length exceeded: {claim_length}",
-                    level="critical"
+                    f"Claim length exceeded: {claim_length}", level="critical"
                 )
 
             return False
@@ -306,16 +312,15 @@ class DataIntegrityAlert:
                 context={
                     "total_count": len(completed_levels),
                     "unique_count": len(set(completed_levels)),
-                    "duplicates": duplicates
-                }
+                    "duplicates": duplicates,
+                },
             )
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("alert_type", "duplicate_level")
                 scope.set_tag("severity", "warning")
                 sentry_sdk.capture_message(
-                    f"Duplicate level completions detected",
-                    level="warning"
+                    f"Duplicate level completions detected", level="warning"
                 )
 
             return False

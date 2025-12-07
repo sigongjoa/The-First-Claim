@@ -44,22 +44,31 @@ class TestSecurityStaticAnalysis:
                             matches = re.finditer(pattern, content, re.IGNORECASE)
                             for match in matches:
                                 # 환경 변수나 주석 제외
-                                if "os.environ" not in content[max(0, match.start()-50):match.end()+50]:
-                                    found_secrets.append({
-                                        "file": str(py_file),
-                                        "pattern": pattern,
-                                        "match": match.group()
-                                    })
+                                if (
+                                    "os.environ"
+                                    not in content[
+                                        max(0, match.start() - 50) : match.end() + 50
+                                    ]
+                                ):
+                                    found_secrets.append(
+                                        {
+                                            "file": str(py_file),
+                                            "pattern": pattern,
+                                            "match": match.group(),
+                                        }
+                                    )
 
                 except Exception as e:
-                    logger.warning(f"파일 읽기 실패: {py_file}", context={"error": str(e)})
+                    logger.warning(
+                        f"파일 읽기 실패: {py_file}", context={"error": str(e)}
+                    )
 
             logger.info(
                 "하드코딩된 시크릿 검사 완료",
                 context={
                     "files_scanned": len(list(src_dir.rglob("*.py"))),
-                    "secrets_found": len(found_secrets)
-                }
+                    "secrets_found": len(found_secrets),
+                },
             )
 
             assert len(found_secrets) == 0, f"발견된 하드코딩된 시크릿: {found_secrets}"
@@ -96,23 +105,30 @@ class TestSecurityStaticAnalysis:
                             for dangerous in dangerous_imports:
                                 if dangerous in line and "import" in line:
                                     # 테스트나 주석 컨텍스트, "Evaluator" 클래스 제외
-                                    if "test_" not in str(py_file) and "Evaluator" not in line:
-                                        found_dangerous.append({
-                                            "file": str(py_file),
-                                            "line": line_num,
-                                            "import": dangerous,
-                                            "code": line.strip()
-                                        })
+                                    if (
+                                        "test_" not in str(py_file)
+                                        and "Evaluator" not in line
+                                    ):
+                                        found_dangerous.append(
+                                            {
+                                                "file": str(py_file),
+                                                "line": line_num,
+                                                "import": dangerous,
+                                                "code": line.strip(),
+                                            }
+                                        )
 
                 except Exception as e:
-                    logger.warning(f"파일 읽기 실패: {py_file}", context={"error": str(e)})
+                    logger.warning(
+                        f"파일 읽기 실패: {py_file}", context={"error": str(e)}
+                    )
 
             logger.info(
                 "위험한 import 검사 완료",
                 context={
                     "files_scanned": len(list(src_dir.rglob("*.py"))),
-                    "dangerous_found": len(found_dangerous)
-                }
+                    "dangerous_found": len(found_dangerous),
+                },
             )
 
             assert len(found_dangerous) == 0, f"발견된 위험한 import: {found_dangerous}"
@@ -150,15 +166,21 @@ class TestSecurityStaticAnalysis:
                                 break
 
                 except Exception as e:
-                    logger.warning(f"파일 읽기 실패: {py_file}", context={"error": str(e)})
+                    logger.warning(
+                        f"파일 읽기 실패: {py_file}", context={"error": str(e)}
+                    )
 
             logger.info(
                 "입력 유효성 검사 확인 완료",
                 context={
                     "total_files": total_files,
                     "files_with_validation": files_with_validation,
-                    "coverage_percent": (files_with_validation / total_files * 100) if total_files > 0 else 0
-                }
+                    "coverage_percent": (
+                        (files_with_validation / total_files * 100)
+                        if total_files > 0
+                        else 0
+                    ),
+                },
             )
 
             # 최소 40% 이상의 파일이 입력 검사를 해야 함 (42% 만족)
@@ -176,8 +198,8 @@ class TestSecurityStaticAnalysis:
         injection_patterns = [
             r'f".*\{.*\}.*sql',
             r"f'.*\{.*\}.*sql",
-            r'\.format\(.*\).*sql',
-            r'\+ .*\+ .*\+ ',
+            r"\.format\(.*\).*sql",
+            r"\+ .*\+ .*\+ ",
         ]
 
         found_injection_risks = []
@@ -194,28 +216,32 @@ class TestSecurityStaticAnalysis:
 
                             for pattern in injection_patterns:
                                 if re.search(pattern, line, re.IGNORECASE):
-                                    found_injection_risks.append({
-                                        "file": str(py_file),
-                                        "line": line_num,
-                                        "code": line.strip()
-                                    })
+                                    found_injection_risks.append(
+                                        {
+                                            "file": str(py_file),
+                                            "line": line_num,
+                                            "code": line.strip(),
+                                        }
+                                    )
 
                 except Exception as e:
-                    logger.warning(f"파일 읽기 실패: {py_file}", context={"error": str(e)})
+                    logger.warning(
+                        f"파일 읽기 실패: {py_file}", context={"error": str(e)}
+                    )
 
             logger.info(
                 "SQL Injection 패턴 검사 완료",
                 context={
                     "files_scanned": len(list(src_dir.rglob("*.py"))),
-                    "injection_risks_found": len(found_injection_risks)
-                }
+                    "injection_risks_found": len(found_injection_risks),
+                },
             )
 
             # 위험 패턴이 있을 수 있지만 문제 아닐 수도 있음 - 경고만
             if found_injection_risks:
                 logger.warning(
                     "잠재적 SQL Injection 위험 발견",
-                    context={"risks": found_injection_risks[:5]}
+                    context={"risks": found_injection_risks[:5]},
                 )
 
         except Exception as e:
@@ -235,6 +261,7 @@ class TestSecurityRuntimeValidation:
     def engine(self):
         """게임 엔진"""
         from src.ui.game import GameEngine
+
         return GameEngine()
 
     def test_player_name_input_sanitization(self, engine, logger):
@@ -255,7 +282,7 @@ class TestSecurityRuntimeValidation:
                     session = engine.create_session(
                         session_id=f"security_test_{malicious_inputs.index(malicious_input)}",
                         player_name=malicious_input,
-                        level_id=1
+                        level_id=1,
                     )
 
                     # 세션이 생성되었다면, 이름이 안전하게 저장되었는지 확인
@@ -265,14 +292,14 @@ class TestSecurityRuntimeValidation:
                         "악성 입력 처리 완료",
                         context={
                             "input": malicious_input[:50],
-                            "stored": stored_name[:50]
-                        }
+                            "stored": stored_name[:50],
+                        },
                     )
 
                 except Exception as e:
                     logger.warning(
                         "악성 입력 거부됨",
-                        context={"input": malicious_input[:50], "error": str(e)[:100]}
+                        context={"input": malicious_input[:50], "error": str(e)[:100]},
                     )
 
             logger.info("플레이어 이름 입력 정제 테스트 완료")
@@ -286,9 +313,7 @@ class TestSecurityRuntimeValidation:
         logger.info("청구항 텍스트 입력 검증 시작")
 
         session = engine.create_session(
-            session_id="security_claim_test",
-            player_name="보안테스터",
-            level_id=1
+            session_id="security_claim_test", player_name="보안테스터", level_id=1
         )
 
         invalid_claims = [
@@ -305,12 +330,12 @@ class TestSecurityRuntimeValidation:
                 if not result:
                     logger.info(
                         "유효하지 않은 청구항 거부됨",
-                        context={"claim_length": len(invalid_claim)}
+                        context={"claim_length": len(invalid_claim)},
                     )
                 else:
                     logger.warning(
                         "의심스러운 청구항이 수락됨",
-                        context={"claim_length": len(invalid_claim)}
+                        context={"claim_length": len(invalid_claim)},
                     )
 
             logger.info("청구항 텍스트 입력 검증 완료")
@@ -334,18 +359,16 @@ class TestSecurityRuntimeValidation:
             for invalid_id in invalid_session_ids:
                 try:
                     session = engine.create_session(
-                        session_id=invalid_id,
-                        player_name="테스터",
-                        level_id=1
+                        session_id=invalid_id, player_name="테스터", level_id=1
                     )
                     logger.warning(
                         "유효하지 않은 세션 ID가 허용됨",
-                        context={"session_id": invalid_id[:50]}
+                        context={"session_id": invalid_id[:50]},
                     )
                 except Exception as e:
                     logger.info(
                         "유효하지 않은 세션 ID 거부됨",
-                        context={"session_id": invalid_id[:50]}
+                        context={"session_id": invalid_id[:50]},
                     )
 
             logger.info("세션 ID 형식 검증 완료")
@@ -393,8 +416,10 @@ class TestSecurityHeaders:
                     context={
                         "total_required": len(required_headers),
                         "found": len(found_headers),
-                        "coverage_percent": (len(found_headers) / len(required_headers) * 100)
-                    }
+                        "coverage_percent": (
+                            len(found_headers) / len(required_headers) * 100
+                        ),
+                    },
                 )
 
                 assert len(found_headers) >= len(required_headers) - 1  # 최소 4개 이상
@@ -426,14 +451,18 @@ class TestDependencyVulnerabilities:
             with open(req_file, "r") as f:
                 lines = f.readlines()
 
-            packages = [line.strip() for line in lines if line.strip() and not line.startswith("#")]
+            packages = [
+                line.strip()
+                for line in lines
+                if line.strip() and not line.startswith("#")
+            ]
 
             logger.info(
                 "의존성 파일 확인 완료",
                 context={
                     "total_packages": len(packages),
-                    "packages_sample": packages[:5]
-                }
+                    "packages_sample": packages[:5],
+                },
             )
 
             assert len(packages) > 0
@@ -452,7 +481,11 @@ class TestDependencyVulnerabilities:
                 with open(req_file, "r") as f:
                     lines = f.readlines()
 
-                packages = [line.strip() for line in lines if line.strip() and not line.startswith("#")]
+                packages = [
+                    line.strip()
+                    for line in lines
+                    if line.strip() and not line.startswith("#")
+                ]
                 versioned = [p for p in packages if ">=" in p or "==" in p or "~=" in p]
 
                 logger.info(
@@ -460,8 +493,10 @@ class TestDependencyVulnerabilities:
                     context={
                         "total_packages": len(packages),
                         "versioned_packages": len(versioned),
-                        "coverage_percent": (len(versioned) / len(packages) * 100) if packages else 0
-                    }
+                        "coverage_percent": (
+                            (len(versioned) / len(packages) * 100) if packages else 0
+                        ),
+                    },
                 )
 
                 # 최소 50% 이상 버전 명시 (>= 포함)

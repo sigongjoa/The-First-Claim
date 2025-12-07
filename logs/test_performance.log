@@ -82,3 +82,129 @@
 {"timestamp": "2025-12-04T05:36:15.708470", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
 {"timestamp": "2025-12-04T05:36:15.708470", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
 {"timestamp": "2025-12-04T05:36:15.708470", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.01, "p99_ms": 0.01, "min_ms": 0.0, "max_ms": 0.01}}
+{"timestamp": "2025-12-04T05:52:29.688909", "level": "INFO", "logger": "test_performance", "message": "세션 생성 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.689372", "level": "INFO", "logger": "test_performance", "message": "세션 생성 완료", "context": {"elapsed_ms": 0.014094999642111361, "target_ms": 100, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:52:29.692092", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.692092", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.692624", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.001310003426624462, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:52:29.692624", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.001310003426624462, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:52:29.696263", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.696263", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.696263", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.696932", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.0341139966621995, "avg_time_per_session_ms": 0.0034113996662199497, "throughput_sessions_per_sec": 293134.81205445045}}
+{"timestamp": "2025-12-04T05:52:29.696932", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.0341139966621995, "avg_time_per_session_ms": 0.0034113996662199497, "throughput_sessions_per_sec": 293134.81205445045}}
+{"timestamp": "2025-12-04T05:52:29.696932", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.0341139966621995, "avg_time_per_session_ms": 0.0034113996662199497, "throughput_sessions_per_sec": 293134.81205445045}}
+{"timestamp": "2025-12-04T05:52:29.700801", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.700801", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.700801", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.700801", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.701983", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:52:29.701983", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:52:29.701983", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:52:29.701983", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:52:29.705132", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.705132", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.705132", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.705132", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.705132", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.705896", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.0330319999193307, "avg_time_per_operation_ms": 0.00330319999193307}}
+{"timestamp": "2025-12-04T05:52:29.705896", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.0330319999193307, "avg_time_per_operation_ms": 0.00330319999193307}}
+{"timestamp": "2025-12-04T05:52:29.705896", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.0330319999193307, "avg_time_per_operation_ms": 0.00330319999193307}}
+{"timestamp": "2025-12-04T05:52:29.705896", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.0330319999193307, "avg_time_per_operation_ms": 0.00330319999193307}}
+{"timestamp": "2025-12-04T05:52:29.705896", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.0330319999193307, "avg_time_per_operation_ms": 0.00330319999193307}}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.709178", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:52:29.710859", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.02, "p99_ms": 0.02, "min_ms": 0.0, "max_ms": 0.02}}
+{"timestamp": "2025-12-04T05:56:51.091747", "level": "INFO", "logger": "test_performance", "message": "세션 생성 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.092181", "level": "INFO", "logger": "test_performance", "message": "세션 생성 완료", "context": {"elapsed_ms": 0.014338998880703002, "target_ms": 100, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:56:51.094791", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.094791", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.095205", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.001505999534856528, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:56:51.095205", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.001505999534856528, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:56:51.097666", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.097666", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.097666", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.098373", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.029356000595726073, "avg_time_per_session_ms": 0.0029356000595726073, "throughput_sessions_per_sec": 340645.8576464226}}
+{"timestamp": "2025-12-04T05:56:51.098373", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.029356000595726073, "avg_time_per_session_ms": 0.0029356000595726073, "throughput_sessions_per_sec": 340645.8576464226}}
+{"timestamp": "2025-12-04T05:56:51.098373", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.029356000595726073, "avg_time_per_session_ms": 0.0029356000595726073, "throughput_sessions_per_sec": 340645.8576464226}}
+{"timestamp": "2025-12-04T05:56:51.102059", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.102059", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.102059", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.102059", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.103263", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:56:51.103263", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:56:51.103263", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:56:51.103263", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:56:51.108964", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.108964", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.108964", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.108964", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.108964", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.109934", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.029744001949438825, "avg_time_per_operation_ms": 0.0029744001949438825}}
+{"timestamp": "2025-12-04T05:56:51.109934", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.029744001949438825, "avg_time_per_operation_ms": 0.0029744001949438825}}
+{"timestamp": "2025-12-04T05:56:51.109934", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.029744001949438825, "avg_time_per_operation_ms": 0.0029744001949438825}}
+{"timestamp": "2025-12-04T05:56:51.109934", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.029744001949438825, "avg_time_per_operation_ms": 0.0029744001949438825}}
+{"timestamp": "2025-12-04T05:56:51.109934", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.029744001949438825, "avg_time_per_operation_ms": 0.0029744001949438825}}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.114020", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:56:51.115190", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.04, "p99_ms": 0.04, "min_ms": 0.0, "max_ms": 0.04}}
+{"timestamp": "2025-12-04T05:59:14.352652", "level": "INFO", "logger": "test_performance", "message": "세션 생성 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.353047", "level": "INFO", "logger": "test_performance", "message": "세션 생성 완료", "context": {"elapsed_ms": 0.01418200190528296, "target_ms": 100, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:59:14.357047", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.357047", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.357658", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.0016539997886866331, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:59:14.357658", "level": "INFO", "logger": "test_performance", "message": "청구항 제출 완료", "context": {"elapsed_ms": 0.0016539997886866331, "target_ms": 80, "status": "PASS"}}
+{"timestamp": "2025-12-04T05:59:14.360503", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.360503", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.360503", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 처리량 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.361354", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.031739000405650586, "avg_time_per_session_ms": 0.0031739000405650586, "throughput_sessions_per_sec": 315069.7839311811}}
+{"timestamp": "2025-12-04T05:59:14.361354", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.031739000405650586, "avg_time_per_session_ms": 0.0031739000405650586, "throughput_sessions_per_sec": 315069.7839311811}}
+{"timestamp": "2025-12-04T05:59:14.361354", "level": "INFO", "logger": "test_performance", "message": "대량 세션 생성 완료", "context": {"total_sessions": 10, "total_time_ms": 0.031739000405650586, "avg_time_per_session_ms": 0.0031739000405650586, "throughput_sessions_per_sec": 315069.7839311811}}
+{"timestamp": "2025-12-04T05:59:14.366143", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.366143", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.366143", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.366143", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.367247", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:59:14.367247", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:59:14.367247", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:59:14.367247", "level": "INFO", "logger": "test_performance", "message": "메모리 효율성 테스트 완료", "context": {"sessions_created": 10, "memory_used_mb": 0.01, "avg_memory_per_session_kb": 0.81}}
+{"timestamp": "2025-12-04T05:59:14.370464", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.370464", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.370464", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.370464", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.370464", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 성능 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.371672", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.057167002523783594, "avg_time_per_operation_ms": 0.0057167002523783594}}
+{"timestamp": "2025-12-04T05:59:14.371672", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.057167002523783594, "avg_time_per_operation_ms": 0.0057167002523783594}}
+{"timestamp": "2025-12-04T05:59:14.371672", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.057167002523783594, "avg_time_per_operation_ms": 0.0057167002523783594}}
+{"timestamp": "2025-12-04T05:59:14.371672", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.057167002523783594, "avg_time_per_operation_ms": 0.0057167002523783594}}
+{"timestamp": "2025-12-04T05:59:14.371672", "level": "INFO", "logger": "test_performance", "message": "동시 세션 처리 완료", "context": {"concurrent_sessions": 5, "total_time_ms": 0.057167002523783594, "avg_time_per_operation_ms": 0.0057167002523783594}}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.377279", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 테스트 시작"}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}
+{"timestamp": "2025-12-04T05:59:14.379227", "level": "INFO", "logger": "test_performance", "message": "응답 시간 백분위수 분석", "context": {"p50_ms": 0.0, "p95_ms": 0.03, "p99_ms": 0.03, "min_ms": 0.0, "max_ms": 0.03}}

@@ -29,18 +29,23 @@ class TestPythonVersionCompatibility:
         current_version = sys.version_info
         supported_versions = [(3, 9), (3, 10), (3, 11), (3, 12), (3, 13)]
 
-        is_supported = (current_version.major, current_version.minor) in supported_versions
+        is_supported = (
+            current_version.major,
+            current_version.minor,
+        ) in supported_versions
 
         logger.info(
             "Python 버전 확인",
             context={
                 "current_version": f"{current_version.major}.{current_version.minor}.{current_version.micro}",
                 "supported_versions": [f"{v[0]}.{v[1]}" for v in supported_versions],
-                "is_supported": is_supported
-            }
+                "is_supported": is_supported,
+            },
         )
 
-        assert is_supported, f"Python {current_version.major}.{current_version.minor}은 지원되지 않습니다"
+        assert (
+            is_supported
+        ), f"Python {current_version.major}.{current_version.minor}은 지원되지 않습니다"
 
     def test_builtin_modules_available(self, logger):
         """필수 내장 모듈 가용성 확인"""
@@ -73,8 +78,8 @@ class TestPythonVersionCompatibility:
                 context={
                     "total_required": len(required_modules),
                     "available": len(available_modules),
-                    "missing": missing_modules
-                }
+                    "missing": missing_modules,
+                },
             )
 
             assert len(missing_modules) == 0, f"누락된 모듈: {missing_modules}"
@@ -133,8 +138,8 @@ class TestOperatingSystemCompatibility:
                 "system": current_platform,
                 "release": current_version,
                 "machine": machine,
-                "supported": is_supported
-            }
+                "supported": is_supported,
+            },
         )
 
         assert is_supported, f"지원되지 않는 플랫폼: {current_platform}"
@@ -155,8 +160,8 @@ class TestOperatingSystemCompatibility:
                 "크로스 플랫폼 경로 연산 완료",
                 context={
                     "test_dir": str(test_dir),
-                    "test_files_found": len(test_files)
-                }
+                    "test_files_found": len(test_files),
+                },
             )
 
         except Exception as e:
@@ -220,7 +225,10 @@ class TestDependencyCompatibility:
                 try:
                     module = __import__(package)
                     version = getattr(module, "__version__", "unknown")
-                    available[package] = {"description": description, "version": version}
+                    available[package] = {
+                        "description": description,
+                        "version": version,
+                    }
                 except ImportError:
                     missing.append(package)
 
@@ -230,8 +238,8 @@ class TestDependencyCompatibility:
                     "total_required": len(core_dependencies),
                     "available": len(available),
                     "missing": missing,
-                    "packages": available
-                }
+                    "packages": available,
+                },
             )
 
             # 최소 80% 이상 의존성이 설치되어야 함
@@ -264,8 +272,8 @@ class TestDependencyCompatibility:
                 "선택적 의존성 확인 완료",
                 context={
                     "supported_features": len(supported_features),
-                    "features": supported_features
-                }
+                    "features": supported_features,
+                },
             )
 
         except Exception as e:
@@ -297,14 +305,18 @@ class TestGameEngineCompatibility:
                 session = engine.create_session(
                     session_id=f"consistency_test_{i}",
                     player_name="일관성테스터",
-                    level_id=1
+                    level_id=1,
                 )
 
-                results.append({
-                    "session_id": session.session_id,
-                    "has_current_level": session.current_level is not None,
-                    "claims_count": len(session.claims) if hasattr(session, "claims") else 0
-                })
+                results.append(
+                    {
+                        "session_id": session.session_id,
+                        "has_current_level": session.current_level is not None,
+                        "claims_count": (
+                            len(session.claims) if hasattr(session, "claims") else 0
+                        ),
+                    }
+                )
 
             # 모든 실행이 동일한 구조를 반환해야 함
             first_result = results[0]
@@ -314,7 +326,7 @@ class TestGameEngineCompatibility:
 
             logger.info(
                 "세션 생성 일관성 테스트 완료",
-                context={"runs": len(results), "consistent": True}
+                context={"runs": len(results), "consistent": True},
             )
 
         except Exception as e:
@@ -337,9 +349,7 @@ class TestGameEngineCompatibility:
             for idx, name in enumerate(unicode_names):
                 try:
                     session = engine.create_session(
-                        session_id=f"unicode_test_{idx}",
-                        player_name=name,
-                        level_id=1
+                        session_id=f"unicode_test_{idx}", player_name=name, level_id=1
                     )
 
                     assert session is not None
@@ -347,13 +357,13 @@ class TestGameEngineCompatibility:
 
                     logger.info(
                         "유니코드 이름 처리 성공",
-                        context={"input": name, "stored": session.player_name[:50]}
+                        context={"input": name, "stored": session.player_name[:50]},
                     )
 
                 except Exception as e:
                     logger.warning(
                         "유니코드 이름 처리 실패",
-                        context={"input": name, "error": str(e)[:100]}
+                        context={"input": name, "error": str(e)[:100]},
                     )
 
             logger.info("유니코드 처리 테스트 완료")
@@ -369,9 +379,7 @@ class TestGameEngineCompatibility:
         try:
             # 숫자 기반 연산이 로케일에 영향받지 않는지 확인
             session = engine.create_session(
-                session_id="locale_test",
-                player_name="로케일테스터",
-                level_id=1
+                session_id="locale_test", player_name="로케일테스터", level_id=1
             )
 
             # 숫자 문자열
@@ -382,8 +390,8 @@ class TestGameEngineCompatibility:
                 "로케일 독립성 테스트 완료",
                 context={
                     "claim_has_decimals": "." in numeric_claim,
-                    "claim_accepted": result
-                }
+                    "claim_accepted": result,
+                },
             )
 
         except Exception as e:
@@ -410,7 +418,7 @@ class TestDataFormatCompatibility:
             "boolean": True,
             "null": None,
             "array": [1, 2, 3],
-            "nested": {"key": "value"}
+            "nested": {"key": "value"},
         }
 
         try:
@@ -421,10 +429,7 @@ class TestDataFormatCompatibility:
 
             logger.info(
                 "JSON 직렬화 호환성 테스트 완료",
-                context={
-                    "serialized_length": len(json_str),
-                    "preserved": True
-                }
+                context={"serialized_length": len(json_str), "preserved": True},
             )
 
         except Exception as e:
@@ -445,8 +450,7 @@ class TestDataFormatCompatibility:
             assert ":" in timestamp, "시간 구분자 없음"
 
             logger.info(
-                "타임스탐프 형식 일관성 테스트 완료",
-                context={"timestamp": timestamp}
+                "타임스탐프 형식 일관성 테스트 완료", context={"timestamp": timestamp}
             )
 
         except Exception as e:

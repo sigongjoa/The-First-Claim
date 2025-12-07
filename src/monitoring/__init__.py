@@ -9,10 +9,10 @@ from src.monitoring.sentry_init import (
 )
 
 __all__ = [
-    'init_sentry',
-    'capture_message',
-    'capture_exception',
-    'set_user_context',
-    'set_context',
-    'set_tag',
+    "init_sentry",
+    "capture_message",
+    "capture_exception",
+    "set_user_context",
+    "set_context",
+    "set_tag",
 ]

@@ -1,2 +1,18 @@
 {"timestamp": "2025-12-04T05:19:40.747301", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
 {"timestamp": "2025-12-04T05:19:40.747633", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T05:50:26.782553", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:26.782910", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T05:54:46.039381", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.040138", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T05:54:56.053987", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.054295", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T05:57:02.587155", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.587518", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T06:01:16.787633", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T06:01:16.788017", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T06:03:14.543364", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T06:03:14.543680", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T06:11:36.406199", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T06:11:36.406575", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}
+{"timestamp": "2025-12-04T06:13:51.642602", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 에러 추적 테스트 시작"}
+{"timestamp": "2025-12-04T06:13:51.643122", "level": "INFO", "logger": "test_sentry_integration", "message": "Sentry 컨텍스트 설정 완료", "context": {"session_id": "test_sentry_001"}}

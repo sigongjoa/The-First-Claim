@@ -205,9 +205,7 @@ class ProjectIntroduction:
             # 3. 게임 세션 생성
             session_id = f"session_{uuid.uuid4().hex[:8]}"
             session = engine.create_session(
-                session_id=session_id,
-                player_name=player_name,
-                level_id=level_id
+                session_id=session_id, player_name=player_name, level_id=level_id
             )
 
             session.start_game(time.time())
@@ -271,14 +269,15 @@ class ProjectIntroduction:
 
         except Exception as e:
             from src.utils.logger import get_logger
+
             logger = get_logger("game_main")
             logger.error(
                 "Game session failed with exception",
                 error=e,
                 context={
                     "error_type": type(e).__name__,
-                    "traceback": traceback.format_exc()[:500]
-                }
+                    "traceback": traceback.format_exc()[:500],
+                },
             )
             print(f"\n❌ 게임 중 오류 발생: {e}")
             print("오류가 기록되었습니다. 관리자에게 문의해주세요.")
@@ -411,14 +410,15 @@ def main():
     except Exception as e:
         from src.utils.logger import get_logger
         import traceback
+
         logger = get_logger("main")
         logger.error(
             "Application crashed with unhandled exception",
             error=e,
             context={
                 "error_type": type(e).__name__,
-                "traceback": traceback.format_exc()[:1000]
-            }
+                "traceback": traceback.format_exc()[:1000],
+            },
         )
         print(f"\n❌ 오류 발생: {e}")
         print("문제가 발생했습니다. 관리자에게 문의해주세요.")

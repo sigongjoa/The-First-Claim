@@ -22,3 +22,27 @@
 {"timestamp": "2025-12-04T05:45:52.519002", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
 {"timestamp": "2025-12-04T05:45:52.519542", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
 {"timestamp": "2025-12-04T05:45:52.519542", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:50:27.126139", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.126552", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 완료", "context": {"session_id": "persistence_001", "data_persisted": true}}
+{"timestamp": "2025-12-04T05:50:27.129979", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.129979", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.130663", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:50:27.130663", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:54:46.332226", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.332486", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 완료", "context": {"session_id": "persistence_001", "data_persisted": true}}
+{"timestamp": "2025-12-04T05:54:46.334710", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.334710", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.335075", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:54:46.335075", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:54:56.360211", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.360553", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 완료", "context": {"session_id": "persistence_001", "data_persisted": true}}
+{"timestamp": "2025-12-04T05:54:56.363888", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.363888", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.364457", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:54:56.364457", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:57:02.879168", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.879545", "level": "INFO", "logger": "test_data_persistence", "message": "세션 저장 및 조회 완료", "context": {"session_id": "persistence_001", "data_persisted": true}}
+{"timestamp": "2025-12-04T05:57:02.882919", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.882919", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.883511", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}
+{"timestamp": "2025-12-04T05:57:02.883511", "level": "INFO", "logger": "test_data_persistence", "message": "동시 세션 저장 완료", "context": {"sessions_created": 5, "sessions_stored": 5}}

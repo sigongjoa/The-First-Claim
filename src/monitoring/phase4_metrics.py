@@ -20,7 +20,9 @@ class PerformanceMetrics:
     """성능 메트릭 수집"""
 
     @staticmethod
-    def record_operation_time(operation_name: str, elapsed_ms: float, tags: Optional[Dict] = None):
+    def record_operation_time(
+        operation_name: str, elapsed_ms: float, tags: Optional[Dict] = None
+    ):
         """작업 시간 기록"""
         try:
             with sentry_sdk.push_scope() as scope:
@@ -31,36 +33,40 @@ class PerformanceMetrics:
                         scope.set_tag(key, value)
 
                 # 성능 메트릭을 컨텍스트로 추가
-                scope.set_context("performance", {
-                    "operation": operation_name,
-                    "duration_ms": elapsed_ms,
-                    "timestamp": datetime.utcnow().isoformat()
-                })
+                scope.set_context(
+                    "performance",
+                    {
+                        "operation": operation_name,
+                        "duration_ms": elapsed_ms,
+                        "timestamp": datetime.utcnow().isoformat(),
+                    },
+                )
 
                 # 느린 작업은 경고
                 if operation_name == "session_creation" and elapsed_ms > 100:
                     sentry_sdk.capture_message(
-                        f"Slow session creation: {elapsed_ms}ms",
-                        level="warning"
+                        f"Slow session creation: {elapsed_ms}ms", level="warning"
                     )
                     logger.warning(
                         "느린 세션 생성",
-                        context={"operation": operation_name, "elapsed_ms": elapsed_ms}
+                        context={"operation": operation_name, "elapsed_ms": elapsed_ms},
                     )
 
                 elif operation_name == "claim_submission" and elapsed_ms > 80:
                     sentry_sdk.capture_message(
-                        f"Slow claim submission: {elapsed_ms}ms",
-                        level="warning"
+                        f"Slow claim submission: {elapsed_ms}ms", level="warning"
                     )
                     logger.warning(
                         "느린 청구항 제출",
-                        context={"operation": operation_name, "elapsed_ms": elapsed_ms}
+                        context={"operation": operation_name, "elapsed_ms": elapsed_ms},
                     )
 
                 logger.info(
                     f"작업 완료: {operation_name}",
-                    context={"operation": operation_name, "elapsed_ms": round(elapsed_ms, 2)}
+                    context={
+                        "operation": operation_name,
+                        "elapsed_ms": round(elapsed_ms, 2),
+                    },
                 )
 
         except Exception as e:
@@ -68,8 +74,12 @@ class PerformanceMetrics:
             raise
 
     @staticmethod
-    def record_throughput(operation_name: str, count: int, duration_seconds: float,
-                         tags: Optional[Dict] = None):
+    def record_throughput(
+        operation_name: str,
+        count: int,
+        duration_seconds: float,
+        tags: Optional[Dict] = None,
+    ):
         """처리량 기록"""
         try:
             throughput = count / duration_seconds if duration_seconds > 0 else 0
@@ -82,20 +92,23 @@ class PerformanceMetrics:
                     for key, value in tags.items():
                         scope.set_tag(key, value)
 
-                scope.set_context("throughput", {
-                    "operation": operation_name,
-                    "count": count,
-                    "duration_seconds": duration_seconds,
-                    "ops_per_second": round(throughput, 2)
-                })
+                scope.set_context(
+                    "throughput",
+                    {
+                        "operation": operation_name,
+                        "count": count,
+                        "duration_seconds": duration_seconds,
+                        "ops_per_second": round(throughput, 2),
+                    },
+                )
 
                 logger.info(
                     f"처리량: {operation_name}",
                     context={
                         "operation": operation_name,
                         "count": count,
-                        "ops_per_sec": round(throughput, 2)
-                    }
+                        "ops_per_sec": round(throughput, 2),
+                    },
                 )
 
         except Exception as e:
@@ -103,8 +116,9 @@ class PerformanceMetrics:
             raise
 
     @staticmethod
-    def record_memory_usage(operation_name: str, memory_mb: float,
-                           tags: Optional[Dict] = None):
+    def record_memory_usage(
+        operation_name: str, memory_mb: float, tags: Optional[Dict] = None
+    ):
         """메모리 사용량 기록"""
         try:
             with sentry_sdk.push_scope() as scope:
@@ -115,25 +129,31 @@ class PerformanceMetrics:
                     for key, value in tags.items():
                         scope.set_tag(key, value)
 
-                scope.set_context("memory", {
-                    "operation": operation_name,
-                    "memory_mb": round(memory_mb, 2)
-                })
+                scope.set_context(
+                    "memory",
+                    {"operation": operation_name, "memory_mb": round(memory_mb, 2)},
+                )
 
                 # 과도한 메모리 사용은 경고
                 if memory_mb > 100:
                     sentry_sdk.capture_message(
                         f"High memory usage in {operation_name}: {memory_mb}MB",
-                        level="warning"
+                        level="warning",
                     )
                     logger.warning(
                         f"높은 메모리 사용: {operation_name}",
-                        context={"operation": operation_name, "memory_mb": round(memory_mb, 2)}
+                        context={
+                            "operation": operation_name,
+                            "memory_mb": round(memory_mb, 2),
+                        },
                     )
                 else:
                     logger.info(
                         f"메모리 사용: {operation_name}",
-                        context={"operation": operation_name, "memory_mb": round(memory_mb, 2)}
+                        context={
+                            "operation": operation_name,
+                            "memory_mb": round(memory_mb, 2),
+                        },
                     )
 
         except Exception as e:
@@ -156,28 +176,26 @@ class SecurityMetrics:
 
                 if severity == "critical":
                     sentry_sdk.capture_message(
-                        f"Critical Security Event: {event_type}",
-                        level="error"
+                        f"Critical Security Event: {event_type}", level="error"
                     )
                     logger.error(
                         f"보안 이벤트: {event_type}",
-                        context={"severity": severity, "details": details}
+                        context={"severity": severity, "details": details},
                     )
 
                 elif severity == "high":
                     sentry_sdk.capture_message(
-                        f"High Severity Security Event: {event_type}",
-                        level="warning"
+                        f"High Severity Security Event: {event_type}", level="warning"
                     )
                     logger.warning(
                         f"보안 이벤트: {event_type}",
-                        context={"severity": severity, "details": details}
+                        context={"severity": severity, "details": details},
                     )
 
                 else:
                     logger.info(
                         f"보안 이벤트: {event_type}",
-                        context={"severity": severity, "details": details}
+                        context={"severity": severity, "details": details},
                     )
 
         except Exception as e:
@@ -194,8 +212,8 @@ class SecurityMetrics:
                 "input_type": input_type,
                 "value": value[:50] if value else "",  # 민감한 데이터 마스킹
                 "reason": reason,
-                "timestamp": datetime.utcnow().isoformat()
-            }
+                "timestamp": datetime.utcnow().isoformat(),
+            },
         )
 
     @staticmethod
@@ -207,8 +225,8 @@ class SecurityMetrics:
             details={
                 "session_id": session_id,
                 "action": action,
-                "timestamp": datetime.utcnow().isoformat()
-            }
+                "timestamp": datetime.utcnow().isoformat(),
+            },
         )
 
     @staticmethod
@@ -222,13 +240,14 @@ class SecurityMetrics:
                 "entity_type": entity_type,
                 "entity_id": entity_id,
                 "status": status,
-                "timestamp": datetime.utcnow().isoformat()
-            }
+                "timestamp": datetime.utcnow().isoformat(),
+            },
         )
 
 
 def performance_metric(operation_name: str):
     """성능 메트릭 데코레이터"""
+
     def decorator(func: Callable):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -244,7 +263,9 @@ def performance_metric(operation_name: str):
                 if kwargs:
                     tags["has_kwargs"] = True
 
-                PerformanceMetrics.record_operation_time(operation_name, elapsed_ms, tags)
+                PerformanceMetrics.record_operation_time(
+                    operation_name, elapsed_ms, tags
+                )
 
                 return result
 
@@ -253,16 +274,18 @@ def performance_metric(operation_name: str):
                 logger.error(
                     f"작업 실패: {operation_name}",
                     error=e,
-                    context={"elapsed_ms": round(elapsed_ms, 2)}
+                    context={"elapsed_ms": round(elapsed_ms, 2)},
                 )
                 raise
 
         return wrapper
+
     return decorator
 
 
 def security_check(check_type: str):
     """보안 검사 데코레이터"""
+
     def decorator(func: Callable):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -271,8 +294,7 @@ def security_check(check_type: str):
 
                 # 검사 통과
                 logger.info(
-                    f"보안 검사 통과: {check_type}",
-                    context={"check_type": check_type}
+                    f"보안 검사 통과: {check_type}", context={"check_type": check_type}
                 )
 
                 return result
@@ -281,20 +303,18 @@ def security_check(check_type: str):
                 logger.error(
                     f"보안 검사 실패: {check_type}",
                     error=e,
-                    context={"check_type": check_type}
+                    context={"check_type": check_type},
                 )
 
                 SecurityMetrics.record_security_event(
                     event_type=f"security_check_failed_{check_type}",
                     severity="high",
-                    details={
-                        "check_type": check_type,
-                        "error": str(e)[:100]
-                    }
+                    details={"check_type": check_type, "error": str(e)[:100]},
                 )
                 raise
 
         return wrapper
+
     return decorator
 
 
@@ -330,8 +350,8 @@ class AlertThresholds:
                 context={
                     "operation": operation_name,
                     "elapsed_ms": round(elapsed_ms, 2),
-                    "threshold_ms": threshold
-                }
+                    "threshold_ms": threshold,
+                },
             )
             return True
 
@@ -342,15 +362,13 @@ class AlertThresholds:
         """메모리 경고 확인"""
         if memory_mb > AlertThresholds.CRITICAL_MEMORY_USAGE:
             logger.critical(
-                "중대한 메모리 경고",
-                context={"memory_mb": round(memory_mb, 2)}
+                "중대한 메모리 경고", context={"memory_mb": round(memory_mb, 2)}
             )
             return True
 
         elif memory_mb > AlertThresholds.HIGH_MEMORY_USAGE:
             logger.warning(
-                "높은 메모리 경고",
-                context={"memory_mb": round(memory_mb, 2)}
+                "높은 메모리 경고", context={"memory_mb": round(memory_mb, 2)}
             )
             return True
 

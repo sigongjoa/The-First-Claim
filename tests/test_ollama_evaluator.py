@@ -42,7 +42,9 @@ class TestOllamaEvaluatorSetup:
         # is_available()이 False를 반환하면 명시적으로 실패
         # pytest.skip() 없음 - 실제 상태를 보여줌
         is_available = evaluator.is_available()
-        assert is_available, "❌ Ollama 서버가 실행 중이 아닙니다. http://localhost:11434 확인하세요."
+        assert (
+            is_available
+        ), "❌ Ollama 서버가 실행 중이 아닙니다. http://localhost:11434 확인하세요."
         print(f"✅ Ollama 서버 사용 가능")
 
 
@@ -135,7 +137,9 @@ class TestOllamaClaimEvaluation:
 
         print(f"\n📝 다중 청구항 평가:")
         for result in results:
-            print(f"   청구항 {result.claim_number}: {result.get_overall_score():.2f}/1.0")
+            print(
+                f"   청구항 {result.claim_number}: {result.get_overall_score():.2f}/1.0"
+            )
 
     def test_edge_case_very_short_claim(self, evaluator):
         """엣지 케이스: 매우 짧은 청구항"""
@@ -265,13 +269,16 @@ class TestOllamaUseCase:
     def test_use_case_battery_patent(self, evaluator):
         """사용 사례: 배터리 특허 청구항"""
         battery_claims = {
-            1: ("independent",
+            1: (
+                "independent",
                 "고성능 리튬 배터리 장치는 양극 단자, 음극 단자, 전해질, "
-                "분리막을 포함하고, 상기 양극은 리튬코발트산화물로 이루어진다"),
-            2: ("dependent",
-                "제1항의 배터리 장치에서 음극은 흑연 재료로 이루어진다"),
-            3: ("dependent",
-                "제1항의 배터리 장치에서 전해질은 유기용매에 용해된 리튬염이다"),
+                "분리막을 포함하고, 상기 양극은 리튬코발트산화물로 이루어진다",
+            ),
+            2: ("dependent", "제1항의 배터리 장치에서 음극은 흑연 재료로 이루어진다"),
+            3: (
+                "dependent",
+                "제1항의 배터리 장치에서 전해질은 유기용매에 용해된 리튬염이다",
+            ),
         }
 
         results = evaluator.evaluate_claims(battery_claims)
@@ -279,9 +286,11 @@ class TestOllamaUseCase:
         assert len(results) == 3
         print(f"\n🔋 배터리 특허 청구항 평가 결과:")
         for result in results:
-            print(f"   청구항 {result.claim_number}: "
-                  f"{'✅' if result.is_approvable else '❌'} "
-                  f"({result.get_overall_score():.2f}/1.0)")
+            print(
+                f"   청구항 {result.claim_number}: "
+                f"{'✅' if result.is_approvable else '❌'} "
+                f"({result.get_overall_score():.2f}/1.0)"
+            )
 
     def test_use_case_method_patent(self, evaluator):
         """사용 사례: 방법 특허 청구항"""

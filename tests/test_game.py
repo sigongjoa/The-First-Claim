@@ -186,8 +186,9 @@ class TestGameSession:
             current_level=level,
         )
 
-        claim = "배터리 장치는 양극, 음극, 전해질을 포함한다"
-        session.submit_claim(claim)
+        claim = "배터리 장치는 양극, 음극, 전해질을 포함하여 구성된다"  # 30자 이상
+        result = session.submit_claim(claim)
+        assert result is True  # 제출 성공 검증
 
         assert len(session.submitted_claims) == 1
         assert session.submitted_claims[0] == claim
@@ -209,8 +210,9 @@ class TestGameSession:
             current_level=level,
         )
 
-        with pytest.raises(ValueError):
-            session.submit_claim("")
+        result = session.submit_claim("")
+        assert result is False
+        assert len(session.claims) == 0
 
     def test_complete_game(self):
         """게임 종료"""
@@ -300,7 +302,9 @@ class TestGameEngine:
             level_id=1,
         )
 
-        session.submit_claim("배터리 장치는 양극, 음극, 전해질을 포함한다")
+        session.submit_claim(
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
+        )
 
         success, feedback, details = engine.evaluate_claims("session_001")
 
@@ -397,7 +401,9 @@ class TestGameScenarios:
         assert session.status == GameStatus.IN_PROGRESS
 
         # 3. 청구항 제출
-        session.submit_claim("배터리 장치는 양극, 음극, 전해질을 포함한다")
+        session.submit_claim(
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
+        )
 
         # 4. 평가
         success, feedback, details = engine.evaluate_claims("game_001")
@@ -419,7 +425,9 @@ class TestGameScenarios:
             level_id=1,
         )
 
-        session1.submit_claim("배터리 장치는 양극, 음극, 전해질을 포함한다")
+        session1.submit_claim(
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
+        )
         success1, _, _ = engine.evaluate_claims("game_001")
 
         assert success1 is True
@@ -431,9 +439,15 @@ class TestGameScenarios:
             level_id=2,
         )
 
-        session2.submit_claim("배터리 장치는 양극, 음극, 전해질을 포함한다")
-        session2.submit_claim("제1항의 배터리에서 양극은 리튬 함유 물질로 이루어진다")
-        session2.submit_claim("제1항의 배터리에서 음극은 흑연으로 이루어진다")
+        session2.submit_claim(
+            "배터리 장치는 양극, 음극, 전해질을 포함하며 효율적인 에너지 저장이 가능하다"
+        )
+        session2.submit_claim(
+            "제1항의 배터리 장치에 있어서, 상기 양극은 리튬 함유 물질을 포함하는 배터리 장치"
+        )
+        session2.submit_claim(
+            "제1항의 배터리 장치에 있어서, 상기 음극은 흑연 재료를 포함하는 배터리 장치"
+        )
 
         success2, _, _ = engine.evaluate_claims("game_002")
 

@@ -7,7 +7,7 @@ Game Interface - 청구항 작성 게임
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 from enum import Enum
 from datetime import datetime
 
@@ -45,7 +45,7 @@ class GameLevel:
     difficulty: Difficulty
     target_claims: int  # 작성해야 할 청구항 개수
     time_limit: int = 300  # 초 단위
-    success_criteria: Dict[str, any] = field(default_factory=dict)
+    success_criteria: Dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         """레벨 검증"""
@@ -201,10 +201,11 @@ class GameEngine:
                 self.llm_evaluator = get_llm_evaluator()
             except (ImportError, ValueError) as e:
                 from src.utils.logger import get_logger
+
                 logger = get_logger("game_engine")
                 logger.warning(
                     "LLM 모드 초기화 실패 - Fallback to basic mode",
-                    context={"error": str(e)[:200]}
+                    context={"error": str(e)[:200]},
                 )
                 self.use_llm = False
 
@@ -267,7 +268,7 @@ class GameEngine:
 
     def evaluate_claims(
         self, session_id: str
-    ) -> Tuple[bool, List[str], Dict[str, any]]:
+    ) -> Tuple[bool, List[str], Dict[str, Any]]:
         """청구항 평가 (검증 + 평가 엔진 통합)
 
         검증 단계:
@@ -282,7 +283,7 @@ class GameEngine:
             raise ValueError(f"세션을 찾을 수 없습니다: {session_id}")
 
         feedback = []
-        details = {
+        details: Dict[str, Any] = {
             "total_submitted": len(session.submitted_claims),
             "required": session.current_level.target_claims,
             "validation_results": [],
@@ -299,9 +300,7 @@ class GameEngine:
             success = False
             return success, feedback, details
 
-        feedback.append(
-            f"✅ 청구항 {len(session.submitted_claims)}개 제출됨"
-        )
+        feedback.append(f"✅ 청구항 {len(session.submitted_claims)}개 제출됨")
 
         # 2단계: 각 청구항의 문법/구조 검증 (ClaimValidator 사용)
         all_valid = True
@@ -313,18 +312,18 @@ class GameEngine:
 
             # 검증 실행
             validation_result = self.validator.validate_claim_content(
-                claim_number=i,
-                claim_type=claim_type,
-                content=claim
+                claim_number=i, claim_type=claim_type, content=claim
             )
 
-            details["validation_results"].append({
-                "claim_number": i,
-                "claim_type": claim_type,
-                "is_valid": validation_result.is_valid,
-                "errors": [str(e) for e in validation_result.errors],
-                "warnings": [str(w) for w in validation_result.warnings],
-            })
+            details["validation_results"].append(
+                {
+                    "claim_number": i,
+                    "claim_type": claim_type,
+                    "is_valid": validation_result.is_valid,
+                    "errors": [str(e) for e in validation_result.errors],
+                    "warnings": [str(w) for w in validation_result.warnings],
+                }
+            )
 
             if validation_result.is_valid:
                 feedback.append(f"✅ 청구항 {i}: 검증 통과")
@@ -349,10 +348,12 @@ class GameEngine:
                 invention_features.extend(features)
 
             # 평가 실행 (tuple 반환: novelty_result, inventive_step_result, overall_opinion)
-            novelty_result, inventive_step_result, overall_opinion = self.evaluator.evaluate(
-                invention_features=list(set(invention_features)),  # 중복 제거
-                technical_field="전자기술",  # 기본값
-                prior_art_count=0  # 선행기술 데이터가 없으므로 0
+            novelty_result, inventive_step_result, overall_opinion = (
+                self.evaluator.evaluate(
+                    invention_features=list(set(invention_features)),  # 중복 제거
+                    technical_field="전자기술",  # 기본값
+                    prior_art_count=0,  # 선행기술 데이터가 없으므로 0
+                )
             )
 
             details["evaluation_results"] = {
@@ -371,10 +372,12 @@ class GameEngine:
                 feedback.append(f"\n📚 관련 특허법:")
                 for ref in patent_law_refs[:3]:  # 최대 3개
                     feedback.append(f"   • {ref.article_number}: {ref.title}")
-                    details["patent_law_references"].append({
-                        "article_number": ref.article_number,
-                        "title": ref.title,
-                    })
+                    details["patent_law_references"].append(
+                        {
+                            "article_number": ref.article_number,
+                            "title": ref.title,
+                        }
+                    )
 
         # 최종 판정
         success = all_valid and valid_count >= session.current_level.target_claims
@@ -394,7 +397,7 @@ class GameEngine:
 
     def evaluate_claims_with_llm(
         self, session_id: str
-    ) -> Tuple[bool, List[str], Dict[str, any]]:
+    ) -> Tuple[bool, List[str], Dict[str, Any]]:
         """LLM 기반 청구항 평가
 
         한국 특허법을 기반으로 Claude AI가 청구항을 평가합니다.
@@ -410,7 +413,7 @@ class GameEngine:
             raise ValueError(f"세션을 찾을 수 없습니다: {session_id}")
 
         feedback = []
-        details = {
+        details: Dict[str, Any] = {
             "total_submitted": len(session.submitted_claims),
             "required": session.current_level.target_claims,
             "llm_evaluations": [],
@@ -425,9 +428,7 @@ class GameEngine:
             )
             return False, feedback, details
 
-        feedback.append(
-            f"✅ 청구항 {len(session.submitted_claims)}개 제출됨\n"
-        )
+        feedback.append(f"✅ 청구항 {len(session.submitted_claims)}개 제출됨\n")
         feedback.append("🤖 LLM 기반 평가 진행 중...\n")
 
         # LLM으로 청구항 평가
@@ -444,9 +445,13 @@ class GameEngine:
 
             for result in llm_results:
                 feedback.append(f"\n📝 청구항 {result.claim_number} 평가:")
-                feedback.append(f"   상태: {'✅ 등록 가능' if result.is_approvable else '❌ 등록 불가'}")
+                feedback.append(
+                    f"   상태: {'✅ 등록 가능' if result.is_approvable else '❌ 등록 불가'}"
+                )
                 feedback.append(f"   종합 점수: {result.get_overall_score():.2f}/1.0")
-                feedback.append(f"   승인 확률: {result.estimated_approval_probability:.1%}")
+                feedback.append(
+                    f"   승인 확률: {result.estimated_approval_probability:.1%}"
+                )
 
                 # 강점/약점/개선방안
                 if result.strengths:
@@ -466,17 +471,21 @@ class GameEngine:
 
                 # 관련 법률
                 if result.relevant_articles:
-                    feedback.append(f"   관련 특허법: {', '.join(result.relevant_articles)}")
+                    feedback.append(
+                        f"   관련 특허법: {', '.join(result.relevant_articles)}"
+                    )
 
                 feedback.append(f"   의견: {result.overall_opinion}")
 
-                details["llm_evaluations"].append({
-                    "claim_number": result.claim_number,
-                    "is_approvable": result.is_approvable,
-                    "overall_score": result.get_overall_score(),
-                    "approval_probability": result.estimated_approval_probability,
-                    "opinion": result.overall_opinion,
-                })
+                details["llm_evaluations"].append(
+                    {
+                        "claim_number": result.claim_number,
+                        "is_approvable": result.is_approvable,
+                        "overall_score": result.get_overall_score(),
+                        "approval_probability": result.estimated_approval_probability,
+                        "opinion": result.overall_opinion,
+                    }
+                )
 
                 if not result.is_approvable:
                     all_approvable = False
@@ -484,7 +493,10 @@ class GameEngine:
                 total_score += result.get_overall_score()
 
             # 최종 판정
-            success = all_approvable and len(llm_results) >= session.current_level.target_claims
+            success = (
+                all_approvable
+                and len(llm_results) >= session.current_level.target_claims
+            )
             details["overall_success"] = success
 
             if success:
@@ -504,6 +516,7 @@ class GameEngine:
 
         except Exception as e:
             from src.utils.logger import get_logger
+
             logger = get_logger("game_engine")
             logger.error(
                 "LLM claim evaluation failed",
@@ -511,8 +524,8 @@ class GameEngine:
                 context={
                     "session_id": session.session_id,
                     "claims_count": len(session.submitted_claims),
-                    "error_type": type(e).__name__
-                }
+                    "error_type": type(e).__name__,
+                },
             )
             feedback.append(f"\n❌ LLM 평가 중 오류 발생: {e}")
             # Re-raise the exception to let caller know about the failure

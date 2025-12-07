@@ -178,3 +178,183 @@
 {"timestamp": "2025-12-04T05:45:52.535729", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
 {"timestamp": "2025-12-04T05:45:52.535729", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
 {"timestamp": "2025-12-04T05:45:52.535729", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.134127", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.134556", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 짧음 (29자)", "context": {"claim_length": 29, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:50:27.134819", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최소 길이 (30자)", "context": {"claim_length": 30, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:50:27.135010", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 정상 길이 (500자)", "context": {"claim_length": 500, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:50:27.135171", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최대 길이 (1000자)", "context": {"claim_length": 1000, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:50:27.135385", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 김 (1001자)", "context": {"claim_length": 1001, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:50:27.135740", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.138901", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.138901", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.139335", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:50:27.139335", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:50:27.139728", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:50:27.139728", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:50:27.140123", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:50:27.140123", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:50:27.140504", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:50:27.140504", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:50:27.141063", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:50:27.141063", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:50:27.141625", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.141625", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.145068", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.145068", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.145068", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:50:27.145840", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:50:27.145840", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:50:27.145840", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:50:27.146368", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:50:27.146368", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:50:27.146368", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:50:27.146850", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:50:27.146850", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:50:27.146850", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:50:27.147227", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:50:27.147227", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:50:27.147227", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:50:27.147706", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:50:27.147706", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:50:27.147706", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:50:27.148144", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:50:27.148144", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:50:27.148144", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:50:27.148522", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.148522", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:50:27.148522", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.338015", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.338356", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 짧음 (29자)", "context": {"claim_length": 29, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:54:46.338590", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최소 길이 (30자)", "context": {"claim_length": 30, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:46.338773", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 정상 길이 (500자)", "context": {"claim_length": 500, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:46.338979", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최대 길이 (1000자)", "context": {"claim_length": 1000, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:46.339143", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 김 (1001자)", "context": {"claim_length": 1001, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:54:46.339330", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.342710", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.342710", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.343425", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:54:46.343425", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:54:46.343877", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:54:46.343877", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:54:46.344426", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:54:46.344426", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:54:46.344870", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:54:46.344870", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:54:46.345187", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:54:46.345187", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:54:46.345498", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.345498", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.348326", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.348326", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.348326", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:46.348819", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:46.348819", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:46.348819", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:46.349215", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:46.349215", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:46.349215", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:46.349609", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:46.349609", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:46.349609", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:46.349975", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:46.349975", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:46.349975", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:46.350317", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:46.350317", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:46.350317", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:46.350820", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:46.350820", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:46.350820", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:46.351308", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.351308", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:46.351308", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.367383", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.367618", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 짧음 (29자)", "context": {"claim_length": 29, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:54:56.367795", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최소 길이 (30자)", "context": {"claim_length": 30, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:56.367949", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 정상 길이 (500자)", "context": {"claim_length": 500, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:56.368095", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최대 길이 (1000자)", "context": {"claim_length": 1000, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:54:56.368244", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 김 (1001자)", "context": {"claim_length": 1001, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:54:56.368394", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.370945", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.370945", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.371526", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:54:56.371526", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:54:56.371989", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:54:56.371989", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:54:56.372596", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:54:56.372596", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:54:56.373105", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:54:56.373105", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:54:56.373552", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:54:56.373552", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:54:56.374048", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.374048", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.376878", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.376878", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.376878", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:54:56.377673", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:56.377673", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:56.377673", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:54:56.378917", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:56.378917", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:56.378917", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:54:56.379725", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:56.379725", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:56.379725", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:54:56.380348", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:56.380348", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:56.380348", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:54:56.380911", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:56.380911", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:56.380911", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:54:56.381341", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:56.381341", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:56.381341", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:54:56.381769", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.381769", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:54:56.381769", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.886665", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.886972", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 짧음 (29자)", "context": {"claim_length": 29, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:57:02.887194", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최소 길이 (30자)", "context": {"claim_length": 30, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:57:02.887354", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 정상 길이 (500자)", "context": {"claim_length": 500, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:57:02.887504", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 최대 길이 (1000자)", "context": {"claim_length": 1000, "expected": true, "actual": true, "valid": true}}
+{"timestamp": "2025-12-04T05:57:02.887650", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증: 너무 김 (1001자)", "context": {"claim_length": 1001, "expected": false, "actual": false, "valid": true}}
+{"timestamp": "2025-12-04T05:57:02.887789", "level": "INFO", "logger": "test_data_validation", "message": "청구항 길이 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.890185", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.890185", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.890736", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:57:02.890736", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_001"}
+{"timestamp": "2025-12-04T05:57:02.891150", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:57:02.891150", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session-002"}
+{"timestamp": "2025-12-04T05:57:02.891546", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:57:02.891546", "level": "INFO", "logger": "test_data_validation", "message": "유효한 세션 ID 인정: session_test_003"}
+{"timestamp": "2025-12-04T05:57:02.891951", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:57:02.891951", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: "}
+{"timestamp": "2025-12-04T05:57:02.892537", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:57:02.892537", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 세션 ID 거부됨: None"}
+{"timestamp": "2025-12-04T05:57:02.892963", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.892963", "level": "INFO", "logger": "test_data_validation", "message": "세션 ID 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.895487", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.895487", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.895487", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 테스트 시작"}
+{"timestamp": "2025-12-04T05:57:02.896001", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:57:02.896001", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:57:02.896001", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 플레이어"}
+{"timestamp": "2025-12-04T05:57:02.896546", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:57:02.896546", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:57:02.896546", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 김특허"}
+{"timestamp": "2025-12-04T05:57:02.897160", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:57:02.897160", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:57:02.897160", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: Player123"}
+{"timestamp": "2025-12-04T05:57:02.897768", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:57:02.897768", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:57:02.897768", "level": "INFO", "logger": "test_data_validation", "message": "유효한 플레이어명 인정: 李 발明"}
+{"timestamp": "2025-12-04T05:57:02.898146", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:57:02.898146", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:57:02.898146", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨: "}
+{"timestamp": "2025-12-04T05:57:02.898937", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:57:02.898937", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:57:02.898937", "level": "INFO", "logger": "test_data_validation", "message": "유효하지 않은 플레이어명 거부됨:    "}
+{"timestamp": "2025-12-04T05:57:02.899642", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.899642", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
+{"timestamp": "2025-12-04T05:57:02.899642", "level": "INFO", "logger": "test_data_validation", "message": "플레이어명 검증 완료"}
