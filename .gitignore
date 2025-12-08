@@ -53,3 +53,13 @@ yarn-error.log
 # OS
 Thumbs.db
 .DS_Store
+
+# Testing & Mutation
+.hypothesis/
+mutants/
+.coverage
+coverage.xml
+htmlcov/
+
+# Test logs
+logs/*.log
