@@ -178,6 +178,82 @@ class GameSession:
             f"{self.status.value}"
         )
 
+    def to_dict(self) -> Dict[str, Any]:
+        """세션을 딕셔너리로 변환 (직렬화용)
+
+        Returns:
+            직렬화된 세션 데이터
+        """
+        return {
+            "session_id": self.session_id,
+            "player": {
+                "player_name": self.player.player_name,
+                "current_level": self.player.current_level,
+                "completed_levels": self.player.completed_levels,
+                "total_score": self.player.total_score,
+                "created_claims": self.player.created_claims,
+                "accuracy": self.player.accuracy,
+            },
+            "current_level": {
+                "level_id": self.current_level.level_id,
+                "title": self.current_level.title,
+                "description": self.current_level.description,
+                "difficulty": self.current_level.difficulty.value,
+                "target_claims": self.current_level.target_claims,
+                "time_limit": self.current_level.time_limit,
+            },
+            "status": self.status.value,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "submitted_claims": self.submitted_claims,
+            "feedback": self.feedback,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> GameSession:
+        """딕셔너리에서 세션 복원 (역직렬화용)
+
+        Args:
+            data: 직렬화된 세션 데이터
+
+        Returns:
+            복원된 GameSession 객체
+        """
+        # PlayerProgress 복원
+        player = PlayerProgress(
+            player_name=data["player"]["player_name"],
+            current_level=data["player"]["current_level"],
+            completed_levels=data["player"]["completed_levels"],
+            total_score=data["player"]["total_score"],
+            created_claims=data["player"]["created_claims"],
+            accuracy=data["player"]["accuracy"],
+        )
+
+        # GameLevel 복원
+        level_data = data["current_level"]
+        current_level = GameLevel(
+            level_id=level_data["level_id"],
+            title=level_data["title"],
+            description=level_data["description"],
+            difficulty=Difficulty(level_data["difficulty"]),
+            target_claims=level_data["target_claims"],
+            time_limit=level_data["time_limit"],
+        )
+
+        # GameSession 복원
+        session = cls(
+            session_id=data["session_id"],
+            player=player,
+            current_level=current_level,
+            status=GameStatus(data["status"]),
+            start_time=data.get("start_time"),
+            end_time=data.get("end_time"),
+            submitted_claims=data.get("submitted_claims", []),
+            feedback=data.get("feedback", []),
+        )
+
+        return session
+
 
 class GameEngine:
     """게임 엔진"""
