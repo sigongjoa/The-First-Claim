@@ -1,0 +1,1 @@
+{"timestamp": "2025-12-08T04:18:04.151101", "level": "INFO", "logger": "test_property_based", "message": "유효하지 않은 입력 감지", "context": {"error": "player_name은 비어있지 않아야 합니다"}}

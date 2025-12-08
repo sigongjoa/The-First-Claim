@@ -268,3 +268,63 @@
 {"timestamp": "2025-12-04T06:13:51.622226", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
 {"timestamp": "2025-12-04T06:13:51.622226", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
 {"timestamp": "2025-12-04T06:13:51.622226", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.479270", "level": "INFO", "logger": "test_claim_submission", "message": "청구항 제출 시작", "context": {"session_id": "test_claim_001", "claim_length": 35}}
+{"timestamp": "2025-12-08T04:02:29.481002", "level": "INFO", "logger": "test_claim_submission", "message": "청구항 제출 완료", "context": {"session_id": "test_claim_001", "result": true, "total_claims": 1}}
+{"timestamp": "2025-12-08T04:02:29.484659", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 거부 테스트", "context": {"session_id": "test_claim_001"}}
+{"timestamp": "2025-12-08T04:02:29.484659", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 거부 테스트", "context": {"session_id": "test_claim_001"}}
+{"timestamp": "2025-12-08T04:02:29.485138", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 올바르게 거부됨", "context": {"session_id": "test_claim_001", "result": false}}
+{"timestamp": "2025-12-08T04:02:29.485138", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 올바르게 거부됨", "context": {"session_id": "test_claim_001", "result": false}}
+{"timestamp": "2025-12-08T04:02:29.489206", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.489206", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.489206", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.489910", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.489910", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.489910", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490333", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490333", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490333", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490736", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490736", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.490736", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:02:29.491179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.491179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.491179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.491603", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.491603", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.491603", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492173", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492173", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492173", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492644", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492644", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:02:29.492644", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.758192", "level": "INFO", "logger": "test_claim_submission", "message": "청구항 제출 시작", "context": {"session_id": "test_claim_001", "claim_length": 35}}
+{"timestamp": "2025-12-08T04:15:16.758512", "level": "INFO", "logger": "test_claim_submission", "message": "청구항 제출 완료", "context": {"session_id": "test_claim_001", "result": true, "total_claims": 1}}
+{"timestamp": "2025-12-08T04:15:16.760857", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 거부 테스트", "context": {"session_id": "test_claim_001"}}
+{"timestamp": "2025-12-08T04:15:16.760857", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 거부 테스트", "context": {"session_id": "test_claim_001"}}
+{"timestamp": "2025-12-08T04:15:16.761224", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 올바르게 거부됨", "context": {"session_id": "test_claim_001", "result": false}}
+{"timestamp": "2025-12-08T04:15:16.761224", "level": "INFO", "logger": "test_claim_submission", "message": "빈 청구항 올바르게 거부됨", "context": {"session_id": "test_claim_001", "result": false}}
+{"timestamp": "2025-12-08T04:15:16.763669", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.763669", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.763669", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 빈 청구항", "context": {"session_id": "test_claim_001", "claim_length": 0, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.764546", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.764546", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.764546", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 빈 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765179", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 너무 짧은 청구항", "context": {"session_id": "test_claim_001", "claim_length": 3, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765742", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765742", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.765742", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 너무 짧은 청구항", "context": {"result": false, "expected": false}}
+{"timestamp": "2025-12-08T04:15:16.766291", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.766291", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.766291", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 정상 길이", "context": {"session_id": "test_claim_001", "claim_length": 17, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.766873", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.766873", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.766873", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 정상 길이", "context": {"result": false, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767284", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767284", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767284", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트: 긴 청구항", "context": {"session_id": "test_claim_001", "claim_length": 400, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767733", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767733", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}
+{"timestamp": "2025-12-08T04:15:16.767733", "level": "INFO", "logger": "test_claim_submission", "message": "경계값 테스트 완료: 긴 청구항", "context": {"result": true, "expected": true}}

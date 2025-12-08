@@ -103,3 +103,63 @@
 {"timestamp": "2025-12-04T05:59:21.215525", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 21, "injection_risks_found": 0}}
 {"timestamp": "2025-12-04T05:59:21.215525", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 21, "injection_risks_found": 0}}
 {"timestamp": "2025-12-04T05:59:21.215525", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 21, "injection_risks_found": 0}}
+{"timestamp": "2025-12-07T15:16:17.085115", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 시작"}
+{"timestamp": "2025-12-07T15:16:17.907521", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 완료", "context": {"files_scanned": 26, "secrets_found": 0}}
+{"timestamp": "2025-12-07T15:16:17.910815", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-07T15:16:17.910815", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-07T15:16:18.224458", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 26, "dangerous_found": 0}}
+{"timestamp": "2025-12-07T15:16:18.224458", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 26, "dangerous_found": 0}}
+{"timestamp": "2025-12-07T15:16:18.227542", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-07T15:16:18.227542", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-07T15:16:18.227542", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-07T15:16:18.415037", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 26, "files_with_validation": 12, "coverage_percent": 46.15384615384615}}
+{"timestamp": "2025-12-07T15:16:18.415037", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 26, "files_with_validation": 12, "coverage_percent": 46.15384615384615}}
+{"timestamp": "2025-12-07T15:16:18.415037", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 26, "files_with_validation": 12, "coverage_percent": 46.15384615384615}}
+{"timestamp": "2025-12-07T15:16:18.418153", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-07T15:16:18.418153", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-07T15:16:18.418153", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-07T15:16:18.418153", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-07T15:16:18.745769", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 26, "injection_risks_found": 0}}
+{"timestamp": "2025-12-07T15:16:18.745769", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 26, "injection_risks_found": 0}}
+{"timestamp": "2025-12-07T15:16:18.745769", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 26, "injection_risks_found": 0}}
+{"timestamp": "2025-12-07T15:16:18.745769", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 26, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:05:10.642107", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 시작"}
+{"timestamp": "2025-12-08T04:05:11.496266", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 완료", "context": {"files_scanned": 30, "secrets_found": 0}}
+{"timestamp": "2025-12-08T04:05:11.499869", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-08T04:05:11.499869", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-08T04:05:11.842151", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 30, "dangerous_found": 0}}
+{"timestamp": "2025-12-08T04:05:11.842151", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 30, "dangerous_found": 0}}
+{"timestamp": "2025-12-08T04:05:11.845703", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:05:11.845703", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:05:11.845703", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:05:12.050924", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:05:12.050924", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:05:12.050924", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:05:12.054556", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:05:12.054556", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:05:12.054556", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:05:12.054556", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:05:12.414975", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:05:12.414975", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:05:12.414975", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:05:12.414975", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:18:04.582420", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 시작"}
+{"timestamp": "2025-12-08T04:18:04.946111", "level": "INFO", "logger": "test_security_static", "message": "하드코딩된 시크릿 검사 완료", "context": {"files_scanned": 30, "secrets_found": 0}}
+{"timestamp": "2025-12-08T04:18:04.949468", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-08T04:18:04.949468", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 시작"}
+{"timestamp": "2025-12-08T04:18:05.329925", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 30, "dangerous_found": 0}}
+{"timestamp": "2025-12-08T04:18:05.329925", "level": "INFO", "logger": "test_security_static", "message": "위험한 import 검사 완료", "context": {"files_scanned": 30, "dangerous_found": 0}}
+{"timestamp": "2025-12-08T04:18:05.333061", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:18:05.333061", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:18:05.333061", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 시작"}
+{"timestamp": "2025-12-08T04:18:05.548317", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:18:05.548317", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:18:05.548317", "level": "INFO", "logger": "test_security_static", "message": "입력 유효성 검사 확인 완료", "context": {"total_files": 30, "files_with_validation": 13, "coverage_percent": 43.333333333333336}}
+{"timestamp": "2025-12-08T04:18:05.566977", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:18:05.566977", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:18:05.566977", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:18:05.566977", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 시작"}
+{"timestamp": "2025-12-08T04:18:05.967996", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:18:05.967996", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:18:05.967996", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}
+{"timestamp": "2025-12-08T04:18:05.967996", "level": "INFO", "logger": "test_security_static", "message": "SQL Injection 패턴 검사 완료", "context": {"files_scanned": 30, "injection_risks_found": 0}}

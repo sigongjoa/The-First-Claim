@@ -183,3 +183,114 @@
 {"timestamp": "2025-12-04T05:59:21.238274", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
 {"timestamp": "2025-12-04T05:59:21.238274", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
 {"timestamp": "2025-12-04T05:59:21.238274", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-07T15:16:18.749644", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:18.758607", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "<script>alert('xss')</script>", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-07T15:16:18.758920", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "'; DROP TABLE sessions; --", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-07T15:16:18.759102", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "../../../etc/passwd", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-07T15:16:18.759264", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "\u0000\u0001\u0002", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-07T15:16:18.759421", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "테스터\u0000악성", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-07T15:16:18.759564", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 완료"}
+{"timestamp": "2025-12-07T15:16:18.762451", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-07T15:16:18.762451", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-07T15:16:18.762912", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-07T15:16:18.762912", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-07T15:16:18.763372", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-07T15:16:18.763372", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-07T15:16:18.763728", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-07T15:16:18.763728", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-07T15:16:18.764056", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-07T15:16:18.764056", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-07T15:16:18.764366", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-07T15:16:18.764366", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-07T15:16:18.767088", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-07T15:16:18.767088", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-07T15:16:18.767088", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-07T15:16:18.767709", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-07T15:16:18.767709", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-07T15:16:18.767709", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-07T15:16:18.768193", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-07T15:16:18.768193", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-07T15:16:18.768193", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-07T15:16:18.768719", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-07T15:16:18.768719", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-07T15:16:18.768719", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-07T15:16:18.769189", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-07T15:16:18.769189", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-07T15:16:18.769189", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-07T15:16:18.769535", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-07T15:16:18.769535", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-07T15:16:18.769535", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:05:12.419885", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:12.420304", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "<script>alert('xss')</script>", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:05:12.420623", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "'; DROP TABLE sessions; --", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:05:12.420873", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "../../../etc/passwd", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:05:12.421155", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "\u0000\u0001\u0002", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:05:12.421430", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "테스터\u0000악성", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:05:12.422318", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 완료"}
+{"timestamp": "2025-12-08T04:05:12.425174", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-08T04:05:12.425174", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-08T04:05:12.425611", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-08T04:05:12.425611", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-08T04:05:12.426030", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-08T04:05:12.426030", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-08T04:05:12.426355", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-08T04:05:12.426355", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-08T04:05:12.426667", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-08T04:05:12.426667", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-08T04:05:12.427014", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-08T04:05:12.427014", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-08T04:05:12.429661", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:05:12.429661", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:05:12.429661", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:05:12.430253", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:05:12.430253", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:05:12.430253", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:05:12.430731", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:05:12.430731", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:05:12.430731", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:05:12.431438", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:05:12.431438", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:05:12.431438", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:05:12.431971", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:05:12.431971", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:05:12.431971", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:05:12.432413", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:05:12.432413", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:05:12.432413", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:18:05.972937", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:05.973392", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "<script>alert('xss')</script>", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:18:05.973704", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "'; DROP TABLE sessions; --", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:18:05.974113", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "../../../etc/passwd", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:18:05.974407", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "\u0000\u0001\u0002", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:18:05.974671", "level": "WARNING", "logger": "test_security_runtime", "message": "악성 입력 거부됨", "context": {"input": "테스터\u0000악성", "error": "'GameSession' object has no attribute 'player_name'"}}
+{"timestamp": "2025-12-08T04:18:05.974977", "level": "INFO", "logger": "test_security_runtime", "message": "플레이어 이름 입력 정제 테스트 완료"}
+{"timestamp": "2025-12-08T04:18:05.977990", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-08T04:18:05.977990", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 시작"}
+{"timestamp": "2025-12-08T04:18:05.978580", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-08T04:18:05.978580", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 0}}
+{"timestamp": "2025-12-08T04:18:05.979134", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-08T04:18:05.979134", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 3}}
+{"timestamp": "2025-12-08T04:18:05.979546", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-08T04:18:05.979546", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 1}}
+{"timestamp": "2025-12-08T04:18:05.980046", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-08T04:18:05.980046", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 청구항 거부됨", "context": {"claim_length": 10000}}
+{"timestamp": "2025-12-08T04:18:05.980604", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-08T04:18:05.980604", "level": "INFO", "logger": "test_security_runtime", "message": "청구항 텍스트 입력 검증 완료"}
+{"timestamp": "2025-12-08T04:18:05.985803", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:18:05.985803", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:18:05.985803", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 시작"}
+{"timestamp": "2025-12-08T04:18:05.986681", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:18:05.986681", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:18:05.986681", "level": "INFO", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID 거부됨", "context": {"session_id": ""}}
+{"timestamp": "2025-12-08T04:18:05.987754", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:18:05.987754", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:18:05.987754", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "../../../"}}
+{"timestamp": "2025-12-08T04:18:05.988590", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:18:05.988590", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:18:05.988590", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "'; DROP TABLE --"}}
+{"timestamp": "2025-12-08T04:18:05.989402", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:18:05.989402", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:18:05.989402", "level": "WARNING", "logger": "test_security_runtime", "message": "유효하지 않은 세션 ID가 허용됨", "context": {"session_id": "\u0000\u0001\u0002"}}
+{"timestamp": "2025-12-08T04:18:05.990017", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:18:05.990017", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}
+{"timestamp": "2025-12-08T04:18:05.990017", "level": "INFO", "logger": "test_security_runtime", "message": "세션 ID 형식 검증 완료"}

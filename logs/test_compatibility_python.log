@@ -106,3 +106,75 @@
 {"timestamp": "2025-12-04T05:57:02.763842", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
 {"timestamp": "2025-12-04T05:57:02.763842", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
 {"timestamp": "2025-12-04T05:57:02.763842", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-07T15:13:35.079293", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 호환성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.079636", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 확인", "context": {"current_version": "3.12.3", "supported_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"], "is_supported": true}}
+{"timestamp": "2025-12-07T15:13:35.086266", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-07T15:13:35.086266", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-07T15:13:35.086771", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-07T15:13:35.086771", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-07T15:13:35.089754", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.089754", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.089754", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.090364", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-07T15:13:35.090364", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-07T15:13:35.090364", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-07T15:13:35.113682", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-07T15:13:35.113682", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-07T15:13:35.113682", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-07T15:13:35.114239", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-07T15:13:35.114239", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-07T15:13:35.114239", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T03:58:06.181550", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T03:58:06.181975", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 확인", "context": {"current_version": "3.12.3", "supported_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"], "is_supported": true}}
+{"timestamp": "2025-12-08T03:58:06.189451", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T03:58:06.189451", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T03:58:06.190231", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T03:58:06.190231", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T03:58:06.193180", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T03:58:06.193180", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T03:58:06.193180", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T03:58:06.193689", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T03:58:06.193689", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T03:58:06.193689", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T03:58:06.194192", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T03:58:06.194192", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T03:58:06.194192", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T03:58:06.194607", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T03:58:06.194607", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T03:58:06.194607", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:02:29.968800", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:29.994315", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 확인", "context": {"current_version": "3.12.3", "supported_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"], "is_supported": true}}
+{"timestamp": "2025-12-08T04:02:29.997626", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T04:02:29.997626", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T04:02:29.998061", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T04:02:29.998061", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T04:02:30.000806", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.000806", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.000806", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.001391", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:02:30.001391", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:02:30.001391", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:02:30.001823", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:02:30.001823", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:02:30.001823", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:02:30.002418", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:02:30.002418", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:02:30.002418", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:15:17.022686", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.023079", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 버전 확인", "context": {"current_version": "3.12.3", "supported_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"], "is_supported": true}}
+{"timestamp": "2025-12-08T04:15:17.025581", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T04:15:17.025581", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 시작"}
+{"timestamp": "2025-12-08T04:15:17.026085", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T04:15:17.026085", "level": "INFO", "logger": "test_compatibility_python", "message": "내장 모듈 가용성 확인 완료", "context": {"total_required": 8, "available": 8, "missing": []}}
+{"timestamp": "2025-12-08T04:15:17.028628", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.028628", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.028628", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.029118", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:15:17.029118", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:15:17.029118", "level": "INFO", "logger": "test_compatibility_python", "message": "기본 타입 어노테이션 로드 완료"}
+{"timestamp": "2025-12-08T04:15:17.029525", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:15:17.029525", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:15:17.029525", "level": "INFO", "logger": "test_compatibility_python", "message": "Python 3.9+ 타입 힌트 사용 가능"}
+{"timestamp": "2025-12-08T04:15:17.029929", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:15:17.029929", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}
+{"timestamp": "2025-12-08T04:15:17.029929", "level": "INFO", "logger": "test_compatibility_python", "message": "타입 어노테이션 호환성 테스트 완료"}

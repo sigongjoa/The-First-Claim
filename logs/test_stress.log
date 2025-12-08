@@ -30,3 +30,21 @@
 {"timestamp": "2025-12-04T05:59:19.526220", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
 {"timestamp": "2025-12-04T05:59:19.526814", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.006666999979643151, "avg_time_per_claim_ms": 0.0006666999979643151}}
 {"timestamp": "2025-12-04T05:59:19.526814", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.006666999979643151, "avg_time_per_claim_ms": 0.0006666999979643151}}
+{"timestamp": "2025-12-07T15:16:16.503314", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.505376", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 처리 완료", "context": {"claim_length": 600, "elapsed_ms": 0.0011929996617254801, "result": true}}
+{"timestamp": "2025-12-07T15:16:16.508577", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.508577", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.509083", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.006344999746943358, "avg_time_per_claim_ms": 0.0006344999746943358}}
+{"timestamp": "2025-12-07T15:16:16.509083", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.006344999746943358, "avg_time_per_claim_ms": 0.0006344999746943358}}
+{"timestamp": "2025-12-08T04:05:10.351332", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.351688", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 처리 완료", "context": {"claim_length": 600, "elapsed_ms": 0.0015860000530665275, "result": true}}
+{"timestamp": "2025-12-08T04:05:10.354150", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.354150", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.354554", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.007417000233544968, "avg_time_per_claim_ms": 0.0007417000233544968}}
+{"timestamp": "2025-12-08T04:05:10.354554", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.007417000233544968, "avg_time_per_claim_ms": 0.0007417000233544968}}
+{"timestamp": "2025-12-08T04:18:04.101235", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:04.101487", "level": "INFO", "logger": "test_stress", "message": "극한 길이 청구항 처리 완료", "context": {"claim_length": 600, "elapsed_ms": 0.0011170000107085798, "result": true}}
+{"timestamp": "2025-12-08T04:18:04.103733", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:04.103733", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:04.104201", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.0066530001276987605, "avg_time_per_claim_ms": 0.000665300012769876}}
+{"timestamp": "2025-12-08T04:18:04.104201", "level": "INFO", "logger": "test_stress", "message": "다량 청구항 제출 완료", "context": {"total_claims": 10, "actual_claims": 10, "total_time_ms": 0.0066530001276987605, "avg_time_per_claim_ms": 0.000665300012769876}}

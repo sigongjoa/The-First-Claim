@@ -334,3 +334,129 @@
 {"timestamp": "2025-12-04T05:57:02.875417", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
 {"timestamp": "2025-12-04T05:57:02.875417", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
 {"timestamp": "2025-12-04T05:57:02.875417", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.232045", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.232398", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 확인 완료", "context": {"session_id": "integrity_session_001", "player_name": "데이터테스터", "status_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.235206", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.235206", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.235725", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.235725", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.238405", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-07T15:13:35.238405", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-07T15:13:35.238405", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-07T15:13:35.239046", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-07T15:13:35.239046", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-07T15:13:35.239046", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-07T15:13:35.241642", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.241642", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.241642", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.241642", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.242512", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.242512", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.242512", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.242512", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-07T15:13:35.246002", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.246002", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.246002", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.246002", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.246002", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.246781", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.246781", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.246781", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.246781", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.246781", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.249342", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-07T15:13:35.250288", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.268381", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.294432", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 확인 완료", "context": {"session_id": "integrity_session_001", "player_name": "데이터테스터", "status_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.297919", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.297919", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.298439", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.298439", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.301877", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:02:30.301877", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:02:30.301877", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:02:30.302590", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:02:30.302590", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:02:30.302590", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:02:30.306788", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.306788", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.306788", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.306788", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.307653", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.307653", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.307653", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.307653", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:02:30.310898", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.310898", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.310898", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.310898", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.310898", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.311888", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.311888", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.311888", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.311888", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.311888", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.314971", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:02:30.316111", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.207865", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.208180", "level": "INFO", "logger": "test_data_integrity", "message": "세션 데이터 일관성 확인 완료", "context": {"session_id": "integrity_session_001", "player_name": "데이터테스터", "status_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.210287", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.210287", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.210636", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.210636", "level": "INFO", "logger": "test_data_integrity", "message": "청구항 제출 상태 전이 확인 완료", "context": {"initial_count": 0, "final_count": 2, "transition_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.213254", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:15:17.213254", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:15:17.213254", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 시작"}
+{"timestamp": "2025-12-08T04:15:17.213781", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:15:17.213781", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:15:17.213781", "level": "INFO", "logger": "test_data_integrity", "message": "유효하지 않은 청구항 상태 검증 완료", "context": {"invalid_claims_tested": 3, "state_unchanged": true}}
+{"timestamp": "2025-12-08T04:15:17.217341", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.217341", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.217341", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.217341", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.218135", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.218135", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.218135", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.218135", "level": "INFO", "logger": "test_data_integrity", "message": "플레이어 진행률 추적 완료", "context": {"final_score": 100, "completed_levels": 1, "tracking_valid": true}}
+{"timestamp": "2025-12-08T04:15:17.221919", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.221919", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.221919", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.221919", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.221919", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.223006", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.223006", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.223006", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.223006", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.223006", "level": "INFO", "logger": "test_data_integrity", "message": "게임 레벨 불변성 확인 완료", "context": {"level_id": 1, "consistency_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.226465", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}
+{"timestamp": "2025-12-08T04:15:17.227564", "level": "INFO", "logger": "test_data_integrity", "message": "다중 세션 독립성 확인 완료", "context": {"sessions_tested": 3, "isolation_verified": true}}

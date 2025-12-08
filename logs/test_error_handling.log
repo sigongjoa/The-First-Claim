@@ -142,3 +142,35 @@
 {"timestamp": "2025-12-04T06:13:51.636393", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_4", "total_sessions": 5}}
 {"timestamp": "2025-12-04T06:13:51.636741", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}
 {"timestamp": "2025-12-04T06:13:51.636741", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}
+{"timestamp": "2025-12-08T04:02:29.495977", "level": "INFO", "logger": "test_error_handling", "message": "유효하지 않은 레벨 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:29.498790", "level": "ERROR", "logger": "test_error_handling", "message": "유효하지 않은 레벨 거부됨", "context": {"level_id": 999}, "error": {"type": "ValueError", "message": "유효하지 않은 레벨: 999", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 223, in test_invalid_level_handling\n    session = engine.create_session(\n              ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/progress/The-First-Claim/src/ui/game.py\", line 253, in create_session\n    raise ValueError(f\"유효하지 않은 레벨: {level_id}\")\nValueError: 유효하지 않은 레벨: 999\n"}}
+{"timestamp": "2025-12-08T04:02:29.507443", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:29.507443", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 테스트 시작"}
+{"timestamp": "2025-12-08T04:02:29.507966", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_0", "total_sessions": 1}}
+{"timestamp": "2025-12-08T04:02:29.507966", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_0", "total_sessions": 1}}
+{"timestamp": "2025-12-08T04:02:29.508377", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_1", "total_sessions": 2}}
+{"timestamp": "2025-12-08T04:02:29.508377", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_1", "total_sessions": 2}}
+{"timestamp": "2025-12-08T04:02:29.508713", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_2", "total_sessions": 3}}
+{"timestamp": "2025-12-08T04:02:29.508713", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_2", "total_sessions": 3}}
+{"timestamp": "2025-12-08T04:02:29.509142", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_3", "total_sessions": 4}}
+{"timestamp": "2025-12-08T04:02:29.509142", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_3", "total_sessions": 4}}
+{"timestamp": "2025-12-08T04:02:29.509569", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_4", "total_sessions": 5}}
+{"timestamp": "2025-12-08T04:02:29.509569", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_4", "total_sessions": 5}}
+{"timestamp": "2025-12-08T04:02:29.509885", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}
+{"timestamp": "2025-12-08T04:02:29.509885", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}
+{"timestamp": "2025-12-08T04:15:16.771225", "level": "INFO", "logger": "test_error_handling", "message": "유효하지 않은 레벨 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:16.771794", "level": "ERROR", "logger": "test_error_handling", "message": "유효하지 않은 레벨 거부됨", "context": {"level_id": 999}, "error": {"type": "ValueError", "message": "유효하지 않은 레벨: 999", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 223, in test_invalid_level_handling\n    session = engine.create_session(\n              ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/progress/The-First-Claim/src/ui/game.py\", line 253, in create_session\n    raise ValueError(f\"유효하지 않은 레벨: {level_id}\")\nValueError: 유효하지 않은 레벨: 999\n"}}
+{"timestamp": "2025-12-08T04:15:16.779709", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:16.779709", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 테스트 시작"}
+{"timestamp": "2025-12-08T04:15:16.780371", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_0", "total_sessions": 1}}
+{"timestamp": "2025-12-08T04:15:16.780371", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_0", "total_sessions": 1}}
+{"timestamp": "2025-12-08T04:15:16.780852", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_1", "total_sessions": 2}}
+{"timestamp": "2025-12-08T04:15:16.780852", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_1", "total_sessions": 2}}
+{"timestamp": "2025-12-08T04:15:16.781419", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_2", "total_sessions": 3}}
+{"timestamp": "2025-12-08T04:15:16.781419", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_2", "total_sessions": 3}}
+{"timestamp": "2025-12-08T04:15:16.782149", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_3", "total_sessions": 4}}
+{"timestamp": "2025-12-08T04:15:16.782149", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_3", "total_sessions": 4}}
+{"timestamp": "2025-12-08T04:15:16.782680", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_4", "total_sessions": 5}}
+{"timestamp": "2025-12-08T04:15:16.782680", "level": "INFO", "logger": "test_error_handling", "message": "세션 생성 완료", "context": {"session_id": "test_concurrent_4", "total_sessions": 5}}
+{"timestamp": "2025-12-08T04:15:16.783140", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}
+{"timestamp": "2025-12-08T04:15:16.783140", "level": "INFO", "logger": "test_error_handling", "message": "동시 세션 처리 완료", "context": {"total_sessions": 5}}

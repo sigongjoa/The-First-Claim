@@ -52,3 +52,15 @@
 {"timestamp": "2025-12-04T06:13:51.651436", "level": "ERROR", "logger": "test_all_levels", "message": "ERROR 메시지", "context": {"test": "error"}}
 {"timestamp": "2025-12-04T06:13:51.651689", "level": "CRITICAL", "logger": "test_all_levels", "message": "CRITICAL 메시지", "context": {"test": "critical"}}
 {"timestamp": "2025-12-04T06:13:51.651943", "level": "ERROR", "logger": "test_all_levels", "message": "예외 발생", "error": {"type": "ValueError", "message": "테스트 에러", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 399, in test_logger_all_levels\n    raise ValueError(\"테스트 에러\")\nValueError: 테스트 에러\n"}}
+{"timestamp": "2025-12-08T04:02:29.535417", "level": "DEBUG", "logger": "test_all_levels", "message": "DEBUG 메시지"}
+{"timestamp": "2025-12-08T04:02:29.543145", "level": "INFO", "logger": "test_all_levels", "message": "INFO 메시지"}
+{"timestamp": "2025-12-08T04:02:29.543545", "level": "WARNING", "logger": "test_all_levels", "message": "WARNING 메시지"}
+{"timestamp": "2025-12-08T04:02:29.543775", "level": "ERROR", "logger": "test_all_levels", "message": "ERROR 메시지", "context": {"test": "error"}}
+{"timestamp": "2025-12-08T04:02:29.544013", "level": "CRITICAL", "logger": "test_all_levels", "message": "CRITICAL 메시지", "context": {"test": "critical"}}
+{"timestamp": "2025-12-08T04:02:29.544193", "level": "ERROR", "logger": "test_all_levels", "message": "예외 발생", "error": {"type": "ValueError", "message": "테스트 에러", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 356, in test_logger_all_levels\n    raise ValueError(\"테스트 에러\")\nValueError: 테스트 에러\n"}}
+{"timestamp": "2025-12-08T04:15:16.791147", "level": "DEBUG", "logger": "test_all_levels", "message": "DEBUG 메시지"}
+{"timestamp": "2025-12-08T04:15:16.791371", "level": "INFO", "logger": "test_all_levels", "message": "INFO 메시지"}
+{"timestamp": "2025-12-08T04:15:16.791542", "level": "WARNING", "logger": "test_all_levels", "message": "WARNING 메시지"}
+{"timestamp": "2025-12-08T04:15:16.791701", "level": "ERROR", "logger": "test_all_levels", "message": "ERROR 메시지", "context": {"test": "error"}}
+{"timestamp": "2025-12-08T04:15:16.791935", "level": "CRITICAL", "logger": "test_all_levels", "message": "CRITICAL 메시지", "context": {"test": "critical"}}
+{"timestamp": "2025-12-08T04:15:16.792121", "level": "ERROR", "logger": "test_all_levels", "message": "예외 발생", "error": {"type": "ValueError", "message": "테스트 에러", "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/progress/The-First-Claim/tests/test_api_integration_with_logging.py\", line 356, in test_logger_all_levels\n    raise ValueError(\"테스트 에러\")\nValueError: 테스트 에러\n"}}

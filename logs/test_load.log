@@ -28,3 +28,21 @@
 {"timestamp": "2025-12-04T05:59:19.517121", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
 {"timestamp": "2025-12-04T05:59:19.517703", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.021364001440815628, "spike_sessions": 20, "spike_time_ms": 0.02421500175842084, "degradation_ratio": 1.1334487982273964}}
 {"timestamp": "2025-12-04T05:59:19.517703", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.021364001440815628, "spike_sessions": 20, "spike_time_ms": 0.02421500175842084, "degradation_ratio": 1.1334487982273964}}
+{"timestamp": "2025-12-07T15:16:11.136378", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.360731", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 완료", "context": {"duration_seconds": 5.198508655000296, "total_operations": 968645, "total_errors": 0, "error_rate": 0.0, "throughput_ops_per_sec": 186331.32390157477}}
+{"timestamp": "2025-12-07T15:16:16.499230", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.499230", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-07T15:16:16.499875", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.01876500027719885, "spike_sessions": 20, "spike_time_ms": 0.023632000193174463, "degradation_ratio": 1.2593658323517027}}
+{"timestamp": "2025-12-07T15:16:16.499875", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.01876500027719885, "spike_sessions": 20, "spike_time_ms": 0.023632000193174463, "degradation_ratio": 1.2593658323517027}}
+{"timestamp": "2025-12-08T04:05:05.219585", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.220036", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 완료", "context": {"duration_seconds": 5.0000374100000045, "total_operations": 818270, "total_errors": 0, "error_rate": 0.0, "throughput_ops_per_sec": 163652.7755499332}}
+{"timestamp": "2025-12-08T04:05:10.346579", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.346579", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-08T04:05:10.347526", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.03466099997240235, "spike_sessions": 20, "spike_time_ms": 0.06093599995438126, "degradation_ratio": 1.7580566054903057}}
+{"timestamp": "2025-12-08T04:05:10.347526", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.03466099997240235, "spike_sessions": 20, "spike_time_ms": 0.06093599995438126, "degradation_ratio": 1.7580566054903057}}
+{"timestamp": "2025-12-08T04:17:58.814435", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:03.954818", "level": "INFO", "logger": "test_load", "message": "1분 지속 부하 테스트 완료", "context": {"duration_seconds": 5.140091086000211, "total_operations": 877454, "total_errors": 0, "error_rate": 0.0, "throughput_ops_per_sec": 170707.86982547335}}
+{"timestamp": "2025-12-08T04:18:04.098125", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:04.098125", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 시작"}
+{"timestamp": "2025-12-08T04:18:04.098634", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.019041000086872373, "spike_sessions": 20, "spike_time_ms": 0.028420000035112025, "degradation_ratio": 1.4925686626463444}}
+{"timestamp": "2025-12-08T04:18:04.098634", "level": "INFO", "logger": "test_load", "message": "스파이크 테스트 완료", "context": {"normal_sessions": 5, "normal_time_ms": 0.019041000086872373, "spike_sessions": 20, "spike_time_ms": 0.028420000035112025, "degradation_ratio": 1.4925686626463444}}
