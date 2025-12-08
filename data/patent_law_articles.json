@@ -47,6 +47,18 @@
     "exceptions": []
   },
   {
+    "number": "제31조",
+    "title": "신규성 상실의 예외",
+    "content": "발명자 또는 출원인이 공개한 경우 1년 이내의 출원은 신규성을 상실하지 않는다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
     "number": "제32조",
     "title": "(신규성)",
     "content": "다음 중 어느 하나에 해당하는 발명에 대해서는 특허를 주지 아니한다. 1. 특허출원 전에 국내 또는 국외에서 공지되었거나 공용되었던 발명",
@@ -75,6 +87,18 @@
     "exceptions": []
   },
   {
+    "number": "제34조",
+    "title": "발명의 단일성",
+    "content": "한 특허출원에는 발명의 단일성이 있어야 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
     "number": "제36조",
     "title": "(특허출원의 요건)",
     "content": "특허출원은 원서 및 명세서를 제출하여야 한다.",
@@ -86,6 +110,18 @@
       "출원 성립"
     ],
     "exceptions": []
+  },
+  {
+    "number": "제37조",
+    "title": "명세서",
+    "content": "명세서는 그 발명의 목적, 구성 및 효과를 명확하게 기재해야 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
   },
   {
     "number": "제39조",
@@ -101,6 +137,30 @@
     "exceptions": []
   },
   {
+    "number": "제40조",
+    "title": "의견서 제출",
+    "content": "출원인은 거절이유 통지를 받은 날부터 3개월 이내에 의견서를 제출할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제41조",
+    "title": "특허 결정",
+    "content": "출원인이 제시한 의견이 타당한 경우 특허결정을 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
     "number": "제42조",
     "title": "(청구범위)",
     "content": "청구범위는 발명의 보호를 받으려는 사항을 명확하게 기재하여야 한다.",
@@ -111,6 +171,210 @@
       "청구범위 유효성"
     ],
     "exceptions": []
+  },
+  {
+    "number": "제44조",
+    "title": "특허권의 포기",
+    "content": "특허권자는 특허권을 포기할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제46조",
+    "title": "특허권의 범위 해석",
+    "content": "특허권의 범위는 명세서에 첨부된 도면을 참조하여 해석한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제48조",
+    "title": "특허료의 납부",
+    "content": "특허권의 존속을 위해서는 특허료를 납부해야 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제49조",
+    "title": "특허료 납부의 기한",
+    "content": "특허료는 특허등록일부터 계산하여 매년 납부해야 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제50조",
+    "title": "우선권의 주장",
+    "content": "파리협약의 동맹국에서 특허출원한 자가 1년 이내에 출원하면 우선권을 주장할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제51조",
+    "title": "국제특허출원",
+    "content": "특허협력조약(PCT)에 따라 국제특허출원을 할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제67조",
+    "title": "발명의 범위에 대한 이의",
+    "content": "발명의 범위에 대해 이의가 있을 때는 부정정심판을 청구할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제71조",
+    "title": "무효심판",
+    "content": "특허의 무효에 관해서는 무효심판을 청구할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제72조",
+    "title": "무효심판의 사유",
+    "content": "신규성 또는 진보성이 없는 경우 무효심판을 청구할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제80조",
+    "title": "침해죄",
+    "content": "다른 사람의 특허권을 침해한 자는 법정형에 처한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제81조",
+    "title": "침해 행위의 정지와 손해배상",
+    "content": "특허권자는 침해 행위의 정지와 손해배상을 청구할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제82조",
+    "title": "손해배상의 범위",
+    "content": "침해로 인한 손해배상은 실제 손해액을 기준으로 한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제83조",
+    "title": "침해 제품 등의 개시",
+    "content": "특허권자는 침해 혐의 제품의 개시를 청구할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제84조",
+    "title": "특허권 침해의 추정",
+    "content": "등록된 청구범위와 동일한 행위는 침해로 추정된다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제85조",
+    "title": "손해배상의 증액",
+    "content": "악의적 침해의 경우 손해배상을 3배 이하로 증액할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제86조",
+    "title": "형사 처벌",
+    "content": "특허권을 침해한 자는 10년 이하의 징역 또는 1억원 이하의 벌금에 처한다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제87조",
+    "title": "몰수",
+    "content": "침해에 사용된 물품 및 도구는 몰수할 수 있다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
   },
   {
     "number": "제88조",
@@ -138,6 +402,30 @@
       "실시권 설정"
     ],
     "exceptions": []
+  },
+  {
+    "number": "제99조",
+    "title": "임시보호권",
+    "content": "공개된 특허출원의 발명은 임시보호권의 대상이 된다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
+  },
+  {
+    "number": "제100조",
+    "title": "우선권 없이 출원한 경우",
+    "content": "우선권을 주장하지 않은 출원은 통상적 출원으로 처리된다.",
+    "category": "특허법",
+    "subsections": [],
+    "requirements": [],
+    "effects": [],
+    "exceptions": [],
+    "effective_date": "2024-01-01",
+    "amendment_history": []
   },
   {
     "number": "제127조",
