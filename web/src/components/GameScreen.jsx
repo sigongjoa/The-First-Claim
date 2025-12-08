@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+  useClaimValidationForGame,
+  useGameTimer,
+} from '../hooks';
 import '../styles/GameScreen.css';
 
 function GameScreen({ sessionData, onComplete }) {
-  const [claims, setClaims] = useState(['']);
-  const [currentInput, setCurrentInput] = useState('');
-  const [timeLeft, setTimeLeft] = useState(300);
-  const [submitted, setSubmitted] = useState(false);
-  const [feedback, setFeedback] = useState([]);
-  const [validationResults, setValidationResults] = useState([]);
-
   // 레벨별 설정
   const levelConfigs = {
     1: { title: '기본 청구항 작성', required: 1, timeLimit: 300 },
@@ -19,107 +16,25 @@ function GameScreen({ sessionData, onComplete }) {
   const levelId = sessionData.levelId;
   const config = levelConfigs[levelId];
 
-  useEffect(() => {
-    setTimeLeft(config.timeLimit);
-  }, [levelId]);
+  // 커스텀 훅 사용
+  const {
+    claims,
+    validationResults,
+    feedback,
+    submitted,
+    addClaim,
+    updateClaim,
+    removeClaim,
+    handleSubmit,
+  } = useClaimValidationForGame(sessionData.sessionId);
 
-  // 타이머
-  useEffect(() => {
-    if (submitted) return;
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          handleSubmit();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [submitted]);
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const addClaim = () => {
-    setClaims([...claims, '']);
-    setCurrentInput('');
-  };
-
-  const updateClaim = (index, value) => {
-    const newClaims = [...claims];
-    newClaims[index] = value;
-    setClaims(newClaims);
-  };
-
-  const removeClaim = (index) => {
-    if (claims.length > 1) {
-      setClaims(claims.filter((_, i) => i !== index));
-    }
-  };
-
-  const validateClaims = () => {
-    const results = [];
-    let hasErrors = false;
-
-    claims.forEach((claim, index) => {
-      if (!claim.trim()) {
-        results.push({
-          index,
-          valid: false,
-          message: '청구항 내용이 비어있습니다',
-        });
-        hasErrors = true;
-      } else if (claim.length < 20) {
-        results.push({
-          index,
-          valid: false,
-          message: '청구항이 너무 짧습니다 (최소 20자)',
-        });
-        hasErrors = true;
-      } else {
-        results.push({
-          index,
-          valid: true,
-          message: '✅ 올바른 형식입니다',
-        });
-      }
-    });
-
-    return { results, hasErrors };
-  };
-
-  const handleSubmit = () => {
-    const { results, hasErrors } = validateClaims();
-    setValidationResults(results);
-
-    const validClaims = claims.filter((c) => c.trim().length >= 20);
-    const success = validClaims.length >= config.required && !hasErrors;
-
-    if (success) {
-      setFeedback(['✅ 모든 청구항이 요구사항을 충족했습니다!']);
-    } else {
-      const feedbackMessages = [
-        `📊 제출된 청구항: ${validClaims.length}개 / ${config.required}개 필요`,
-      ];
-
-      if (hasErrors) {
-        feedbackMessages.push('⚠️ 일부 청구항이 검증 오류가 있습니다');
-      }
-
-      setFeedback(feedbackMessages);
-    }
-
-    setSubmitted(true);
-    setTimeout(() => {
-      onComplete(claims, success);
-    }, 2000);
-  };
+  const {
+    timeRemaining,
+    isExpired,
+    formatTime,
+  } = useGameTimer(config.timeLimit * 1000, !submitted, () => {
+    handleSubmit(claims, config.required, onComplete);
+  });
 
   if (submitted) {
     return (
@@ -133,7 +48,19 @@ function GameScreen({ sessionData, onComplete }) {
     );
   }
 
+  if (isExpired) {
+    return (
+      <div className="game-container">
+        <div className="result-pending">
+          <h2>⏰ 시간 초과</h2>
+          <p>게임 시간이 다 되었습니다</p>
+        </div>
+      </div>
+    );
+  }
+
   const filledClaims = claims.filter((c) => c.trim()).length;
+  const timeWarning = timeRemaining < 60000; // 60초 이하
 
   return (
     <div className="game-container">
@@ -142,8 +69,8 @@ function GameScreen({ sessionData, onComplete }) {
           <h1>{config.title}</h1>
           <p className="player-name">플레이어: {sessionData.playerName}</p>
         </div>
-        <div className={`timer ${timeLeft < 60 ? 'warning' : ''}`}>
-          ⏱️ {formatTime(timeLeft)}
+        <div className={`timer ${timeWarning ? 'warning' : ''}`}>
+          ⏱️ {formatTime(Math.floor(timeRemaining / 1000))}
         </div>
       </div>
 
@@ -233,7 +160,7 @@ function GameScreen({ sessionData, onComplete }) {
       <div className="game-footer">
         <button
           className="submit-btn"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit(claims, config.required, onComplete)}
           disabled={filledClaims === 0}
         >
           제출

@@ -4,6 +4,7 @@
 
 export { useGameSession, useCreateGameSession } from './useGameSession';
 export { useClaimValidation, formatValidationResult } from './useClaimValidation';
+export { useClaimValidationForGame } from './useClaimValidationForGame';
 export {
   useGameTimer,
   useElapsedTime,
