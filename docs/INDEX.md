@@ -1,425 +1,182 @@
-# PROJECT: OVERRIDE - 완전 가이드 인덱스
+# PROJECT: OVERRIDE - 문서 인덱스
 
-## 📑 전체 문서 맵
+> **📍 체계적으로 정리된 문서 네비게이션**
 
-### 1. 프로젝트 이해하기
+## 🚀 빠른 시작
 
-#### 📖 [01_project_overview.md](01_project_overview.md)
-**핵심 내용:** 프로젝트의 완전한 개요
+프로젝트를 처음 시작하는 경우 이 순서로 읽으세요:
 
-- 프로젝트 정체성 (PROJECT: OVERRIDE의 의미)
-- 이중 목표 (시험 합격 + 커리어 성장)
-- 혁신성 (기존 수험 방식 vs TDD 학습법)
-- 게임으로서의 가치
-- 개발자다운 접근법
-- 4단계 구조
-- 성공의 정의
-
-**추천 대상:** 프로젝트를 처음 접하는 사람
-
-**읽는 시간:** 20-30분
+1. **[메인 README.md](../README.md)** - 프로젝트 전체 개요 (5분)
+2. **[QUICKSTART.md](00_master/QUICKSTART.md)** - 설치 및 실행 (5분)
+3. **[프로젝트 개요](01_overview/01_project_overview.md)** - 프로젝트 이해 (20분)
+4. **[기술 아키텍처](02_architecture/01_technical_architecture.md)** - 시스템 구조 이해 (30분)
 
 ---
 
-### 2. 게임 시스템 이해하기
+## 📚 카테고리별 문서
 
-#### 🎮 [02_game_mechanics.md](02_game_mechanics.md)
-**핵심 내용:** 게임이 어떻게 작동하는가
+### 1️⃣ 프로젝트 개요 (`01_overview/`)
 
-- The Input: 사건의 재구성
-- The Process: 청구항 크래프팅 & 법률 배틀
-- The Visuals: Juicy Feedback (이펙트)
-- 게임 진행 흐름
-- 난이도와 학습 단계
-- 메커닉의 법률학적 의미
-- 핵심 게임플레이 루프
+프로젝트의 전체적인 이해를 위한 문서들입니다.
 
-**추천 대상:** 게임 시스템을 구체적으로 이해하고 싶은 사람
+| 파일 | 설명 | 읽는 시간 |
+|------|------|---------|
+| `01_project_overview.md` | 프로젝트 정체성, 목표, 혁신성 | 20-30분 |
+| `02_game_mechanics.md` | 게임 시스템 동작 원리, 게임플레이 | 30-40분 |
+| `02_project_structure.md` | 프로젝트 파일 및 디렉토리 구조 | 10-15분 |
+| `03_project_status.md` | 프로젝트 현재 상태, 진행도 | 10분 |
 
-**읽는 시간:** 30-40분
+**추천:** 프로젝트를 처음 접하는 사람들
 
 ---
 
-### 3. 기술 구현하기
+### 2️⃣ 기술 아키텍처 (`02_architecture/`)
 
-#### 💻 [03_technical_architecture.md](03_technical_architecture.md)
-**핵심 내용:** 어떻게 시스템을 구축할 것인가
+시스템 설계 및 기술 구현에 관한 문서들입니다.
 
-- 시스템 개요 (4개 주요 컴포넌트)
-- Knowledge Base (법률 데이터베이스)
-- Logic Engine (AI 심사관)
-- Client Layer (게임 UI)
-- 전체 시스템 흐름
-- 데이터 파이프라인
-- 배포 (마이크로서비스)
-- 개발자 학습 체크리스트
+| 파일 | 설명 | 읽는 시간 |
+|------|------|---------|
+| `01_technical_architecture.md` | 전체 시스템 아키텍처, 컴포넌트 설명 | 40-50분 |
+| `02_dsl_design.md` | DSL 엔진 설계 철학 | 30-40분 |
+| `03_game_mechanics.md` | 게임 시스템 메커닉스 | 30-40분 |
+| `04_design_philosophy.md` | 설계 원칙, 패턴, 베스트 프랙티스 | 25-35분 |
 
-**추천 대상:** 개발을 직접 하려는 개발자
-
-**읽는 시간:** 40-50분
-
-**필요 지식:** Python, REST API, 기본 ML 개념
+**추천:** 개발자, 아키텍처 이해가 필요한 사람
 
 ---
 
-### 4. 개발 로드맵 따라가기
+### 3️⃣ 구현 가이드 (`03_implementation/`)
 
-#### 🗺️ [04_roadmap.md](04_roadmap.md)
-**핵심 내용:** 4단계로 나뉜 완전한 개발 및 학습 계획
+개발 환경 설정 및 구현 방법에 관한 문서들입니다.
 
-**Phase 1: 민법의 기초** (3-4주)
-- 프로젝트 초기화
-- 민법 데이터 모델링
-- 간단한 텍스트 배틀 구현
-- 점진적 문제 난이도 증가
+| 파일 | 설명 | 읽는 시간 |
+|------|------|---------|
+| `02_web_setup.md` | 웹 서버 설정 가이드 | 20-30분 |
+| `03_sentry_setup.md` | 에러 모니터링 (Sentry) 설정 | 15-20분 |
+| `04_implementation_notes.md` | 정적 분석 및 코드 품질 설정 | 15-20분 |
 
-**Phase 2: 특허법의 구조** (4-5주)
-- 특허법 데이터 모델링
-- 청구항 크래프팅 시스템
-- 판례 검색 시스템 (기초)
-
-**Phase 3: 판례의 시각화** (5-6주)
-- Vector DB 설정
-- AI 심사관 고도화 (RAG 기반)
-- UI 및 이펙트 시스템
-
-**Phase 4: Final Override** (2주)
-- 종합 시뮬레이션
-- 배포 (Human Deployment)
-
-**타임라인:** 12주 완성
-
-**추천 대상:** 전체 일정을 계획하고 싶은 사람
-
-**읽는 시간:** 50-60분
+**추천:** 개발 환경을 설정하고 개발을 시작하려는 사람
 
 ---
 
-### 5. TDD 학습 방법론 마스터하기
+### 4️⃣ 테스트 및 품질 (`04_testing/`)
 
-#### 📚 [05_study_methodology.md](05_study_methodology.md)
-**핵심 내용:** 성공의 핵심인 TDD 학습법 완전 가이드
+테스트 전략, 품질 관리, 그리고 QA 로드맵에 관한 문서들입니다.
 
-- 기존 수험 방식 vs TDD 학습법
-- TDD의 4단계 (Test, Code, Refactor, Pass)
-- 실제 적용 사례
-- 뇌 과학적 메커니즘
-- 반복을 통한 강화
-- 도구 및 리소스
-- 성공 사례 분석
-- 매일/주간/월간 체크리스트
+| 파일 | 설명 | 읽는 시간 |
+|------|------|---------|
+| `01_test_strategy.md` | 전체 테스트 전략 및 방법론 | 30-40분 |
+| `02_testing_guide.md` | 테스팅 실전 가이드 | 25-35분 |
+| `03_quality_roadmap.md` | QA 품질 로드맵 | 30-40분 |
+| `04_test_reports/` | Phase별 완료 보고서 및 결과 | - |
 
-**추천 대상:** 학습 방법론을 깊이 있게 이해하고 싶은 사람
-
-**읽는 시간:** 35-45분
+**추천:** QA 엔지니어, 품질 관리에 관심이 있는 사람
 
 ---
 
-### 6. 설계 철학 깊이 있게 이해하기
+### 5️⃣ 학습 자료 (`05_learning/`)
 
-#### 🤔 [06_design_philosophy.md](06_design_philosophy.md)
-**핵심 내용:** 왜 이런 방식으로 설계했는가
+변리사 시험 대비 및 학습 방법론에 관한 문서들입니다.
 
-- 핵심 가설 (3가지)
-  - 개발자의 사고방식은 법률 학습에 최적화
-  - 코딩은 법률 이해를 가속화
-  - 게임화는 학습 심리학 활성화
+| 파일 | 설명 | 읽는 시간 |
+|------|------|---------|
+| `01_study_methodology.md` | TDD 기반 학습 방법론 | 30-40분 |
+| `02_patent_attorney_exam.md` | 제62회 변리사 제1차 시험 대비 가이드 | 40-50분 |
 
-- 4가지 설계 원칙
-  - 구조적 사고 (Structural Thinking)
-  - 반복적 학습 (Iterative Learning)
-  - 피드백 기반 학습 (Feedback-Driven Learning)
-  - 점진적 복잡성 증가 (Progressive Complexity)
-
-- 게임 설계의 철학적 의미
-- 개발자 정신과의 연결
-- 4단계의 철학적 의미
-- 설계 원칙의 충돌과 해결
-- 윤리와 책임
-- 궁극의 목표: Continuous Integration of Learning and Life
-
-**추천 대상:** 프로젝트의 이념을 깊이 있게 이해하고 싶은 사람
-
-**읽는 시간:** 40-50분
+**추천:** 변리사 시험 수험생, 법률 학습자
 
 ---
 
-### 7. DSL 설계 철학으로 깊이 있게 이해하기
+### 6️⃣ 참고 자료 (`06_reference/`)
 
-#### 🔧 [08_dsl_design_philosophy.md](08_dsl_design_philosophy.md)
-**핵심 내용:** 변리사 업무를 위한 도메인 특화 언어(DSL) 설계
+API 문서, 정책, 가이드라인 등 참고용 자료들입니다.
 
-- DSL의 정체성: 변리사 업무를 프로그래밍 언어로
-- DSL의 4가지 구성 요소
-  - 어휘(Vocabulary) = 법률 용어의 객체화
-  - 문법(Syntax) = 청구항 작성 규칙 체화
-  - 실행(Execution) = 판례 적용 및 심사 시뮬레이션
-  - 결론적 사고(Meta-Reasoning) = 자신의 학습 시스템 개선
+| 파일 | 설명 |
+|------|------|
+| `01_quick_reference.md` | 빠른 참고 가이드 |
+| `02_api_documentation.md` | REST API 상세 문서 |
+| `03_governance_policy.md` | AI 거버넌스 및 정책 |
+| `04_legacy_reports/` | Phase별 완료 보고서 |
 
-- DSL로 생각하는 개발자 vs 일반 수험생 비교
-- 구현 로드맵: 단계별 DSL 진화
-- 실제 예시: "선의의 제3자" 규칙을 DSL로
-- 최종 정리: 왜 DSL인가?
-
-**추천 대상:** 프로젝트의 개발자스러운 핵심을 완전히 이해하고 싶은 개발자
-
-**읽는 시간:** 50-60분
-
-**필요 지식:** 기본 프로그래밍 개념, 구조적 사고
-
-**전제 문서:** 06_design_philosophy.md를 먼저 읽을 것 권장
+**추천:** 구현 중 참고가 필요할 때
 
 ---
 
-## 🚀 빠른 시작 가이드
+## 🎯 목적별 추천 문서
 
-### 1단계: 프로젝트 이해 (30분)
+### "이 프로젝트가 뭔가요?"
+→ [메인 README.md](../README.md) + [01_project_overview.md](01_overview/01_project_overview.md)
+
+### "어떻게 시작하나요?"
+→ [QUICKSTART.md](00_master/QUICKSTART.md) + [02_web_setup.md](03_implementation/02_web_setup.md)
+
+### "게임은 어떻게 작동하나요?"
+→ [02_game_mechanics.md](01_overview/02_game_mechanics.md) + [03_game_mechanics.md](02_architecture/03_game_mechanics.md)
+
+### "기술 구조는 어떻게 되나요?"
+→ [01_technical_architecture.md](02_architecture/01_technical_architecture.md)
+
+### "코드는 어떻게 구조화되어 있나요?"
+→ [02_project_structure.md](01_overview/02_project_structure.md) + [04_design_philosophy.md](02_architecture/04_design_philosophy.md)
+
+### "테스트는 어떻게 하나요?"
+→ [01_test_strategy.md](04_testing/01_test_strategy.md) + [02_testing_guide.md](04_testing/02_testing_guide.md)
+
+### "API를 어떻게 사용하나요?"
+→ [02_api_documentation.md](06_reference/02_api_documentation.md)
+
+### "변리사 시험 대비는?"
+→ [02_patent_attorney_exam.md](05_learning/02_patent_attorney_exam.md) + [01_study_methodology.md](05_learning/01_study_methodology.md)
+
+### "프로젝트 진행 상황은?"
+→ [03_project_status.md](01_overview/03_project_status.md) + [03_quality_roadmap.md](04_testing/03_quality_roadmap.md)
+
+---
+
+## 📊 문서 통계
+
+- **총 문서 수**: 30+
+- **총 페이지**: 200+
+- **읽는 시간**: 8-10 시간 (완독)
+
+---
+
+## 🔄 문서 관리
+
+### 네이밍 규칙
 ```
-1. README.md를 읽기
-2. 01_project_overview.md를 읽기
-3. 이 문서 (INDEX.md)를 정독
+[순서]_[카테고리]_[파일명].md
+예) 01_project_overview.md, 02_architecture_structure.md
 ```
 
-### 2단계: 게임 시스템 이해 (40분)
+### 폴더 구조
 ```
-1. 02_game_mechanics.md를 읽기
-2. "The Input", "The Process" 섹션 재독
-3. 게임플레이 루프 이해하기
-```
-
-### 3단계: 기술 스택 학습 (60분)
-```
-1. 03_technical_architecture.md를 읽기
-2. 각 컴포넌트의 역할 이해하기
-3. 데이터 흐름도 그려보기
-```
-
-### 4단계: 로드맵 계획 (50분)
-```
-1. 04_roadmap.md를 읽기
-2. 각 Phase의 목표와 작업 이해하기
-3. 자신의 일정에 맞게 타임라인 조정
-```
-
-### 5단계: 학습 방법론 습득 (45분)
-```
-1. 05_study_methodology.md를 정독
-2. TDD의 4단계 이해하기
-3. 체크리스트 출력해서 보관
-```
-
-### 6단계: 철학 이해 (45분)
-```
-1. 06_design_philosophy.md를 읽기
-2. 각 설계 원칙의 의미 생각해보기
-3. 왜 이 방식이 효과적인지 자신만의 언어로 정리
-```
-
-### 7단계: 개발 시작 (무제한)
-```
-$ cd The-First-Claim
-$ python src/main.py
-```
-
-**총 소요 시간:** 약 4시간 (공부 방식 + 실제 개발)
-
----
-
-## 📊 문서 선택 가이드
-
-### 당신은 어떤 타입인가요?
-
-#### 타입 A: 전체적 이해를 원하는 사람
-**추천 순서:**
-1. README.md
-2. 01_project_overview.md
-3. 02_game_mechanics.md
-4. 06_design_philosophy.md
-
-**이유:** 큰 그림을 먼저 파악하고 싶은 타입
-
----
-
-#### 타입 B: 바로 개발을 시작하고 싶은 개발자
-**추천 순서:**
-1. README.md
-2. 03_technical_architecture.md
-3. 04_roadmap.md (Phase 1만)
-5. src/main.py 실행
-
-**이유:** 기술과 구현을 우선으로 하는 타입
-
----
-
-#### 타입 C: 학습 방법론에 집중하는 수험생
-**추천 순서:**
-1. README.md
-2. 05_study_methodology.md
-3. 01_project_overview.md
-4. 04_roadmap.md
-
-**이유:** 어떻게 공부할 것인가를 중시하는 타입
-
----
-
-#### 타입 D: 철학적 근거를 찾는 사람
-**추천 순서:**
-1. README.md
-2. 06_design_philosophy.md
-3. 05_study_methodology.md
-4. 01_project_overview.md
-
-**이유:** 왜 이것이 작동하는지 알고 싶은 타입
-
----
-
-## 🎯 각 문서의 핵심 아이디어
-
-| 문서 | 핵심 질문 | 핵심 답변 |
-|------|---------|---------|
-| 01 Overview | 이 프로젝트가 뭐지? | 변리사 + 개발자를 위한 마스터플랜 |
-| 02 Mechanics | 게임은 어떻게 작동? | 사건 → 배틀 → 피드백 → 학습 |
-| 03 Architecture | 기술적으로 어떻게 구현? | Knowledge Base + Logic Engine + UI |
-| 04 Roadmap | 어떻게 12주에 완성? | Phase 1-4를 순서대로 진행 |
-| 05 Methodology | 어떻게 효과적으로 학습? | Test → Code → Refactor → Pass 반복 |
-| 06 Philosophy | 왜 이 방식이 작동? | 개발자 사고 + 게임화 + 과학 기반 |
-| 08 DSL Design | 개발자로서 어떤 마인드? | 법률을 도메인 특화 언어(DSL)로 설계 |
-
----
-
-## 💡 자주 묻는 질문 (FAQ)
-
-### Q: 어디서 시작해야 할까요?
-**A:** README.md와 01_project_overview.md부터 시작하세요. 프로젝트의 전체 그림이 보일 것입니다.
-
-### Q: 개발 경험이 없어도 따라할 수 있을까요?
-**A:** 가능합니다! 하지만 Python 기본과 변리사 시험 기본 지식은 있어야 합니다.
-
-### Q: 정말 12주에 완성할 수 있을까요?
-**A:** 하루 2-3시간 집중력 있게 학습하면 가능합니다. Phase 별로 유연하게 조정하세요.
-
-### Q: 게임은 정말 필요한가요?
-**A:** 게임화는 학습 심리학 기반입니다. 05_study_methodology.md의 "뇌 과학적 메커니즘"을 참고하세요.
-
-### Q: AI 활용이 정말 도움이 될까요?
-**A:** 네. AI는 '판례 검색'과 '즉각적 피드백' 제공으로 학습을 가속화합니다.
-
----
-
-## 📚 추가 학습 자료
-
-### 변리사 시험 관련
-- 국가법령정보센터: https://www.law.go.kr
-- 판례검색: https://glaw.scourt.go.kr
-- 대한변리사회: https://www.kipa.org
-
-### 개발 관련
-- Python 공식 문서: https://docs.python.org/3/
-- OpenAI API 문서: https://platform.openai.com/docs
-- Pinecone 문서: https://docs.pinecone.io
-
-### 학습 심리학 관련
-- 망각곡선 (Ebbinghaus): Educational psychology 교과서
-- 스페이스드 리피티션: Anki, SuperMemo 등의 문헌
-
----
-
-## 🔄 문서 업데이트 일정
-
-| 문서 | 최종 업데이트 | 다음 예상 |
-|------|-------------|---------|
-| README.md | 2025-12-03 | Phase 1 완료 후 |
-| 01-06 | 2025-12-03 | 분기별 검토 |
-| 07+ | 예정 | Phase 별 완성 시 |
-
----
-
-## ✨ 프로젝트 진행 상황
-
-```
-┌─────────────────────────────────────────┐
-│  PROJECT: OVERRIDE - 진행 상황          │
-├─────────────────────────────────────────┤
-│                                         │
-│  ✓ 프로젝트 초기화 완료                  │
-│  ✓ 문서 작성 완료                       │
-│  ✓ 디렉토리 구조 구성                    │
-│  ✓ 메인 진입점 (main.py) 생성            │
-│                                         │
-│  → 다음: Phase 1 개발 시작              │
-│                                         │
-└─────────────────────────────────────────┘
+docs/
+├── 00_master/           # 마스터 문서 (시작 가이드)
+├── 01_overview/         # 프로젝트 개요 (이해)
+├── 02_architecture/     # 기술 아키텍처 (설계)
+├── 03_implementation/   # 구현 가이드 (개발)
+├── 04_testing/          # 테스트 (품질)
+├── 05_learning/         # 학습 자료 (교육)
+└── 06_reference/        # 참고 자료 (참조)
 ```
 
 ---
 
-## 🎓 학습 경로 (Recommended Learning Path)
+## ❓ FAQ
 
-### 주간 계획 예시
+**Q: 어느 문서부터 읽어야 하나요?**
+A: [메인 README.md](../README.md)와 [QUICKSTART.md](00_master/QUICKSTART.md)부터 시작하세요.
 
-**Week 1: 프로젝트 완전 이해**
-- Day 1-2: 01-06 문서 모두 읽기
-- Day 3-4: 자신의 언어로 정리하기
-- Day 5: main.py 실행해보기
-- Day 6-7: 여유 + 질문 정리
+**Q: 개발자인데 어떤 문서를 봐야 하나요?**
+A: [01_technical_architecture.md](02_architecture/01_technical_architecture.md) → [02_web_setup.md](03_implementation/02_web_setup.md) → [02_testing_guide.md](04_testing/02_testing_guide.md)
 
-**Week 2-3: Phase 1 학습**
-- 민법 조문 읽고 코드로 구현
-- TDD 사이클 반복
-- 테스트 코드 작성
+**Q: 변리사 시험 대비를 원하는데요?**
+A: [02_patent_attorney_exam.md](05_learning/02_patent_attorney_exam.md) + [01_study_methodology.md](05_learning/01_study_methodology.md)
 
-**Week 4-5: Phase 2 학습**
-- 특허법 이해
-- 청구항 시스템 구현
-- 판례 크롤링
-
-... (이런 식으로 12주)
+**Q: 문서가 오래된 건가요?**
+A: 모든 문서는 정기적으로 업데이트됩니다. 마지막 업데이트 날짜는 각 문서 상단을 확인하세요.
 
 ---
 
-## 🚀 지금 바로 시작하기
-
-```bash
-# 1. 프로젝트 디렉토리로 이동
-cd The-First-Claim
-
-# 2. 문서 읽기
-cat docs/README.md
-cat docs/01_project_overview.md
-
-# 3. 게임 시작
-python src/main.py
-
-# 4. 테스트 실행 (준비 완료 시)
-pytest tests/
-
-# 5. 개발 시작
-# src/game_engine.py 파일 생성 및 구현
-```
-
----
-
-## 📞 지원 및 피드백
-
-이 프로젝트는 지속적으로 진화합니다.
-
-- 문제 발견: GitHub Issues에 보고
-- 개선 제안: GitHub Discussions 참여
-- 기여: Pull Requests 환영
-
----
-
-## 🎯 최종 목표
-
-> **"개발을 하다 보니 변리사가 되어 있고,**
-> **코드를 짜다 보니 변리사 수험생의 최고의 친구가 되어 있다."**
-
-이것이 PROJECT: OVERRIDE의 궁극의 목표입니다.
-
----
-
-**작성일:** 2025-12-03
-**버전:** 1.0.0
-**상태:** 🚀 Ready to Deploy
-
-이 인덱스를 즐겨찾기에 추가하세요!
+**마지막 업데이트**: 2025년 12월 8일

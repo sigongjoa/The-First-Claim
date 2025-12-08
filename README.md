@@ -1,57 +1,103 @@
-# PROJECT: OVERRIDE
+# PROJECT: OVERRIDE - 특허 청구항 검증 게임 (Patent Claim Validation Game)
 
-## Test-Driven Legal Engine (테스트 주도형 법률 엔진 구축 프로젝트)
+**한국 변리사 시험 대비를 위한 인터랙티브 학습 게임**
 
-### 프로젝트 정의
+## 🎮 프로젝트 개요
 
-**Project Name:** OVERRIDE (기존의 판례/심사 결과를 뒤집고, 나의 논리로 재정의한다)
+PROJECT: OVERRIDE는 한국 특허청 변리사 시험 제1차 시험 대비를 위한 혁신적인 인터랙티브 게임 기반 학습 플랫폼입니다. 특허법 및 민법 지식을 게임을 통해 습득하고, 청구항 검증 및 법률 배틀을 통해 실무 능력을 강화합니다.
 
-**Genre:** Legal Logic Defense Simulation / Serious Game
+### 핵심 기능
+- **🎯 청구항 검증**: 특허 청구항의 유효성을 AI 기반으로 검증
+- **⚖️ 법률 배틀**: 법률 지식을 기반으로 한 인터랙티브 배틀 시스템
+- **📚 의미론적 검색**: RAG(Retrieval-Augmented Generation) 기반 법률 조문 검색
+- **🤖 로컬 LLM**: Ollama 기반 로컬 LLM으로 API 비용 최소화
+- **🔄 세션 관리**: 스레드 안전 세션 관리 및 영속성
 
-**Core Philosophy:** "법을 읽는(Read) 사용자가 아니라, 법을 설계하는(Architect) 창조자가 된다."
+## 📋 프로젝트 구조
 
-### 프로젝트의 이중 목표
-
-| 목표 | 세부 내용 |
-|------|---------|
-| **시험 합격** | 변리사 시험(민법, 특허법)의 고득점 합격 |
-| **커리어 성장** | AI와 Legal Tech를 완벽하게 이해하는 '대체 불가능한 변리사'로 성장 |
-
-### 핵심 개념
-
-이 프로젝트는 단순한 게임이 아닙니다. 이것은:
-
-- **'변리사 자격증'**과 **'AI Legal Tech 포트폴리오'**라는 두 마리 토끼를 동시에 잡는 전략
-- 개발자 출신 수험생을 위한 **마스터플랜**
-- 수험 생활을 '고통'에서 '개발'로 변환하는 메타인지 프레임워크
-
-### 빠른 시작 가이드
-
-```bash
-cd /mnt/d/progress/The-First-Claim
-python main.py
+```
+The-First-Claim/
+├── README.md                 # 메인 문서 (이 파일)
+├── docs/                     # 문서 폴더
+│   ├── 00_master/           # 마스터 문서
+│   ├── 01_overview/         # 프로젝트 개요
+│   ├── 02_architecture/     # 기술 아키텍처
+│   ├── 03_implementation/   # 구현 가이드
+│   ├── 04_testing/          # 테스트 문서
+│   ├── 05_learning/         # 학습 자료
+│   └── 06_reference/        # 참고 자료
+├── src/                      # 소스 코드
+│   ├── api/                 # FastAPI 서버
+│   ├── dsl/                 # DSL 엔진
+│   ├── game/                # 게임 로직
+│   ├── knowledge_base/      # 지식 베이스
+│   ├── storage/             # 세션 저장소
+│   ├── monitoring/          # 모니터링
+│   └── utils/               # 유틸리티
+├── tests/                    # 테스트 (489개)
+└── requirements.txt          # 의존성
 ```
 
-### 문서 구조
+## 🚀 빠른 시작
 
-- `docs/01_project_overview.md` - 프로젝트 전체 개요
-- `docs/02_game_mechanics.md` - 게임 시스템 설명
-- `docs/03_technical_architecture.md` - 기술 아키텍처
-- `docs/04_roadmap.md` - 단계별 개발 로드맵
-- `docs/05_study_methodology.md` - TDD 학습 방법론
-- `docs/06_design_philosophy.md` - 설계 철학 및 원칙
+### 필수 요구사항
+- Python 3.12+
+- Ollama (로컬 LLM)
 
-### 시작하기
+### 설치
+```bash
+git clone https://github.com/sigongjoa/The-First-Claim.git
+cd The-First-Claim
+pip install -r requirements.txt
+ollama serve  # 별도 터미널에서
+python src/main.py
+```
 
-이 거창한 계획도 첫 줄의 코드가 없으면 공상입니다.
+## 📊 현재 상태
+- **테스트**: 474/489 passing (96.9%)
+- **Phase**: C.4 완료 (고급 테스팅)
+- **코드 품질**: A (MyPy, Black, Flake8)
 
-1. IDE(VS Code)를 엽니다
-2. 프로젝트 폴더를 확인합니다: `The-First-Claim`
-3. `src/main.py`에서 개발을 시작합니다
-4. 테스트 주도 개발을 따릅니다
+## 📚 문서 구조
+
+### 마스터 가이드
+- [QUICKSTART.md](docs/00_master/QUICKSTART.md) - 5분 시작 가이드
+
+### 프로젝트 이해
+- [프로젝트 개요](docs/01_overview/)
+- [기술 아키텍처](docs/02_architecture/)
+
+### 개발
+- [구현 가이드](docs/03_implementation/)
+- [테스트 가이드](docs/04_testing/)
+
+### 학습
+- [학습 자료](docs/05_learning/)
+
+### 참고
+- [참고 자료](docs/06_reference/)
+
+## 🔧 기술 스택
+
+| 영역 | 기술 |
+|------|------|
+| **API** | FastAPI, Pydantic |
+| **데이터** | ChromaDB, SQLAlchemy |
+| **LLM** | Ollama (로컬) |
+| **테스트** | pytest, hypothesis, mutmut |
+| **품질** | MyPy, Black, Flake8 |
+
+## 🧪 테스트 실행
+
+```bash
+pytest tests/ -v           # 모든 테스트
+pytest tests/test_game.py  # 특정 파일
+pytest --cov=src          # 커버리지
+```
+
+## 📖 상세 문서
+
+전체 문서는 [docs/ 폴더](docs/)를 참고하세요.
 
 ---
-
-**Start Date:** 2025-12-03
-**Developer:** 개발자 출신 변리사 수험생
-**Status:** 🚀 Initializing...
+**상태**: 🟢 활발한 개발 중 | **마지막 업데이트**: 2025-12-08
