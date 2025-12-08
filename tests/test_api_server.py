@@ -8,7 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import Mock, patch
 
-from src.api.server import app, _sessions
+from src.api.server import app, _session_store
 
 # ============================================================================
 # TestClient 생성
@@ -87,15 +87,15 @@ class TestClaimValidation:
 class TestClaimEvaluation:
     """청구항 평가 엔드포인트 테스트"""
 
-    @patch("src.api.server.LLMClaimEvaluator")
+    @patch("src.api.server.OllamaClaimEvaluator")
     def test_evaluate_claim_without_rag(self, mock_evaluator_class):
         """RAG 없이 평가"""
         mock_evaluator = Mock()
-        mock_evaluator.evaluate_claim.return_value = {
-            "answer": "테스트 답변",
-            "confidence": 0.8,
-            "sources": ["제197조"],
-        }
+        mock_result = Mock()
+        mock_result.overall_opinion = "테스트 답변"
+        mock_result.estimated_approval_probability = 0.8
+        mock_result.relevant_articles = ["제197조"]
+        mock_evaluator.evaluate_claim.return_value = mock_result
         mock_evaluator_class.return_value = mock_evaluator
 
         response = client.post(
@@ -199,7 +199,7 @@ class TestGameSession:
         assert data["status"] == "created"
 
         # 세션이 저장되었는지 확인
-        assert data["session_id"] in _sessions
+        assert _session_store.exists(data["session_id"])
 
     def test_create_session_invalid_level(self):
         """유효하지 않은 레벨"""
@@ -242,8 +242,10 @@ class TestClaimSubmission:
         session_id = response.json()["session_id"]
 
         # 청구항 제출 (mock 재설정)
-        _sessions[session_id]["session"].submit_claim = Mock(return_value=True)
-        _sessions[session_id]["session"].submitted_claims = ["청구항"]
+        session_data = _session_store.get(session_id)
+        session_data["session"].submit_claim = Mock(return_value=True)
+        session_data["session"].submitted_claims = ["청구항"]
+        _session_store.update(session_id, session_data)
 
         response = client.post(
             "/api/game/claim/submit",
@@ -263,10 +265,10 @@ class TestClaimSubmission:
         """유효하지 않은 세션"""
         response = client.post(
             "/api/game/claim/submit",
-            json={"session_id": "invalid_session", "claim": "청구항 내용"},
+            json={"session_id": "invalid_session", "claim": "컴퓨터 프로그램을 저장한 컴퓨터 읽기 가능 매체입니다"},
         )
 
-        assert response.status_code == 400
+        assert response.status_code == 404
 
     def test_submit_claim_too_short(self):
         """너무 짧은 청구항"""
@@ -288,7 +290,7 @@ class TestClaimSubmission:
                 json={"session_id": session_id, "claim": "짧음"},
             )
 
-            assert response.status_code == 400
+            assert response.status_code == 422
 
 
 # ============================================================================
@@ -368,4 +370,9 @@ pytestmark = [
 def cleanup():
     """각 테스트 후 세션 정리"""
     yield
-    _sessions.clear()
+    # 세션 스토어 비우기 (모든 세션 삭제)
+    try:
+        for session_id in list(_session_store.list_all()):
+            _session_store.delete(session_id)
+    except Exception:
+        pass

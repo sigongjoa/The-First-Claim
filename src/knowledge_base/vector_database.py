@@ -14,10 +14,13 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-import openai
+import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 logger = logging.getLogger(__name__)
+
+# Ollama API 기본 URL
+OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434")
 
 
 class VectorDbType(Enum):
@@ -48,30 +51,27 @@ class VectorSearchResult:
 
 
 class EmbeddingManager:
-    """OpenAI Embedding API를 사용한 임베딩 생성"""
+    """Ollama를 사용한 로컬 임베딩 생성 (OpenAI 없이)"""
 
-    def __init__(self, model: str = "text-embedding-3-small"):
+    def __init__(self, model: str = "nomic-embed-text"):
         """
         임베딩 매니저 초기화
 
         Args:
-            model: OpenAI 임베딩 모델
-                - text-embedding-3-small (저비용, 빠름)
-                - text-embedding-3-large (고성능)
+            model: Ollama 임베딩 모델
+                - nomic-embed-text (권장, 빠르고 효율적)
+                - mxbai-embed-large (더 나은 성능)
         """
         self.model = model
-        self.api_key = os.getenv("OPENAI_API_KEY")
-        if not self.api_key:
-            raise ValueError("OPENAI_API_KEY 환경 변수가 설정되지 않았습니다")
-
-        openai.api_key = self.api_key
+        self.ollama_url = OLLAMA_API_URL
+        logger.info(f"Ollama 임베딩 매니저 초기화: {self.ollama_url}, 모델: {self.model}")
 
     @retry(
         stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10)
     )
     def get_embedding(self, text: str) -> List[float]:
         """
-        텍스트를 벡터로 변환
+        텍스트를 벡터로 변환 (Ollama 사용)
 
         Args:
             text: 임베딩할 텍스트
@@ -86,14 +86,27 @@ class EmbeddingManager:
             if not text or len(text.strip()) == 0:
                 raise ValueError("텍스트가 비어있습니다")
 
-            response = openai.Embedding.create(input=text, model=self.model)
+            # Ollama API 호출
+            response = requests.post(
+                f"{self.ollama_url}/api/embed",
+                json={"model": self.model, "input": text},
+                timeout=30
+            )
+            response.raise_for_status()
 
-            embedding = response["data"][0]["embedding"]
+            data = response.json()
+            if "embeddings" not in data or len(data["embeddings"]) == 0:
+                raise ValueError("임베딩 응답이 비어있습니다")
+
+            embedding = data["embeddings"][0]
             logger.info(f"임베딩 생성: 모델={self.model}, 차원={len(embedding)}")
             return embedding
 
-        except openai.error.APIError as e:
-            logger.error(f"OpenAI API 오류: {e}")
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"Ollama 연결 실패: {e}. Ollama가 실행 중인지 확인하세요: {self.ollama_url}")
+            raise ValueError(f"Ollama 서버에 연결할 수 없습니다: {self.ollama_url}")
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Ollama API 오류: {e}")
             raise ValueError(f"임베딩 생성 실패: {str(e)}")
         except Exception as e:
             logger.error(f"예상치 못한 오류: {e}")
@@ -101,7 +114,7 @@ class EmbeddingManager:
 
     def get_batch_embeddings(self, texts: List[str]) -> List[List[float]]:
         """
-        여러 텍스트를 배치로 벡터화
+        여러 텍스트를 배치로 벡터화 (Ollama 사용)
 
         Args:
             texts: 임베딩할 텍스트 목록
@@ -110,12 +123,25 @@ class EmbeddingManager:
             임베딩 벡터 목록
         """
         try:
-            response = openai.Embedding.create(input=texts, model=self.model)
+            # Ollama API 호출 (배치)
+            response = requests.post(
+                f"{self.ollama_url}/api/embed",
+                json={"model": self.model, "input": texts},
+                timeout=30
+            )
+            response.raise_for_status()
 
-            embeddings = [item["embedding"] for item in response["data"]]
-            logger.info(f"배치 임베딩 생성: {len(texts)}개 항목")
+            data = response.json()
+            if "embeddings" not in data:
+                raise ValueError("임베딩 응답이 비어있습니다")
+
+            embeddings = data["embeddings"]
+            logger.info(f"배치 임베딩 생성: {len(texts)}개 항목, 차원={len(embeddings[0]) if embeddings else 0}")
             return embeddings
 
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"Ollama 연결 실패: {e}")
+            raise ValueError(f"Ollama 서버에 연결할 수 없습니다")
         except Exception as e:
             logger.error(f"배치 임베딩 실패: {e}")
             raise ValueError(f"배치 임베딩 생성 중 오류 발생: {str(e)}")
