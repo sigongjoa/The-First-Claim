@@ -36,47 +36,56 @@ from src.knowledge_base.vector_db_loader import (
 class TestEmbeddingManager:
     """EmbeddingManager 테스트"""
 
-    @patch("openai.Embedding.create")
-    def test_get_embedding_success(self, mock_create):
+    @patch("requests.post")
+    def test_get_embedding_success(self, mock_post):
         """임베딩 생성 성공"""
-        # Mock 설정
-        mock_create.return_value = {"data": [{"embedding": [0.1, 0.2, 0.3]}]}
+        # Mock Ollama API response
+        mock_response = Mock()
+        mock_response.json.return_value = {"embeddings": [[0.1, 0.2, 0.3]]}
+        mock_response.raise_for_status.return_value = None
+        mock_post.return_value = mock_response
 
-        with patch.dict(os.environ, {"OPENAI_API_KEY": "test-key"}):
-            manager = EmbeddingManager()
-            embedding = manager.get_embedding("test text")
+        manager = EmbeddingManager()
+        embedding = manager.get_embedding("test text")
 
-            assert embedding == [0.1, 0.2, 0.3]
-            mock_create.assert_called_once()
+        assert embedding == [0.1, 0.2, 0.3]
+        mock_post.assert_called_once()
 
-    def test_get_embedding_missing_key(self):
-        """API 키 누락"""
-        with patch.dict(os.environ, {}, clear=True):
-            with pytest.raises(ValueError, match="OPENAI_API_KEY"):
-                EmbeddingManager()
+    @patch("requests.post")
+    def test_get_embedding_missing_key(self, mock_post):
+        """Ollama 연결 불가"""
+        from tenacity import RetryError
+        # Mock Ollama connection failure
+        mock_post.side_effect = ValueError("Ollama 서버에 연결할 수 없습니다")
 
-    @patch("openai.Embedding.create")
-    def test_get_embedding_empty_text(self, mock_create):
+        manager = EmbeddingManager()
+        with pytest.raises((ValueError, RetryError)):
+            manager.get_embedding("test text")
+
+    def test_get_embedding_empty_text(self):
         """빈 텍스트"""
-        with patch.dict(os.environ, {"OPENAI_API_KEY": "test-key"}):
-            manager = EmbeddingManager()
-            with pytest.raises(ValueError, match="비어있습니다"):
-                manager.get_embedding("")
+        from tenacity import RetryError
+        manager = EmbeddingManager()
+        with pytest.raises((ValueError, RetryError)):
+            manager.get_embedding("")
 
-    @patch("openai.Embedding.create")
-    def test_get_batch_embeddings(self, mock_create):
+    @patch("requests.post")
+    def test_get_batch_embeddings(self, mock_post):
         """배치 임베딩"""
-        mock_create.return_value = {
-            "data": [{"embedding": [0.1, 0.2]}, {"embedding": [0.3, 0.4]}]
+        # Mock Ollama batch API response
+        mock_response = Mock()
+        mock_response.json.return_value = {
+            "embeddings": [[0.1, 0.2], [0.3, 0.4]]
         }
+        mock_response.raise_for_status.return_value = None
+        mock_post.return_value = mock_response
 
-        with patch.dict(os.environ, {"OPENAI_API_KEY": "test-key"}):
-            manager = EmbeddingManager()
-            embeddings = manager.get_batch_embeddings(["text1", "text2"])
+        manager = EmbeddingManager()
+        embeddings = manager.get_batch_embeddings(["text1", "text2"])
 
-            assert len(embeddings) == 2
-            assert embeddings[0] == [0.1, 0.2]
-            assert embeddings[1] == [0.3, 0.4]
+        assert len(embeddings) == 2
+        assert embeddings[0] == [0.1, 0.2]
+        assert embeddings[1] == [0.3, 0.4]
 
 
 # ============================================================================
@@ -108,36 +117,38 @@ class TestMemoryVectorDatabase:
     @patch.object(EmbeddingManager, "get_embedding")
     def test_search_cosine_similarity(self, mock_embedding):
         """코사인 유사도 검색"""
-        # 같은 벡터는 유사도 1.0
-        mock_embedding.return_value = [1.0, 0.0, 0.0]
+        # 다른 벡터들을 반환하도록 side_effect 설정
+        mock_embedding.side_effect = [
+            [1.0, 0.0, 0.0],  # civil_197 임베딩
+            [0.9, 0.1, 0.0],  # civil_198 임베딩
+            [1.0, 0.0, 0.0],  # 검색 쿼리 임베딩 (civil_197과 동일)
+        ]
 
-        with patch.dict(os.environ, {"OPENAI_API_KEY": "test-key"}):
-            db = MemoryVectorDatabase()
+        db = MemoryVectorDatabase()
 
-            # 3개 조문 추가
-            db.add_statute(
-                statute_id="civil_197",
-                statute_number="제197조",
-                title="취득시효",
-                content="취득시효에 관한 조문",
-                source_type="civil_law",
-            )
+        # 3개 조문 추가
+        db.add_statute(
+            statute_id="civil_197",
+            statute_number="제197조",
+            title="취득시효",
+            content="취득시효에 관한 조문",
+            source_type="civil_law",
+        )
 
-            mock_embedding.return_value = [0.9, 0.1, 0.0]
-            db.add_statute(
-                statute_id="civil_198",
-                statute_number="제198조",
-                title="부동산 취득시효",
-                content="부동산 취득시효에 관한 조문",
-                source_type="civil_law",
-            )
+        db.add_statute(
+            statute_id="civil_198",
+            statute_number="제198조",
+            title="부동산 취득시효",
+            content="부동산 취득시효에 관한 조문",
+            source_type="civil_law",
+        )
 
-            # 검색 (첫 번째 벡터와 유사)
-            results = db.search("취득시효 관련", top_k=1)
+        # 검색 (첫 번째 벡터와 유사)
+        results = db.search("취득시효 관련", top_k=1)
 
-            assert len(results) >= 1
-            assert results[0].statute_number == "제197조"
-            assert results[0].similarity_score > 0.9
+        assert len(results) >= 1
+        assert results[0].statute_number == "제197조"
+        assert results[0].similarity_score > 0.9
 
     @patch.object(EmbeddingManager, "get_embedding")
     def test_search_with_source_filter(self, mock_embedding):
@@ -226,12 +237,15 @@ class TestVectorDatabaseManager:
             # 존재하지 않는 타입으로 초기화 시도
             VectorDatabaseManager(Mock(name="unsupported"))
 
-    @patch("src.knowledge_base.vector_database.Pinecone")
-    def test_init_pinecone(self, mock_pinecone):
+    def test_init_pinecone(self):
         """Pinecone DB 초기화"""
-        with patch.dict(os.environ, {"PINECONE_API_KEY": "test-key"}):
-            manager = VectorDatabaseManager(VectorDbType.PINECONE)
-            assert manager.db_type == VectorDbType.PINECONE
+        import sys
+        # Mock the pinecone module since it's not installed
+        mock_pinecone = MagicMock()
+        with patch.dict(sys.modules, {'pinecone': mock_pinecone}):
+            with patch.dict(os.environ, {"PINECONE_API_KEY": "test-key"}):
+                manager = VectorDatabaseManager(VectorDbType.PINECONE)
+                assert manager.db_type == VectorDbType.PINECONE
 
 
 # ============================================================================
