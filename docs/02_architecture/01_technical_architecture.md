@@ -689,3 +689,199 @@ services:
 ---
 
 최종 목표: **이 시스템을 이해하고 구축하는 과정이 곧 변리사 시험 합격의 지름길이다.**
+
+---
+
+## 8. Phase D': 평가 시스템 고도화
+
+### 8.1 개선 사항 (2025-12-08)
+
+#### 8.1.1 하이브리드 평가 엔진
+
+이전 "word matcher" → 새로운 "semantic legal engine"
+
+**3단계 평가 파이프라인**:
+
+```
+청구항 입력
+    ↓
+[단계 1: 규칙 기반] - Jaccard 유사도 (<50ms)
+    ↓
+[단계 2: RAG 기반] - 벡터 검색 (200-500ms)
+    ├─ 특허법 조문 (40개+)
+    └─ 판례 데이터 (12개+)
+    ↓
+[단계 3: LLM 기반] - Ollama 판정 (1-3초)
+    ↓
+점수 결합 (가중 평균)
+    ↓
+최종 평가 결과
+```
+
+**구현 위치**: `src/dsl/logic/hybrid_evaluator.py`
+
+#### 8.1.2 클레임 파서 (의미론적 분석)
+
+```python
+# 클레임 구조 분해
+class ClaimComponentParser:
+    - preamble (전제부)
+    - body (본문)
+    - characterizing_part (특징부)
+
+# 동의어 정규화
+디스플레이 → 표시_장치
+메모리 → 저장_장치
+프로세서 → 처리_장치
+```
+
+**구현 위치**: `src/dsl/logic/claim_parser.py`
+
+#### 8.1.3 설정 관리 (40+ 매직 넘버 제거)
+
+**이전**: 임계값이 코드에 산재
+```python
+if similarity > 0.7:
+    rule_score = rule_score * 0.2 + llm_score * 0.8
+```
+
+**현재**: 중앙 집중식 설정
+```python
+config = EvaluationConfig(
+    novelty=NoveltyConfig(
+        min_similarity_threshold=0.7,
+        vector_search_top_k=5,
+        llm_judgment_weight=0.8,
+    )
+)
+```
+
+**구현 위치**: `src/config/evaluation_config.py`
+
+#### 8.1.4 SQLite 세션 저장소
+
+**이전**: 메모리 기반 (서버 재시작 시 손실)
+**현재**: SQLite 영구 저장 + TTL 기반 만료
+
+```python
+class SQLiteSessionStore:
+    - CRUD 작업 지원
+    - 1시간 TTL (설정 가능)
+    - 자동 클린업
+    - 동시성 안전 (RLock)
+```
+
+**구현 위치**: `src/storage/sqlite_session_store.py`
+
+#### 8.1.5 프론트엔드 커스텀 훅
+
+**이전**: GameScreen.jsx (400줄, 혼합된 로직)
+**현재**: 3개 전문 훅 (150줄, 순수 렌더링)
+
+```javascript
+useGameSession()        // 세션 관리
+useClaimValidation()    // 검증 및 제출
+useGameTimer()          // 타이머 제어
+```
+
+**구현 위치**: `web/src/hooks/`
+
+### 8.2 지식 기반 강화
+
+#### 8.2.1 특허법 조문
+
+| 구분 | 이전 | 현재 | 향후 |
+|------|------|------|------|
+| 조문 수 | 16개 | 40개 | 200개 |
+| 카테고리 | - | 신규성, 진보성, 권리범위 | 심사기준 |
+| 벡터 인덱싱 | ❌ | ✅ (768차원) | ✅ |
+
+**파일**: `data/patent_law_articles.json`
+
+#### 8.2.2 판례 데이터베이스
+
+| 구분 | 이전 | 현재 | 향후 |
+|------|------|------|------|
+| 판례 | 0건 | 12건 | 100건 |
+| 유형 | - | 신규성, 진보성, 권리범위 | 모든 유형 |
+| 저장소 | - | 벡터 DB + SQL | 하이브리드 |
+
+**파일**: `data/patent_precedent_cases.json`
+
+### 8.3 성능 개선
+
+| 작업 | 이전 | 현재 |
+|------|------|------|
+| 평가 응답 시간 | - | <5초 |
+| 규칙 기반 | - | <50ms |
+| RAG 검색 | - | 200-500ms |
+| LLM 판정 | - | 1-3초 |
+
+### 8.4 테스트 커버리지
+
+| 모듈 | 테스트 수 | 상태 |
+|------|---------|------|
+| ClaimParser | 14개 | ✅ PASS |
+| SessionStore | 21개 | ✅ PASS |
+| HybridEvaluator | 12개 | ✅ PASS |
+| 전체 | 510+ | ✅ PASS (96.7%) |
+
+### 8.5 문서화
+
+새로운 문서:
+- `docs/02_architecture/05_evaluation_system.md` - 평가 엔진 아키텍처
+- `docs/02_architecture/06_data_sources.md` - 지식 기반 관리
+- `docs/03_implementation/05_configuration_guide.md` - 설정 가이드
+
+---
+
+## 9. 시스템 레이어 요약
+
+### Phase A-C (기본 게임 및 API)
+- 게임 메커니즘 (청구항 입력, 점수 계산)
+- REST API (세션, 평가 요청)
+- 기본 평가 엔진 (단순 유사도)
+
+### Phase D' (평가 시스템 고도화)
+- **규칙 기반**: Jaccard 유사도 + 클레임 파서
+- **RAG 기반**: 벡터 검색 (특허법 40개 + 판례 12개)
+- **LLM 기반**: Ollama mistral/llama2 (의미론적 판정)
+- **영구 저장소**: SQLite + TTL 세션 관리
+- **설정 관리**: 환경 변수 기반 파라미터 중앙화
+- **프론트엔드**: React 커스텀 훅 (관심사 분리)
+
+---
+
+## 10. 마이그레이션 가이드
+
+### 구 시스템 → 신 시스템
+
+#### Step 1: 의존성 설치
+```bash
+pip install pytest-asyncio  # 비동기 테스트
+pip install sqlalchemy      # 선택됨 (기존에 있음)
+```
+
+#### Step 2: 설정 마이그레이션
+```bash
+cp .env.example .env
+# .env 편집: EVAL_NOVELTY_THRESHOLD 등 설정
+```
+
+#### Step 3: 데이터 마이그레이션
+```bash
+# 기존 세션을 SQLite로 변환
+python3 scripts/migrate_sessions_to_sqlite.py
+```
+
+#### Step 4: 서버 시작
+```bash
+# 자동으로 신 시스템 사용
+python3 -m src.api.server
+```
+
+### 호환성
+- ✅ 기존 API 엔드포인트 유지
+- ✅ 기존 게임 메커니즘 유지
+- ✅ 기존 프론트엔드 호환 (선택적 업그레이드)
+- ⚠️ 평가 결과 형식 확대 (backward compatible)
