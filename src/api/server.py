@@ -15,12 +15,22 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict
 import logging
+import threading
+import uuid
 
 from ..dsl.grammar.claim_validator import ClaimValidator
 from ..dsl.logic.ollama_evaluator import OllamaClaimEvaluator
 from ..knowledge_base.rag_system import get_rag_system
 from ..knowledge_base.vector_database import get_vector_database, VectorSearchResult
 from ..ui.game import GameEngine, PlayerProgress
+from ..utils.exceptions import (
+    GameEngineException,
+    SessionNotFoundException,
+    ClaimValidationException,
+    EvaluationTimeoutException,
+    PersistenceException,
+)
+from ..storage.session_store import InMemorySessionStore
 
 # ============================================================================
 # 로깅 설정
@@ -344,7 +354,8 @@ async def semantic_search(
 # ============================================================================
 
 # 세션 저장소 (프로덕션에서는 DB 사용)
-_sessions: Dict[str, Dict] = {}
+# 스레드 안전 세션 저장소
+_session_store = InMemorySessionStore()
 
 
 @app.post("/api/game/session", response_model=GameSessionResponse, tags=["Game"])
@@ -366,8 +377,6 @@ async def create_game_session(request: GameSessionRequest):
         }
     """
     try:
-        import uuid
-
         engine = GameEngine()
 
         session_id = f"session_{uuid.uuid4().hex[:8]}"
@@ -377,12 +386,15 @@ async def create_game_session(request: GameSessionRequest):
             level_id=request.level_id,
         )
 
-        # 세션 저장
-        _sessions[session_id] = {
-            "player_name": request.player_name,
-            "level_id": request.level_id,
-            "session": session,
-        }
+        # 세션 저장 (스레드 안전)
+        _session_store.create(
+            session_id,
+            {
+                "player_name": request.player_name,
+                "level_id": request.level_id,
+                "session": session,
+            },
+        )
 
         return GameSessionResponse(
             session_id=session_id,
@@ -391,6 +403,9 @@ async def create_game_session(request: GameSessionRequest):
             status="created",
         )
 
+    except PersistenceException as e:
+        logger.error(f"게임 세션 저장 실패: {e}")
+        raise HTTPException(status_code=500, detail=str(e.message))
     except Exception as e:
         logger.error(f"게임 세션 생성 실패: {e}")
         raise HTTPException(status_code=400, detail=str(e))
@@ -417,10 +432,11 @@ async def submit_claim(request: ClaimSubmissionRequest):
         }
     """
     try:
-        if request.session_id not in _sessions:
-            raise ValueError(f"세션을 찾을 수 없습니다: {request.session_id}")
+        # 세션 조회 (스레드 안전)
+        session_data = _session_store.get(request.session_id)
+        if session_data is None:
+            raise SessionNotFoundException(request.session_id)
 
-        session_data = _sessions[request.session_id]
         session = session_data["session"]
 
         # 청구항 제출
@@ -431,6 +447,9 @@ async def submit_claim(request: ClaimSubmissionRequest):
         else:
             feedback = f"청구항 {len(session.submitted_claims)}개 제출됨"
 
+        # 세션 업데이트 (스레드 안전)
+        _session_store.update(request.session_id, {"session": session})
+
         return ClaimSubmissionResponse(
             session_id=request.session_id,
             claim_number=len(session.submitted_claims),
@@ -438,6 +457,9 @@ async def submit_claim(request: ClaimSubmissionRequest):
             feedback=feedback,
         )
 
+    except SessionNotFoundException as e:
+        logger.error(f"세션을 찾을 수 없습니다: {e}")
+        raise HTTPException(status_code=404, detail=str(e.message))
     except Exception as e:
         logger.error(f"청구항 제출 실패: {e}")
         raise HTTPException(status_code=400, detail=str(e))
@@ -462,7 +484,7 @@ async def get_stats():
 
         return {
             "vector_db": stats,
-            "active_sessions": len(_sessions),
+            "active_sessions": _session_store.count(),
             "system": "ready",
         }
 
